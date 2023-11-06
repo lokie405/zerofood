@@ -1,0 +1,82 @@
+@use "parts/mixin.scss";
+
+#navigation {
+
+    background-color: var(--c-khaki);
+
+    .container__navigation {
+        height: mixin.sizeVW(208,768);
+        top: 0;
+        left: 0;
+        display: grid;
+        align-items: center;
+        grid-template-columns: auto auto 1fr auto;
+    }
+
+    .label {
+        justify-self: left;
+        position: relative;
+        order: 1;
+    }
+    .label__text {
+        @include mixin.rectVW(307, 54, 768)
+    }
+    .label__frame {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        @include mixin.rectVW(192, 115, 768);
+        transform: translate(-50%, -50%);
+    }
+    .hamburger {
+        height: fit-content;
+        width: mixin.resp(94, 55, 768);
+        justify-self: left;
+        margin-left: 2.23vw;
+        order: 2;
+    }
+    .tel {
+        justify-self: right;
+        font-family: Inter;
+        font-size: mixin.resp(26, 16, 768);
+        font-weight: 400;
+        color: var(--c-FFFFFF);
+        margin-right: mixin.resp(26, 18, 768);
+        order: 3;
+    }
+
+    .button__reservation {
+        padding: mixin.resp(20, 8, 768) mixin.resp(46, 12, 768);
+        justify-self: right;
+        order: 4;
+        @include mixin.media(480) {
+            display: none;
+        }
+    }
+
+    // #region M E D I A /#############################################
+
+    @include mixin.media(768) {
+
+        .container__navigation {
+            grid-template-columns: auto 1fr auto;
+        }
+        .hamburger {
+            justify-self: right;
+        }
+        .tel {
+            display: none;
+        }
+        .button__reservation{
+            order: 1;
+            justify-self: center;
+        }
+    }
+
+    @include media(480) {
+        .button__reservation {
+            display: none;
+        }
+    }
+    // #endregion
+}

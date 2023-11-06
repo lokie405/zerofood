@@ -1,0 +1,34 @@
+
+const src = "./src";
+const dist = "./dist";
+
+export const path = {
+    src: {
+        html: `${src}/*.html`,
+        sass: `${src}/scss/**/style.{sass,scss}`,
+        css: `${src}/css/**/*.css`,
+        // cssParts: `${src}/scss/parts/fonts.{sass,scss}`,
+        js: `${src}/js/**/*.js`,
+        fonts: `${src}/fonts/**/*.{ttf,woff,woff2,svg,eot}`,
+        img: `${src}/img/**/*.{jpg,jpeg,svg,ico,png,webp,gif}`,
+        svgSprite: `${src}/fonts/svg/*.svg`,
+    },
+    dist: {
+        html: `${dist}/`,
+        sass: `${dist}/css/`,
+        css: `${dist}/css/`,
+        js: `${dist}/js/`,
+        fonts: `${dist}/fonts/`,
+        img: `${dist}/img`,
+        svgSprite:`${dist}/fonts/`,
+        // distAll: `${dist}/**/*.*`,
+    },
+    watch: {
+        html: `${src}/*.html`,
+        sass: `${src}/scss/**/*.{scss,sass}`,
+        css: `${src}/css/**/*.css`,
+        js: `${src}/js/**/*.js`,
+    },
+    clearDist: `${dist}/**/*.*`,
+    srcFolder: src,
+}

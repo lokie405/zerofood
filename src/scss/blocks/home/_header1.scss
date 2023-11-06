@@ -1,0 +1,351 @@
+@use "parts/mixin.scss";
+
+#header {
+    background-color: var(--c-khaki);
+
+    .title_large,.text_body,.headline_3 {
+        color: var(--c-white);
+    }
+
+    .header__container {
+        overflow: hidden;
+        position: relative;
+        padding: (mixin.sizeVW(208, 768)) 0 11.56vw 0;
+        display: grid;
+        column-gap: mixin.resp(60, 30, 768);
+        grid-template-areas: 
+        "title meat"
+        "soup spices2";
+        grid-template-columns: repeat(2, calc(50% - (mixin.resp(60, 30, 768) / 2)));
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .header-cell__headline {
+        position: relative;  // To "scroll" top started inside cell
+        grid-area: title;
+        margin-top: mixin.resp(102, 41, 768);
+    }
+    .headline-hero {
+        position: absolute;  // For "meet" image display right
+        z-index: 1;
+    }
+    .headline__title {
+        width: mixin.resp(1057, 490, 480);
+    }
+    .headline__text {
+        margin-top: mixin.resp(50, 15, 768);
+        width: mixin.resp(565, 270, 768);
+    }
+    .scroll_home {
+        position: absolute;
+        top: mixin.resp(624, 275, 768);
+        left: 0;
+    }
+    .scroll::after {
+        content: "";
+        position: absolute;
+        width: mixin.resp(406, 150, 768);
+        border-bottom: mixin.resp(4, 2, 768) var(--c-white) dashed;
+        top: 50%;
+        left: 120%;
+    }
+    
+    .header-cell__meat {
+        position: relative;
+        grid-area: meat;
+        margin-top: mixin.resp(226 , 93, 768);
+    }
+    .meat__img{
+        @include mixin.rectVW(792, 931, 768);
+    }
+    .list-img__spices3 {
+        position: absolute;
+        right: mixin.resp(285, 130, 768);
+        top: mixin.resp(731, 300, 768);
+        display: flex;
+        z-index: 1;
+        & :nth-child(1){
+            @include mixin.rectResp(250, 240, 92, 90, 768);
+            margin-left: 0;
+        }
+
+        & :nth-child(2){
+            @include mixin.rectResp(255, 240, 94, 90, 768)
+        }
+
+        & :nth-child(3){
+            @include mixin.rectResp(260, 240, 96, 90, 768)
+        }
+
+        li{
+            margin-left: mixin.resp(44, 15, 768);
+        }
+    }
+
+    .header-cell__soup {
+        grid-area: soup;
+    }
+    .soup__img {
+        // margin-top: mixin.resp(197, 100, 768);
+        @include mixin.rectVW(792, 560, 768);
+    }
+    .soup__title {
+        margin-top: mixin.resp(54,20, 768);
+        width: mixin.resp(493, 270, 768);
+    }
+    .soup__text {
+        margin-top: mixin.resp(54,20, 768);
+        width: mixin.sizeVW(565, 768);
+    }
+
+    .header-cell__spices2 {
+        // margin-top: mixin.resp(197, 100, 768);
+        grid-area: spices2;
+        width: fit-content;
+        height: fit-content;
+        justify-self: right;
+    }
+    .spices2__text {
+        width: mixin.sizeVW(508, 768);
+    }
+    .spices2__img {
+        margin-top: mixin.resp(84, 30, 768);
+        @include mixin.rectVW(508, 710, 768);
+    }
+}
+
+// #region M E D I A /[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#[#]#[#]#[#]#[#]#[#]
+
+// #region: 768 px /===================================================
+
+@media (max-width: 768px) {
+
+    .navigation {
+        grid-template-columns: auto 1fr auto;
+
+        .hamburger {
+            justify-self: right;
+        }
+
+        .tel {
+            display: none;
+        }
+        
+        .button__reservation{
+            order: 1;
+            justify-self: center;
+        }
+    }
+
+    .header__container {
+        grid-template-areas: 
+        "title title" 
+        "meat meat"
+        "soup soup"
+        "spices2 spices2" ;
+    }
+
+    .headline__title {
+        width: 100%;
+        line-height: 120%;
+    }
+    
+    .headline__text{
+        width: 35%;
+    }
+
+    .home-scroll {
+        top: mixin.resp(330, 260, 480, 768);
+
+        &::after {
+        width: mixin.resp(200, 100, 480, 768);
+        }
+    }
+
+    .header-cell__meat {
+        // @include mixin.media(768, 480) {
+            margin-top: mixin.resp(150, 60, 480, 780);
+            margin-bottom: mixin.resp(20, 10, 480, 780);
+        // }
+    }
+    .meat__img {
+        margin-left: 40%;
+        width: 60%;
+        height: auto;
+    }
+
+    .list-img__spices3 {
+        right: 0;
+        top: mixin.resp(160, 70, 480, 768);
+        left: 35%;
+        flex-direction: column;
+        li {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+        & :nth-child(1){
+            @include mixin.rectResp(92, 90, 62, 60, 480, 768);
+            margin-left: 0;
+        }
+    
+        & :nth-child(2){
+            @include mixin.rectResp(94, 90, 64, 60, 480, 768)
+        }
+    
+        & :nth-child(3){
+            @include mixin.rectResp(96, 90, 66, 60, 480, 768)
+        }
+    }
+
+    .header-cell__soup {
+        display: grid;
+        grid-template-areas: 
+        "img title"
+        "img subtitle";
+        grid-template-columns: 55% 40%;
+        grid-template-rows: auto auto;
+        column-gap: 5%;
+    }
+    .soup__img {
+        width: 100%;
+        height: auto;
+        grid-area: img;
+    }
+    .soup__title {
+        margin-top: 0;
+        grid-area: title;
+        width: 100%;
+       @include mixin.media(720, 601) {
+            line-height: 105%;
+       }
+    }
+    .soup__text {
+        margin-top: 0;
+        grid-area: subtitle;
+        width: 100%;
+    }
+
+    .header-cell__spices2 {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .spices2__text {
+        align-self: center;
+        justify-self: left;
+    }
+    .spices2__img {
+        margin-top: 0;
+        justify-self: right;
+    }
+
+    
+} //#endregion
+
+// #region: 600 px /====================================================
+
+@media (max-width: 600px) {
+    .header-cell__soup {
+        grid-template-areas: 
+        "title"
+        "img"
+        "subtitle";
+        grid-template-columns: 1fr;
+        justify-content: left;
+    }
+    .soup__title {
+        width: 50%;
+        text-align: right;
+    }
+    .soup__img {
+        margin: max(6%, 20px) 0 0 10%;
+        width: 80%;
+    }
+    .soup__text {
+        margin: max(6%, 20px) 10% 0 30%;
+        width: 60%;
+        text-align: left;  
+    }
+}  // #endregion
+
+// #region: 480 px /============================================
+
+@media (max-width: 480px) {
+    .navigation {
+        .button__reservation {
+            display: none;
+        }
+    }
+
+    .header__container{
+        grid-template-areas:
+        "title"
+        "meat"
+        "soup"
+        "spices2";
+        grid-template-columns: 1fr;
+    }
+
+    .header-cell__headline_hero {
+        height: auto;
+    }
+    .headline_hero {
+        position: static;
+    }
+    .headline__text {
+        width: auto;
+        margin-left: mixin.resp(100, 0, 320, 480);
+    }
+    .scroll {
+        display: none;
+    }
+    // 55px
+    .meat__img {
+        width: 90%;
+        margin-left: 10%;
+    }
+    .list-img__spices3{
+        flex-direction: row;
+        left: 0;
+        top: mixin.resp(340, 220, 320, 480);
+        // 400
+        & :nth-child(1){
+            @include mixin.rectResp(92, 90, 62, 60, 320, 480);
+            margin-left: 0;
+        }
+        & :nth-child(2){
+            @include mixin.rectResp(94, 90, 64, 60, 320, 480)
+        }
+        & :nth-child(3){
+            @include mixin.rectResp(96, 90, 66, 60, 320, 480)
+        }
+        li{
+            margin-left: mixin.resp(44, 15, 768);
+        }
+    }
+
+    .soup__title {
+        width: 100%;
+        text-align: center;
+    }
+    .soup__text {
+        @include mixin.margin_lr_auto;
+        width: 90%;
+        text-align: center;
+
+    }
+
+    .header-cell__spices2 {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .spices2__text {
+        margin-top: max(10%, 20px);
+        align-self: end;
+    }
+
+
+}  /* #endregion */
+
+// #endregion media

@@ -1,0 +1,51 @@
+@use "parts/mixin.scss";
+
+#our-menu {
+
+    .our-menu__container {
+        position: relative;
+        padding: mixin.resp(176, 70, 768) 0 mixin.resp(218, 87, 768) 0;
+    }
+
+    .headline_large {
+        width: mixin.resp(532, 260, 768);
+    }
+    .headline__text {
+        margin-top: mixin.resp(18, 8, 768);
+    }
+
+    .branch__img {
+        @include mixin.rectVW(880, 946, 768);
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .price-list__items {
+        margin-top: mixin.resp(158, 70, 768);
+        display: grid;
+        grid-template-columns: repeat(2,  mixin.toVW(792));
+        row-gap: mixin.resp(108, 50, 768);
+        justify-content: space-between;
+    }
+    .pricelist__item {
+        width: mixin.toVW(792);
+    }
+    .item__price {
+        text-align: right;
+        border-bottom: 4px dashed var(--c-black);
+    }
+    .item__name {
+        margin-top: mixin.resp(24, 10, 768);
+    }
+    .item__desc {
+        margin-top: mixin.resp(24, 10, 768);
+    }
+
+
+    // #region M E D I A /[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]
+    // @media (max-width: 768px) {
+
+    // }
+
+}

@@ -1,0 +1,210 @@
+@use "sass:string";
+@use "sass:math";
+
+// calc(20px + (50 - 20) * ((100vw - 320px) / (1200 - 320)));
+
+$minVP: 320; // Minimal resurrection
+$minRespVP: 768; // Minimal resurrection for same item
+$maxRespVP: 1920; // Model resurrection
+
+// #region => R E S P O N S I V E /======================================================
+// 
+/// Set length in px from max to min value
+/// @param {( px )} $_max - * started value (px)
+/// @param {( px )} $_min - * finished value (px)
+/// @param {( px )} $R_min - * viewport width for finished value (px)
+/// @param {( px )} $R_max [] -? viewport width for started value (default: $maxRespVP) (px)
+@function resp($maxVar, $minVar, $R_min: $minRespVP, $R_max: $maxRespVP) {
+    @return calc(#{$minVar + px} + ($maxVar - $minVar) * ((min(max(#{$R_min + px}, 100vw), #{$R_max + px}) - #{$R_min + px}) / ($R_max - $R_min)));
+}
+
+
+/// Set font and line-height
+/// @param {( px )} $_max - * started value (px)
+/// @param {( px )} $_min - * finished value (px)
+/// @param {( px, % => "%" )} $_lh [0] - * line-height ()
+/// @param {( px )} $R_min - * viewport width for finished value (px)
+/// @param {( px )} $R_max [] -? viewport width for started value (default: $maxRespVP) (px)
+/// @output -
+
+@mixin fontAndLH($_max, $_min, $_lh: 0, $R_min, $R_max: $maxRespVP) {
+    $resp: resp($_max, $_min, $R_min, $R_max);
+    font-size: $resp;
+
+    @if($_lh !=0) {
+        @if(string.index(#{$_lh}, "%")==null) {
+            $coef: calc($_max / $_lh);
+            line-height: calc($resp / $coef);
+        }
+
+        @else {
+            $coef: calc(stringToNumber(string.slice(#{$_lh}, 0, -2)) / 100);
+            line-height: calc($resp * $coef);
+        }
+    }
+
+    @else {
+        line-height: unset;
+    }
+}
+
+// ====/ Set responsive side to rectangle from: /=========================================================
+// ====/ $width -> $minWidth and $height -> $minHeight /===============================================
+@mixin rectResp($width, $height, $minWidth: 0, $minHeight: 0, $R_min: $minRespVP, $R_max: $maxRespVP) {
+    $coef: calc($width / $height);
+
+    @if($minWidth: 0) {
+        width: resp($width, calc($coef * $minHeight), $R_min, $R_max);
+        height: resp($height, $minHeight, $R_min, $R_max);
+    }
+
+    @else if($minHeight: 0) {
+        width: resp($width, $minWidth, $R_min, $R_max);
+        height: resp(calc($width / $coef), $minHeight, $R_min, $R_max);
+    }
+
+    @else {
+        width: resp($width, $minWidth, $R_min, $R_max);
+        height: resp($height, $minHeight, $R_min, $R_max);
+    }
+}
+// #endregion =================================================================================
+
+// #region => V W /======================================================================
+// 
+// ====/ Convert px to vw in context $maxRespVP /---------------------------
+/// 
+/// @param { px } $size - * convert current value from pixel to vw
+/// @return { vw } - converted value in vw
+@function toVW($size) {
+    @return min(#{$size + px}, #{calc(($size / $maxRespVP) * 100) + vw});
+}
+
+// ====/ $size -> $maxRespVP
+// ====/    $x -> $vp
+@function sizeVW($size, $R_min: $minRespVP, $R_max: $maxRespVP) {
+    $vp: min(max(100vw, #{$R_min + px}), #{$R_max + px});
+    @return calc(($size * $vp) / $R_max );
+}
+
+// ====/ Set width and height respectively to vw
+@mixin rectVW($width, $height, $R_min, $R_max: $maxRespVP) {
+    width: sizeVW($width, $R_min, $R_max);
+    height: sizeVW($height, $R_min, $R_max);
+}
+
+// 
+// ====/ V W /======================================================================
+// #endregion /=================================================================================
+
+// #region => U T I L I T E /======================================================================
+// 
+// ====/ Convert string to number /===============================================================
+@function stringToNumber($value) {
+    @if type-of($value)=='number' {
+        @return $value;
+    }
+
+    @else if type-of($value) !='string' {
+        $_: log('Value for `to-number` should be a number or a string.');
+    }
+
+    $result: 0;
+    $digits: 0;
+    $minus: str-slice($value, 1, 1)=='-';
+    $numbers: (
+        '0': 0,
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9
+    );
+
+@for $i from if($minus, 2, 1) through str-length($value) {
+    $character: str-slice($value, $i, $i);
+
+    @if not (index(map-keys($numbers), $character) or $character =='.') {
+        @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+    }
+
+    @if $character =='.' {
+        $digits: 1;
+    }
+
+    @else if $digits ==0 {
+        $result: $result * 10+map-get($numbers, $character);
+    }
+
+    @else {
+        $digits: $digits * 10;
+        $result: $result + map-get($numbers, $character) / $digits;
+    }
+}
+
+@return if($minus, -$result, $result);
+;
+}
+
+// 
+// #endregion /====/ U T I L I T E /======================================================================
+
+// #region => M E D I A /======================================================================
+/// 
+/// @param {( px )} $top - * set max-width
+/// @param {( px ))} $bottom [0] - ? set min-width
+/// @output -
+@mixin media($top, $bottom: 0) {
+    @if($bottom > 320) {
+        @media (max-width: #{$top + px}) {
+            @media (min-width: #{$bottom + px}) {
+                @content;
+            }
+        }
+    }
+    @else {
+        @media (max-width: #{$top + px}) {
+            @content;
+        }
+    }
+}
+
+//
+// #endregion /====/ M E D I A /======================================================================
+
+// #region => P I E C E S /======================================================================
+//
+@mixin margin_lr_auto($_top: none, $_bottom: none){
+    margin-left: auto;
+    margin-right: auto;
+    @if ($_top != none) {
+        margin-top: $_top;
+    }
+    @if($_bottom != none) {
+        margin-bottom: $_bottom;
+    }
+}
+// 
+// #endregion => P I E C E S \======================================================================
+
+
+// #region => U N U S E D /======================================================================
+// 
+// ====/ Do same that resp but need to indicate property that changed /==========================================
+@mixin propertyResp($property, $maxVar, $minVar, $R_min: $minRespVP) {
+    #{$property}: resp($maxVar, $minVar, $R_min);
+    // #{$property}: calc(#{$minVar + px} + ($maxVar - $minVar) * ((min(100vw, #{$maxRespVP + px}) - #{$minRespVP + px}) / ($maxRespVP - $minRespVP)));
+}
+
+// ====/ Set responsive side measure from $side to $minSide /============================
+@mixin square($side, $minSide) {
+    width: resp($side, $minSide, $R_min);
+    height: resp($side, $minSide, $R_min);
+}
+
+// 
+// #endregion => U N U S E D \======================================================================

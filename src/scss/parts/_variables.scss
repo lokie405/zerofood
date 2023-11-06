@@ -1,0 +1,56 @@
+@use "parts/mixin.scss";
+:root {
+    --c: 0.390625vw;
+    // --min-vp: 320px;
+    // --min-resp-vp: 780px;
+    // --model-resp-vp: 1920px;
+    // To calculate font coefficient: 
+    // 1. Get 0.390625% at model resurrection:
+    //    1980px -> 7.74px
+    // 2. From font size subtract coefficient in percent:
+    //    148px - 7.74px = 140.26px
+    // 3. Set font size as: 
+    //    font-size: calc(140.26px + 0.390625vw); -> to get current size;
+
+    --c-233000: #233000;
+    --c-khaki: #233000;
+    --c-5E6600: #5E6600;
+    --c-d-olive: #5E6600;
+    --c-9CAA00: #9CAA00;
+    --c-olive: #9CAA00;
+    --c-EBF0E4: #EBF0E4;
+    --c-olive-w: #EBF0E4;
+    --c-000000: #000000;
+    --c-black: #000000;
+    --c-4D4D4D: #4D4D4D;
+    --c-d-grey: #4D4D4D;
+    --c-B0B0B0: #B0B0B0;
+    --c-grey: #B0B0B0;
+    --c-FFFFFF: #FFFFFF;
+    --c-white: #FFFFFF;
+
+    --container-w: 1644px;
+
+    --fs-148: calc(8.77rem + 0.390625vw); 
+    --fs-108: calc(6.27rem + 0.390625vw); 
+    --fs-88: calc(5.02rem + 0.390625vw); 
+    --fs-68: calc(3.77rem + 0.390625vw); 
+    --fs-66: calc(4.19rem + 0.390625vw); 
+    --fs-48: calc(2.52rem + 0.390625vw); 
+    --fs-32: calc(1.52rem + 0.390625vw);
+    --fs-26: calc(1.15rem + 0.390625vw);
+    --fs-24: calc(1.02rem + 0.390625vw);
+    --fs-22: calc(0.90rem + 0.390625vw);
+    --fs-20: calc(0.77rem + 0.390625vw);
+    --fs-18: calc(0.64rem + 0.390625vw);
+    --fs-14: calc(0.40rem + 0.390625vw);
+
+    // --nav-height: 9.23vw;
+    // --label-w: 19.19rem;
+    // --label-w: 15.5vw;
+    // --label-h: 7.1875rem;
+    // --label-h: 5.8vw;
+
+
+
+}

@@ -1,0 +1,77 @@
+@use "../parts/mixin.scss";
+
+// .container__navigation {
+//     width: 100%;
+// }
+
+.navigation {
+    height: mixin.sizeVW(208, 768);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    width: 100%;
+    align-items: center;
+    grid-template-columns: auto auto 1fr auto;
+}
+
+.label {
+    justify-self: left;
+    position: relative;
+    order: 1;
+}
+
+.label__text {
+    @include mixin.rectVW(307, 54, 768)
+}
+.label__frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include mixin.rectVW(192, 115, 768);
+    transform: translate(-50%, -50%);
+}
+
+.hamburger {
+    height: fit-content;
+    width: mixin.resp(94, 55, 768);
+    justify-self: left;
+    margin-left: 2.23vw;
+    order: 2;
+}
+.tel {
+    justify-self: right;
+    font-family: Inter;
+    font-size: mixin.resp(26, 16, 768);
+    font-weight: 400;
+    color: var(--c-FFFFFF);
+    margin-right: mixin.resp(26, 18, 768);
+    order: 3;
+}
+
+.button__reservation {
+    padding: mixin.resp(20, 8, 768) mixin.resp(46, 12, 768);
+    justify-self: right;
+    order: 4;
+}
+
+
+@media (max-width: 768px) {
+
+    .navigation {
+        grid-template-columns: auto 1fr auto;
+
+        .hamburger {
+            justify-self: right;
+        }
+
+        .tel {
+            display: none;
+        }
+        
+        .button__reservation{
+            order: 1;
+            justify-self: center;
+        }
+    }
+}

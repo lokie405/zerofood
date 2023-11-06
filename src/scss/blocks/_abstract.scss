@@ -1,0 +1,87 @@
+@use "parts/mixin.scss";
+
+:root {
+    // font-size: calc(100vw / 120);
+}
+
+body {
+    display: relative;
+}
+
+.container {
+    width: min(var(--container-w), mixin.toVW(1644));
+    margin: 0 auto;
+}
+
+// .cell {
+//     margin-top: mixin.resp(226, 92, 768);
+//     @include mixin.media(768) {
+//         margin-top: mixin.resp(100, 50, 480, 768);
+//     }
+//     @include mixin.media(480) {
+//         margin-top: 50px;
+
+//     }
+// }
+
+.title_large {
+    font-family: Rufina;
+    @include mixin.fontAndLH(148, 40, 152, 480);
+    font-weight: 700;
+    @include mixin.media(480){
+        @include mixin.fontAndLH(36, 30, 110%, 320, 480);
+    }
+}
+
+.headline_1 {
+    font-family: Rufina;
+    @include mixin.fontAndLH(108, 50, 120, 768);
+    font-weight: 700;
+    @include mixin.media(768) {
+        @include mixin.fontAndLH(50, 30, 111%, 480, 768);
+    }
+}
+
+.headline_3 {
+    font-family: Rufina;
+    @include mixin.fontAndLH(68, 26, 84, 768);
+    font-weight: 700;
+    @include mixin.media(768){
+        @include mixin.fontAndLH(35, 24, 123%, 320, 768);
+    }
+}
+
+.headline_4 {
+    font-family: Rufina;
+    @include mixin.fontAndLH(48, 25, 64, 768);
+    font-weight: 700;
+}
+
+.text_body{
+    font-family: Lato;
+    @include mixin.fontAndLH(24, 10, 140%, 768);
+    font-weight: 400;
+    letter-spacing: 0.48px;
+    @include mixin.media(480) {
+        margin-top: mixin.resp(20, 20, 320, 480);
+    }
+}
+
+.button {
+    font-family: Rufina;
+    font-size: mixin.resp(32, 20, 768);
+    font-weight: 700;
+    background: var(--khaki);
+    border: 2px var(--c-white) solid;
+    color: var(--c-white);
+}
+
+.scroll {
+    font-family: Rufina;
+    @include mixin.fontAndLH(48, 20, 46, 768);
+    color: var(--c-white);
+    transform: rotate(90deg) translate(50%, 100%);
+    @include mixin.media(768) {
+        @include mixin.fontAndLH(30, 25, 90%, 480);
+    }
+}
