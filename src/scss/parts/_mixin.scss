@@ -72,12 +72,27 @@ $maxRespVP: 1920; // Model resurrection
 
 // #region => V W /======================================================================
 // 
-// ====/ Convert px to vw in context $maxRespVP /---------------------------
-/// 
+/// Convert px to vw relatively $maxRespVP
 /// @param { px } $size - * convert current value from pixel to vw
 /// @return { vw } - converted value in vw
 @function toVW($size) {
     @return min(#{$size + px}, #{calc(($size / $maxRespVP) * 100) + vw});
+}
+
+///  Convert px to vw relatively $maxRespVP with down border media
+/// @param { px } $size * size to convert;
+/// @param { px } $lim * bottom limit in media request;
+/// @return { vw } - converted value
+@function toVWMediaLimit($size, $lim) {
+    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{calc($size * $lim / $maxRespVP) + px}));
+}
+
+///  Convert px to vw relatively $maxRespVP with down border size in pixel
+/// @param { px } $size * size to convert;
+/// @param { px } $lim - * down border size
+/// @return { vw } - converted value
+@function toVWPixelLimit($size, $lim) {
+    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{$lim + px}));
 }
 
 // ====/ $size -> $maxRespVP

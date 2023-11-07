@@ -1,60 +1,45 @@
 @use "parts/mixin.scss";
 
-:root {
-    // font-size: calc(100vw / 120);
-}
-
-body {
-    display: relative;
-}
-
 .container {
     width: min(var(--container-w), mixin.toVW(1644));
     margin: 0 auto;
 }
 
-// .cell {
-//     margin-top: mixin.resp(226, 92, 768);
-//     @include mixin.media(768) {
-//         margin-top: mixin.resp(100, 50, 480, 768);
-//     }
-//     @include mixin.media(480) {
-//         margin-top: 50px;
-
-//     }
-// }
-
 .title_large {
     font-family: Rufina;
-    @include mixin.fontAndLH(148, 40, 152, 480);
+    @include mixin.fontAndLH(148, 43.5, 152, 480);
     font-weight: 700;
     @include mixin.media(480){
-        @include mixin.fontAndLH(36, 30, 110%, 320, 480);
+        @include mixin.fontAndLH(43.5, 40, 110%, 320, 480);
     }
 }
 
 .headline_1 {
     font-family: Rufina;
-    @include mixin.fontAndLH(108, 50, 120, 768);
+    @include mixin.fontAndLH(108, 31.8, 120, 480);
     font-weight: 700;
-    @include mixin.media(768) {
-        @include mixin.fontAndLH(50, 30, 111%, 480, 768);
+    @include mixin.media(480) {
+        @include mixin.fontAndLH(31.8, 31.8, 111%, 320, 480);
     }
 }
 
 .headline_3 {
     font-family: Rufina;
-    @include mixin.fontAndLH(68, 26, 84, 768);
+    @include mixin.fontAndLH(68, 20, 84, 480);
     font-weight: 700;
-    @include mixin.media(768){
-        @include mixin.fontAndLH(35, 24, 123%, 320, 768);
+    @include mixin.media(480){
+        @include mixin.fontAndLH(20, 20, 123%, 320, 480);
     }
 }
 
 .headline_4 {
     font-family: Rufina;
-    @include mixin.fontAndLH(48, 25, 64, 768);
+    @include mixin.fontAndLH(48, 17, 64, 768);
     font-weight: 700;
+    @include mixin.media(480) {
+    @include mixin.fontAndLH(14, 14, 64, 768);
+
+    }
 }
 
 .text_body{

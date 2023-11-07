@@ -21,7 +21,7 @@
         position: relative;
         z-index: 1;
     }
-    .headline-hero {
+    .headline_hero {
         position: absolute;
         margin-top: mixin.resp(102, 50, 768);
         width: mixin.resp(1057, 520, 768);
@@ -133,7 +133,7 @@
             width: 100%;
             justify-self: right;
         }
-        .headline-hero {
+        .headline_hero {
             margin-top: mixin.resp(50, 25, 600, 768);
         }
         .meat__img {
@@ -193,7 +193,7 @@
             display: flex;
             flex-direction: column;
         }
-        .headline-hero {
+        .headline_hero {
             position: static;
             width: 100%;
             // margin auto;

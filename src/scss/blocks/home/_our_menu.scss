@@ -21,7 +21,7 @@
         right: 0;
     }
 
-    .price-list__items {
+    .pricelist__items {
         margin-top: mixin.resp(158, 70, 768);
         display: grid;
         grid-template-columns: repeat(2,  mixin.toVW(792));
@@ -43,9 +43,35 @@
     }
 
 
-    // #region M E D I A /[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]#[#]
-    // @media (max-width: 768px) {
-
-    // }
-
+    // #region M E D I A /=============================================
+    @include mixin.media(700) {
+        .pricelist__items {
+            grid-template-columns: 1fr;
+            justify-items: right;
+        }
+        .pricelist__item {
+            width: mixin.resp(400, 305, 480, 700);
+            &:nth-child(odd){
+                justify-self: left;
+            }
+        }
+    }
+    
+    @include mixin.media(480) {
+        .headline_large {
+            margin: 0 auto;
+        }
+        .pricelist__items{
+            row-gap: mixin.resp(50, 30, 320, 480);
+            justify-items: center;
+        }
+        .pricelist__item{
+            width: min(90%, 290px);
+            &:nth-child(odd) {
+                justify-self: center;
+            }
+        }
+        
+    }
+    // #endregion
 }
