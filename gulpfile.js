@@ -23,9 +23,11 @@ import { server } from "./gulp/tasks/server.js";
 // import { cssParts } from "./gulp/tasks/cssParts.js";
 import { fonts } from "./gulp/tasks/fonts.js";
 import { img } from "./gulp/tasks/img.js";
+import { icomoon } from "./gulp/tasks/icomoon.js";
 // import { svgSprite } from "./gulp/tasks/svgSprite.js";
 
 function watch() {
+    gulp.watch(path.watch.zip,{events: "add"}, icomoon);  // watch only when file is added
     gulp.watch(path.watch.html, html);
     gulp.watch(path.watch.sass, sass);
     gulp.watch(path.watch.css, css);

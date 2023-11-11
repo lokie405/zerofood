@@ -1,2 +1,72 @@
 @use "parts/mixin.scss";
 
+#features {
+    .features__container {
+        padding: resp(207, 80, 768) 0 resp(190, 80, 768) 0;
+    }
+
+    .features__items {
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+    .features__item {
+        @include rectResp(508, 470, 210, 0, 768);
+    }
+    .circle__img {
+        @include rectVW(260, 260, 480);
+        border-radius: 50%;
+        background: var(--c-EBF0E4);
+        margin: 0 auto;
+        position: relative;
+    }
+    .item__img {
+        @include fontVW(184, 100%, 480);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .item__title {
+        margin-top: resp(39, 20, 768);
+        text-align: center;
+    }
+    .item__desc {
+        margin-top: resp(39, 20, 768);
+        text-align: center;
+    }
+// #region M E D I A /======================================================
+    @include media(768) {
+
+        .features__container {
+            padding: 40px 0 80px 0;
+        }
+        .features__items {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .features__item {
+            margin: resp(40, 30, 480) 2.5% 0 2.5%;
+            width: 45%;
+            @include media(551) {
+                width: 50%;
+            }
+            &:nth-child(1) {
+                margin-top: 40px;
+            }
+        }
+    }
+
+    @include media(480) {
+        .features__container {
+            padding: 40px 0 40px 0;
+        }
+        .features__item {
+            margin-top: resp(40, 10, 320, 480);
+            width: resp(200, 240, 320, 480);
+           
+        }
+    }
+    // #endregion /=======================================================
+}

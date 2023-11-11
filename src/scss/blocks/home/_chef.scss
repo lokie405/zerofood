@@ -27,7 +27,7 @@
     }
     .leaf_right {
         position: absolute;
-        top: resp(660, 280, 768);
+        top: resp(660, 260, 768);
 
         right: 0;
         width: toVW(456);
@@ -47,7 +47,7 @@
         position: absolute;
         top: mixin.toVW(263);
         left: 0;
-        width: toVWMediaLimit(460, 480);
+        width: toVWViewPortLimit(460, 480);
         height: auto;
 
     }
@@ -106,7 +106,7 @@
 
         .chef__img {
             top: 200px;
-            width: toVWPixelLimit(935, 274);
+            width: toVWSizeLimit(935, 274);
             left: 50%;
             transform: translate(-50%);
         }
