@@ -1,64 +1,89 @@
 @use "parts/mixin.scss";
 
 .container {
-    width: min(var(--container-w), mixin.toVW(1644));
+    width: min(var(--container-w), toVW(1644));
     margin: 0 auto;
 }
 
 .title_large {
     font-family: Rufina;
-    @include mixin.fontResp(148, 43.5, 152, 480);
+    @include fontResp(148, 43.5, 152, 480);
     font-weight: 700;
-    @include mixin.media(480){
-        @include mixin.fontResp(43.5, 40, 110%, 320, 480);
+    @include media(480){
+        @include fontResp(43.5, 40, 110%, 320, 480);
     }
 }
 
 .headline_1 {
     font-family: Rufina;
-    @include mixin.fontResp(108, 31.8, 120, 480);
+    @include fontResp(108, 31.8, 120, 480);
     font-weight: 700;
-    @include mixin.media(480) {
-        @include mixin.fontResp(31.8, 31.8, 111%, 320, 480);
+    @include media(480) {
+        @include fontResp(31.8, 31.8, 111%, 320, 480);
     }
 }
 
 .headline_3 {
     font-family: Rufina;
-    @include mixin.fontResp(68, 20, 84, 480);
+    @include fontResp(68, 20, 84, 480);
     font-weight: 700;
-    @include mixin.media(480){
-        @include mixin.fontResp(20, 20, 123%, 320, 480);
+    @include media(480){
+        @include fontResp(20, 20, 123%, 320, 480);
     }
 }
 
 .headline_4 {
     font-family: Rufina;
-    @include mixin.fontResp(48, 17, 64, 768);
+    @include fontResp(48, 17, 64, 768);
     font-weight: 700;
-    @include mixin.media(480) {
-    @include mixin.fontResp(14, 14, 18.7, 768);
+    @include media(480) {
+    @include fontResp(14, 14, 18.7, 768);
 
     }
 }
-
 .text_body{
     font-family: Lato;
-    @include mixin.fontResp(24, 10, 140%, 768);
+    @include fontResp(24, 10, 140%, 768);
     font-weight: 400;
     letter-spacing: 0.48px;
-    @include mixin.media(480) {
-        margin-top: mixin.resp(20, 20, 28, 480);
-    }
+}
+.text_widgets {
+    font-family: Lato;
+    @include fontResp(18, 9, 100%, 480);
+    font-weight: 400;
+    // letter-spacing: 0.36px;
+}
+
+.text_excerpt {
+    font-family: Lato;
+    @include fontResp(22, 11, 140%, 480);
+    font-weight: 700;
+    letter-spacing: 0.44px;
 }
 
 .button {
     font-family: Rufina;
-    font-size: mixin.resp(32, 20, 768);
+    font-size: resp(32, 20, 768);
     font-weight: 700;
     background: var(--khaki);
     border: 2px var(--c-white) solid;
     color: var(--c-white);
+}
+.button_fashion {
+    // 203-97=106/2=53
+    padding: resp(7, 3, 768) resp(53, 25, 768);
+    background: var(--c-5E6600);
+    font-family: Rufina;
+    color: var(--c-white);
+    @include rectResp(203, 62, 100, 30, 768);
+    @include fontResp(26, 14, 48, 768);
+    font-weight: 700;
+    @include media(768) {
+        @include rectResp(100, 30, 80, 25, 600, 768);
+        padding: resp(3, 0, 480, 768) resp(25, 12, 600, 768);
+        @include fontResp(14, 12, 20, 600, 768);
+
+    }
 }
 
 .scroll {
@@ -70,3 +95,12 @@
         @include mixin.fontResp(30, 25, 90%, 480);
     }
 }
+
+
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+

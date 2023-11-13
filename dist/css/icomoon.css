@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('/fonts/icomoon.eot?76huq2');
-  src:  url('/fonts/icomoon.eot?76huq2#iefix') format('embedded-opentype'),
-    url('/fonts/icomoon.ttf?76huq2') format('truetype'),
-    url('/fonts/icomoon.woff?76huq2') format('woff'),
-    url('/fonts/icomoon.svg?76huq2#icomoon') format('svg');
+  src:  url('/fonts/icomoon.eot?ms4elf');
+  src:  url('/fonts/icomoon.eot?ms4elf#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?ms4elf') format('truetype'),
+    url('/fonts/icomoon.woff?ms4elf') format('woff'),
+    url('/fonts/icomoon.svg?ms4elf#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-Icon_arrow-right:before {
+  content: "\e903";
+  color: #233000;
+}
 .icon-Icon_carrot:before {
   content: "\e902";
 }
@@ -33,10 +37,4 @@
 }
 .icon-Icon_lemon:before {
   content: "\e900";
-}
-.icon-erlenmeyer-flask-svgrepo-com:before {
-  content: "\e90b";
-}
-.icon-github:before {
-  content: "\e911";
 }

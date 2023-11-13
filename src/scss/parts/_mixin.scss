@@ -25,7 +25,7 @@ $maxRespVP: 1920; // Model resurrection
 /// @param {( px, % => "%" )} $_lh [0] - * line-height ()
 /// @param {( px )} $R_min - * viewport width for finished value (px)
 /// @param {( px )} $R_max [] -? viewport width for started value (default: $maxRespVP) (px)
-/// @output -
+/// @output - set font (resp) and line-height (can be in percent);
 @mixin fontResp($_max, $_min, $_lh: 0, $R_min, $R_max: $maxRespVP) {
     $resp: resp($_max, $_min, $R_min, $R_max);
     font-size: $resp;
@@ -46,6 +46,11 @@ $maxRespVP: 1920; // Model resurrection
         line-height: unset;
     }
 }
+// Could not be realize with percent argument
+// @function respPercent($_max, $_min, $R_min, $R_max: $maxRespVP) {
+//     @return calc($_min + ( ($_max - $_min) * ( (100vw - $R_max) / ($R_max - $R_min))));
+//     // @return calc($_max-)
+// }
 
 // ====/ Set responsive side to rectangle from: /=========================================================
 // ====/ $width -> $minWidth and $height -> $minHeight /===============================================
@@ -125,7 +130,11 @@ $maxRespVP: 1920; // Model resurrection
 
 // @mixin fontResp($_max, $_min, $_lh: 0, $R_min, $R_max: $maxRespVP) {
     // $resp: resp($_max, $_min, $R_min, $R_max);
-
+/// 
+/// @param { px } $_fs * set font-size;
+/// @param { px, %} $_lh * set line-height;
+/// @param { px } $_min * set min view port width;  
+/// @output - set font-size (px) and line-height (px, %) responsively
 @mixin fontVW($_fs, $_lh, $_min) {
     font-size: toVWViewPortLimit($_fs, $_min);
     @if($_lh != 0) {
@@ -211,7 +220,7 @@ $maxRespVP: 1920; // Model resurrection
 /// 
 /// @param {( px )} $top - * set max-width
 /// @param {( px ))} $bottom [0] - ? set min-width
-/// @output -
+/// @output - set media request
 @mixin media($top, $bottom: 0) {
     @if($bottom > 320) {
         @media (max-width: #{$top + px}) {
