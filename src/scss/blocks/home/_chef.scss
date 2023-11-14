@@ -47,7 +47,7 @@
         position: absolute;
         top: mixin.toVW(263);
         left: 0;
-        width: toVWViewPortLimit(460, 480);
+        width: toVW(460, 480);
         height: auto;
 
     }

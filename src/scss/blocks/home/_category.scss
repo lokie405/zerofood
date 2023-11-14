@@ -1,0 +1,27 @@
+@use "parts/mixin.scss";
+
+#category {
+
+    .category__container {
+        padding-bottom: toVW(138, 480);
+    }
+
+    .headline_large {
+        margin: toVW(128, 480) auto 0;
+        width: toVW(1101, 768);
+        // margin: 0 au;
+        text-align: center;
+    }
+    .headline__subtitle {
+        margin-top: resp(18, 10, 768);
+    }
+
+    .menu-category__items {
+        margin-top: toVW(126, 480);
+        display: flex;
+    }
+    .menu-category__item {
+        @include rectVW(508, 711, 480);
+    }
+
+}

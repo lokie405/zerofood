@@ -6,7 +6,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
-        column-gap: toVWViewPortLimit(60, 480);
+        column-gap: toVW(60, 480);
         padding: resp(130, 60, 768) 0 resp(105, 75, 768);
     }
 
@@ -84,11 +84,11 @@
         .recent-post__container {
             grid-template-columns: 1fr;
             padding-top: resp(60, 20, 480, 768);
-            row-gap: toVWViewPortLimit(60, 480);
+            row-gap: toVW(60, 480);
         }
         .recent-post__blog {
             grid-template-columns: repeat(2, 1fr);
-            column-gap: toVWViewPortLimit(60, 480);
+            column-gap: toVW(60, 480);
         }
         .blog__desc {
             margin: auto 0 auto ;

@@ -82,19 +82,22 @@ $maxRespVP: 1920; // Model resurrection
 // #region => V W /======================================================================
 // 
 /// Convert px to vw relatively $maxRespVP
-/// @param { px } $size - * convert current value from pixel to vw
-/// @return { vw } - converted value in vw
-@function toVW($size) {
-    @return min(#{$size + px}, #{calc(($size / $maxRespVP) * 100) + vw});
+/// @param { px } $size * size to convert;
+/// @param { px } $lim *?(0) bottom limit view port width;
+/// @return { vw } - converted value with to a value at limit view port width
+@function toVW($size, $lim: 0) {
+    // @return min(#{$size + px}, #{calc(($size / $maxRespVP) * 100) + vw});
+    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{calc($size * $lim / $maxRespVP) + px}));
+
 }
 
 ///  Convert px to vw relatively $maxRespVP with stopped on $lim view port width
-/// @param { px } $size * size to convert;
-/// @param { px } $lim * bottom limit view port width;
-/// @return { vw } - converted value
-@function toVWViewPortLimit($size, $lim) {
-    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{calc($size * $lim / $maxRespVP) + px}));
-}
+// /// @param { px } $size * size to convert;
+// /// @param { px } $lim * bottom limit view port width;
+// /// @return { vw } - converted value
+// @function toVW($size, $lim) {
+//     @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{calc($size * $lim / $maxRespVP) + px}));
+// }
 
 ///  
 // Convert px to vw relatively $maxRespVP with stopped on limited size ($lim) in pixel
@@ -136,12 +139,12 @@ $maxRespVP: 1920; // Model resurrection
 /// @param { px } $_min * set min view port width;  
 /// @output - set font-size (px) and line-height (px, %) responsively
 @mixin fontVW($_fs, $_lh, $_min) {
-    font-size: toVWViewPortLimit($_fs, $_min);
+    font-size: toVW($_fs, $_min);
     @if($_lh != 0) {
         @if(string.index(#{$_lh}, "%") == null) {
             // $coef: calc($_fs / $_lh);
             // line-height: calc($resp / $coef);
-            line-height: toVWViewPortLimit($_lh, $_min);
+            line-height: toVW($_lh, $_min);
         }
 
         @else {

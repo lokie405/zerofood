@@ -153,7 +153,7 @@ h1, h2, h3, h4, h5, h6 {
   -ms-grid-column: 3;
   grid-area: meat;
   position: relative;
-  margin-bottom: min(83px, 4.3229166667vw);
+  margin-bottom: min(83px, max(4.3229166667vw, 0px));
 }
 #header .meat__img {
   margin-top: calc(100px + 126 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
@@ -163,8 +163,8 @@ h1, h2, h3, h4, h5, h6 {
 #header .list-img__spices3 {
   position: absolute;
   display: flex;
-  right: min(285px, 14.84375vw);
-  top: min(957px, 49.84375vw);
+  right: min(285px, max(14.84375vw, 0px));
+  top: min(957px, max(49.84375vw, 0px));
 }
 #header .list-img__spices3 :nth-child(1) > .item_spices {
   width: calc(250 * min(max(100vw, 600px), 1920px) / 1920);
@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-self: right;
 }
 #header .spices2__text {
-  width: min(508px, 26.4583333333vw);
+  width: min(508px, max(26.4583333333vw, 0px));
 }
 #header .spices2__img {
   margin-top: calc(40px + 44 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
@@ -444,12 +444,12 @@ h1, h2, h3, h4, h5, h6 {
 #our-menu .pricelist__items {
   margin-top: calc(70px + 88 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   display: grid;
-  grid-template-columns: repeat(2, min(792px, 41.25vw));
+  grid-template-columns: repeat(2, min(792px, max(41.25vw, 0px)));
   row-gap: calc(50px + 58 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   justify-content: space-between;
 }
 #our-menu .pricelist__item {
-  width: min(792px, 41.25vw);
+  width: min(792px, max(41.25vw, 0px));
 }
 #our-menu .item__price {
   text-align: right;
@@ -494,12 +494,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 #chef .chef__container {
   position: relative;
-  height: min(1130px, 58.8541666667vw);
-  padding-top: min(222px, 11.5625vw);
+  height: min(1130px, max(58.8541666667vw, 0px));
+  padding-top: min(222px, max(11.5625vw, 0px));
 }
 #chef .headline_large {
   margin: 0 0 0 auto;
-  width: min(649px, 33.8020833333vw);
+  width: min(649px, max(33.8020833333vw, 0px));
 }
 #chef .headline__text {
   margin-top: calc(10px + 8 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
@@ -508,26 +508,26 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: calc(60px + 90 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   left: calc(-20px + -30 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
-  width: min(365px, 19.0104166667vw);
+  width: min(365px, max(19.0104166667vw, 0px));
   height: auto;
 }
 #chef .leaf_right {
   position: absolute;
   top: calc(260px + 400 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   right: 0;
-  width: min(456px, 23.75vw);
+  width: min(456px, max(23.75vw, 0px));
   height: auto;
 }
 #chef .chef__img {
   position: absolute;
-  top: min(234px, 12.1875vw);
+  top: min(234px, max(12.1875vw, 0px));
   left: 0;
-  width: min(935px, 48.6979166667vw);
+  width: min(935px, max(48.6979166667vw, 0px));
   height: auto;
 }
 #chef .wooden-with-plate__img {
   position: absolute;
-  top: min(263px, 13.6979166667vw);
+  top: min(263px, max(13.6979166667vw, 0px));
   left: 0;
   width: min(460px, max(23.9583333333vw, 115px));
   height: auto;
@@ -790,6 +790,87 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+#form-reservation {
+  background: var(--c-EBF0E4);
+}
+#form-reservation .form-reservation__container {
+  padding: min(237px, max(12.34375vw, 80.234375px)) 0 min(254px, max(13.2291666667vw, 85.9895833333px));
+}
+#form-reservation .headline_large {
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#form-reservation .headline__subtitle {
+  margin-top: calc(10px + 8 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+  text-align: center;
+}
+#form-reservation .form-reservation {
+  margin-top: calc(70px + 63 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+}
+#form-reservation .form-reservation__input {
+  display: flex;
+  justify-content: space-between;
+}
+#form-reservation .input {
+  width: calc(516 * min(max(100vw, 768px), 1920px) / 1920);
+  height: calc(96 * min(max(100vw, 768px), 1920px) / 1920);
+  padding: 0 min(40px, max(2.0833333333vw, 10px));
+  line-height: min(96px, max(5vw, 24px));
+  border: solid calc(2px + 1 * (min(max(768px, 100vw), 1920px) - 768px) / 1152) var(--c-black);
+}
+@media (max-width: 768px) {
+  #form-reservation .input {
+    width: calc(125px + 82 * (min(max(480px, 100vw), 768px) - 480px) / 288);
+    height: calc(38px + 0 * (min(max(480px, 100vw), 768px) - 480px) / 288);
+  }
+}
+#form-reservation .submit__btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: calc(70px + 63 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+}
+@media (max-width: 480px) {
+  #form-reservation .headline_large {
+    text-align: center;
+  }
+  #form-reservation .form-reservation {
+    margin-top: 30px;
+  }
+  #form-reservation .form-reservation__input {
+    flex-direction: column;
+  }
+  #form-reservation .input {
+    margin: 0 auto;
+    width: calc(220px + -15 * (min(max(320px, 100vw), 480px) - 320px) / 160);
+    height: calc(38px + 0 * (min(max(320px, 100vw), 480px) - 320px) / 160);
+    margin-top: 20px;
+  }
+  #form-reservation .submit__btn {
+    margin-top: 50px;
+  }
+}
+
+#category .category__container {
+  padding-bottom: min(138px, max(7.1875vw, 34.5px));
+}
+#category .headline_large {
+  margin: min(128px, max(6.6666666667vw, 32px)) auto 0;
+  width: min(1101px, max(57.34375vw, 440.4px));
+  text-align: center;
+}
+#category .headline__subtitle {
+  margin-top: calc(10px + 8 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+}
+#category .menu-category__items {
+  margin-top: min(126px, max(6.5625vw, 31.5px));
+  display: flex;
+}
+#category .menu-category__item {
+  width: calc(508 * min(max(100vw, 480px), 1920px) / 1920);
+  height: calc(711 * min(max(100vw, 480px), 1920px) / 1920);
+}
+
 #navigation {
   background-color: var(--c-khaki);
 }
@@ -867,7 +948,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  width: min(var(--container-w), min(1644px, 85.625vw));
+  width: min(var(--container-w), min(1644px, max(85.625vw, 0px)));
   margin: 0 auto;
 }
 
@@ -948,23 +1029,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .button {
   font-family: Rufina;
-  font-size: calc(20px + 12 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   font-weight: 700;
-  background: var(--khaki);
-  border: 2px var(--c-white) solid;
+  border: 2px solid var(--c-black);
   color: var(--c-white);
+}
+
+.button_nav {
+  font-size: calc(20px + 12 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+  background: var(--khaki);
+  border-color: var(--c-white);
 }
 
 .button_fashion {
   padding: calc(3px + 4 * (min(max(768px, 100vw), 1920px) - 768px) / 1152) calc(25px + 28 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   background: var(--c-5E6600);
-  font-family: Rufina;
-  color: var(--c-white);
+  border: none;
   width: calc(100px + 103 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   height: calc(30px + 32 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   font-size: calc(14px + 12 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   line-height: calc((14px + 12 * (min(max(768px, 100vw), 1920px) - 768px) / 1152) / 0.5416666667);
-  font-weight: 700;
 }
 @media (max-width: 768px) {
   .button_fashion {
@@ -976,11 +1059,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.button_book-now {
+  font-size: min(32px, max(1.6666666667vw, 12.8px));
+  line-height: 150%;
+  background: var(--c-233000);
+  padding: calc(10px + 10 * (min(max(768px, 100vw), 1920px) - 768px) / 1152) calc(45px + 49.5 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+}
+@media (max-width: 768px) {
+  .button_book-now {
+    font-size: calc(12px + 0.8 * (min(max(480px, 100vw), 768px) - 480px) / 288);
+    line-height: calc((12px + 0.8 * (min(max(480px, 100vw), 768px) - 480px) / 288) * 1.5);
+    padding: calc(8px + 2 * (min(max(480px, 100vw), 768px) - 480px) / 288) calc(30px + 15 * (min(max(480px, 100vw), 768px) - 480px) / 288);
+  }
+}
+
 .scroll {
   font-family: Rufina;
   font-size: calc(20px + 28 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   line-height: calc((20px + 28 * (min(max(768px, 100vw), 1920px) - 768px) / 1152) / 1.0434782609);
-  color: var(--c-white);
   transform: rotate(90deg) translate(50%, 100%);
 }
 @media (max-width: 768px) {

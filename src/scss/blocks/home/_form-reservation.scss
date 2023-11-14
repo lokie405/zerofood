@@ -1,2 +1,64 @@
 @use "parts/mixin.scss";
 
+#form-reservation {
+    background: var(--c-EBF0E4);
+    .form-reservation__container {
+        padding: toVW(237, 650) 0 toVW(254, 650);
+
+    }
+
+    .headline_large {
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .headline__subtitle {
+        margin-top: resp(18, 10, 768);
+        text-align: center;
+    }
+
+    .form-reservation {
+        margin-top: resp(133, 70, 768);
+    }
+    .form-reservation__input {
+        display: flex;
+        justify-content: space-between;
+    }
+    .input {
+        @include rectVW(516, 96, 768);
+        @include media(768) {
+            @include rectResp(207, 38, 125, 38, 480, 768);
+        }
+        padding: 0 toVW(40, 480);
+        line-height: toVW(96, 480);
+        border: solid resp(3, 2, 768) var(--c-black);
+    }
+
+    .submit__btn {
+        display: block;
+        margin: 0 auto;
+        margin-top: resp(133, 70, 768);
+    }
+    
+    // #region M E D I A /=======================================================
+    @include media(480) {
+        .headline_large {
+            text-align: center;
+        }
+
+        .form-reservation {
+            margin-top: 30px;
+        }
+        .form-reservation__input {
+            flex-direction: column;
+        }
+        .input{ 
+            margin: 0 auto;
+            @include rectResp(205, 38, 220, 38, 320, 480);
+            margin-top: 20px;
+        }
+        .submit__btn {
+            margin-top: 50px;
+        }
+    }
+    // #endregion
+}

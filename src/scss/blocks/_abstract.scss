@@ -63,33 +63,43 @@
 
 .button {
     font-family: Rufina;
-    font-size: resp(32, 20, 768);
     font-weight: 700;
-    background: var(--khaki);
-    border: 2px var(--c-white) solid;
+    border: 2px solid var(--c-black);
     color: var(--c-white);
+}
+.button_nav {
+    font-size: resp(32, 20, 768);
+    background: var(--khaki);
+    border-color: var(--c-white);
 }
 .button_fashion {
     // 203-97=106/2=53
     padding: resp(7, 3, 768) resp(53, 25, 768);
     background: var(--c-5E6600);
-    font-family: Rufina;
-    color: var(--c-white);
+    border: none;
     @include rectResp(203, 62, 100, 30, 768);
     @include fontResp(26, 14, 48, 768);
-    font-weight: 700;
     @include media(768) {
         @include rectResp(100, 30, 80, 25, 600, 768);
         padding: resp(3, 0, 480, 768) resp(25, 12, 600, 768);
         @include fontResp(14, 12, 20, 600, 768);
-
     }
 }
+.button_book-now{
+    @include fontVW(32, 150%, 768);
+    background: var(--c-233000);
+    padding: resp(20, 10, 768) resp(94.5, 45, 768);
+    // line-height: 150%;
+    @include media(768) {
+        @include fontResp (12.8, 12, 150%, 480, 768);
+        padding: resp(10, 8, 480, 768) resp(45, 30, 480, 768);
+    }
+}
+
 
 .scroll {
     font-family: Rufina;
     @include mixin.fontResp(48, 20, 46, 768);
-    color: var(--c-white);
     transform: rotate(90deg) translate(50%, 100%);
     @include mixin.media(768) {
         @include mixin.fontResp(30, 25, 90%, 480);
