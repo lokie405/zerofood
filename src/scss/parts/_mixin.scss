@@ -80,15 +80,68 @@ $maxRespVP: 1920; // Model resurrection
 // #endregion =================================================================================
 
 // #region => V W /======================================================================
-// 
-/// Convert px to vw relatively $maxRespVP
+
+//====/ vwMedia /==============================================================
+// @function vwMedia($max_1, $min_1, $vp_min_1, $vp_max_1: $maxRespVP)
+@function vwMedia($max_1, $min_1, $vp_min_1, $max_2: 0, $min_2: 0, $vp_min_2: 0, $max_3: 0, $min_3: 0, $vp_min_3: 0, $max_4: 0, $min_4: 0, $vp_min_4: 0 ) {
+    //  media(480){
+
+    // }
+    @return min(#{$size + px}, max(#{calc(($size / $max) * 100) + vw}, #{calc($size * $lim / $max) + px}));
+
+}
+
+
+//====/ toVW /==========================================================
 /// @param { px } $size * size to convert;
 /// @param { px } $lim *?(0) bottom limit view port width;
+/// @param { px } $max *? ($maxRespVP) max view port width;
 /// @return { vw } - converted value with to a value at limit view port width
-@function toVW($size, $lim: 0) {
+@function toVW($size, $lim: 0, $max: $maxRespVP) {
     // @return min(#{$size + px}, #{calc(($size / $maxRespVP) * 100) + vw});
-    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{calc($size * $lim / $maxRespVP) + px}));
+    @return min(#{$size + px}, max(#{calc(($size / $max) * 100) + vw}, #{calc($size * $lim / $max) + px}));
 
+}
+
+//====/ toVWSizeLimit /==========================================================
+/// @param { px } $size * size to convert;
+/// @param { px } $lim - * down border size
+/// @return { vw } - converted value
+@function toVWSizeLimit($size, $lim) {
+    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{$lim + px}));
+}
+
+//====/ rectVW /==========================================================
+/// @param { px } $width * width of rectangle;
+/// @param { px } $height * height of rectangle;
+/// @param { px } $R_min * down border media view port;
+/// @param { px } $R_max [] - ? top border media view port
+/// @output width and height converted in vw;
+@mixin rectVW($width, $height, $R_min, $R_max: $maxRespVP) {
+    width: toVW($width, $R_min, $R_max);
+    height: toVW($height, $R_min, $R_max);
+}
+
+//====/ fontVW /==========================================================
+/// @param { px } $_fs * set font-size;
+/// @param { px, %} $_lh * set line-height;
+/// @param { px } $_min * set min view port width;  
+/// @output - set font-size (px) and line-height (px, %) responsively
+@mixin fontVW($_fs, $_lh, $_min) {
+    font-size: toVW($_fs, $_min);
+    @if($_lh != 0) {
+        @if(string.index(#{$_lh}, "%") == null) {
+            line-height: toVW($_lh, $_min);
+        }
+
+        @else {
+            line-height: $_lh;
+        }
+    }
+
+    @else {
+        line-height: unset;
+    }
 }
 
 ///  Convert px to vw relatively $maxRespVP with stopped on $lim view port width
@@ -100,64 +153,23 @@ $maxRespVP: 1920; // Model resurrection
 // }
 
 ///  
-// Convert px to vw relatively $maxRespVP with stopped on limited size ($lim) in pixel
-/// @param { px } $size * size to convert;
-/// @param { px } $lim - * down border size
-/// @return { vw } - converted value
-@function toVWSizeLimit($size, $lim) {
-    @return min(#{$size + px}, max(#{calc(($size / $maxRespVP) * 100) + vw}, #{$lim + px}));
-}
-
 // ====/ $size -> $maxRespVP
 // ====/    $x -> $vp
-@function sizeVW($size, $R_min: $minRespVP, $R_max: $maxRespVP) {
-    $vp: min(max(100vw, #{$R_min + px}), #{$R_max + px});
-    @return calc(($size * $vp) / $R_max );
-}
+// @function sizeVW($size, $R_min: $minRespVP, $R_max: $maxRespVP) {
+//     $vp: min(max(100vw, #{$R_min + px}), #{$R_max + px});
+//     @return calc(($size * $vp) / $R_max );
+// }
 
 // @function respVW($_max, $_min, $R_min: $minVP, $R_max: $maxRespVP) {
 //     calc()
 
 // }
 
-/// Set width and height respectively to vw
-/// @param { px } $width * width of rectangle;
-/// @param { px } $height * height of rectangle;
-/// @param { px } $R_min * down border media view port;
-/// @param { px } $R_max [] - ? top border media view port
-/// @output width and height converted in vw;
-@mixin rectVW($width, $height, $R_min, $R_max: $maxRespVP) {
-    width: sizeVW($width, $R_min, $R_max);
-    height: sizeVW($height, $R_min, $R_max);
-}
+
 
 // @mixin fontResp($_max, $_min, $_lh: 0, $R_min, $R_max: $maxRespVP) {
     // $resp: resp($_max, $_min, $R_min, $R_max);
 /// 
-/// @param { px } $_fs * set font-size;
-/// @param { px, %} $_lh * set line-height;
-/// @param { px } $_min * set min view port width;  
-/// @output - set font-size (px) and line-height (px, %) responsively
-@mixin fontVW($_fs, $_lh, $_min) {
-    font-size: toVW($_fs, $_min);
-    @if($_lh != 0) {
-        @if(string.index(#{$_lh}, "%") == null) {
-            // $coef: calc($_fs / $_lh);
-            // line-height: calc($resp / $coef);
-            line-height: toVW($_lh, $_min);
-        }
-
-        @else {
-            // $coef: calc(stringToNumber(string.slice(#{$_lh}, 0, -2)) / 100);
-            // line-height: calc($resp * $coef);
-            line-height: $_lh;
-        }
-    }
-
-    @else {
-        line-height: unset;
-    }
-}
 
 // 
 // ====/ V W /======================================================================

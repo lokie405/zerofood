@@ -41,6 +41,12 @@
 
     }
 }
+.headline_5 {
+    font-family: Rufina;
+    @include fontResp(32, 16, 150%, 768);
+    font-weight: 700;
+}
+
 .text_body{
     font-family: Lato;
     @include fontResp(24, 10, 140%, 768);
@@ -51,7 +57,6 @@
     font-family: Lato;
     @include fontResp(18, 9, 100%, 480);
     font-weight: 400;
-    // letter-spacing: 0.36px;
 }
 
 .text_excerpt {
@@ -59,6 +64,13 @@
     @include fontResp(22, 11, 140%, 480);
     font-weight: 700;
     letter-spacing: 0.44px;
+}
+.text_label {
+    font-family: Lato;
+    // font-size: 18px;
+    @include fontResp(18, 9, 100%, 768);
+    font-weight: 400;
+    letter-spacing: 0.36px;
 }
 
 .button {
@@ -104,6 +116,10 @@
     @include mixin.media(768) {
         @include mixin.fontResp(30, 25, 90%, 480);
     }
+}
+
+.icon__arrow {
+    @include fontVW(28, 100%, 768);
 }
 
 

@@ -1,0 +1,11 @@
+@use "parts/mixin.scss";
+
+#footer {
+    .container__footer {
+        display: grid;
+    }
+
+    .cell__contact {
+        grid-area: contact;
+    }
+}

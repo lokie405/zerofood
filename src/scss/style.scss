@@ -2,7 +2,6 @@
 @import "parts/nullable.scss";
 @import "parts/variables.scss";
 @import "parts/mixin.scss";
-// @use "parts/mixin.scss";
 @import "parts/general.scss";
 
 @import "blocks/home/header.scss";
@@ -12,7 +11,8 @@
 @import "blocks/home/recent-post.scss";
 @import "blocks/home/form-reservation.scss";
 @import "blocks/home/category.scss";
+@import "blocks/home/testimonials.scss";
 @import "blocks/nav.scss";
+@import "blocks/footer.scss";
 
-// @import "blocks/media.scss";
 @import "blocks/abstract.scss";

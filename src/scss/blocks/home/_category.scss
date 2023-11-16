@@ -3,11 +3,10 @@
 #category {
 
     .category__container {
-        padding-bottom: resp(138, 80, 480);
+        padding-bottom: resp(138, 60, 480);
     }
 
     .headline_large {
-        // margin: toVW(128, 480) auto 0;
         margin: resp(128, 80, 480) auto 0;
         width: toVW(1101, 480);
         text-align: center;
@@ -17,7 +16,6 @@
     }
 
     .menu-category__items {
-        // margin-top: toVW(126, 480);
         margin-top: resp(126, 50, 480);
         display: flex;
         justify-content: space-between
@@ -36,11 +34,10 @@
         top: toVW(48, 480);
         left: toVW(40, 480);
     }
-    .read-more__arrow {
+    .item__arrow {
         position: absolute;
         top: toVW(49, 480);
         right: toVW(48, 480);
-        @include fontVW(28, 100%, 768);
     }
 
     @include media(600) {
@@ -57,8 +54,7 @@
         .item__name {
             @include fontResp(22, 20, 150%, 320, 600);
         }
-        .read-more__arrow {
-            // font-size: 24px;
+        .item__arrow {
             @include fontResp(18, 14, 150%, 320, 600);
         }
     }

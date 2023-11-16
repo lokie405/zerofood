@@ -1,0 +1,101 @@
+@use "parts/mixin.scss";
+
+#testimonials {
+    .testimonials__container {
+        min-height: resp(711, 350, 768);
+        position: relative;
+    }
+
+    .testimonials__text {
+        position: absolute;
+        top: resp(118, 50, 768);
+        left: resp(109, 50, 768);
+        // width: resp(1262, 460, 768);
+        width: toVW(1262, 480);
+    }
+
+    .quote__img {
+        position: absolute;
+        top: resp(118, 50, 768);
+        right: resp(117, 50, 768);
+        @include rectVW(282, 284, 480);
+    }
+    
+    .testimonials__client {
+        position: absolute;
+        left: resp(118, 50, 768);
+        top: resp(396, 190, 768);
+        display: flex;
+        align-items: center;
+    }
+    .client__avatar {
+        @include rectVW(170, 170, 480);
+    }
+    .client__info {
+        margin-left: resp(60, 30, 768);
+    }
+    .client__incumbency {
+        margin-top: resp(6, 3, 768);
+    }
+
+    .testimonials__pagination {
+        position: absolute;
+        top: resp(457, 220, 768);
+        right: resp(117, 50, 768);
+        display: flex;
+        align-items: center;
+    }
+    .pagination__current {
+        margin: 0 resp(40, 20, 768);
+    }
+
+
+    @include media(600) {
+
+        .quote__img {
+            right: 0;
+        }
+        .testimonials__text {
+            width: 90%;
+            left: 0;
+        }
+
+        .testimonials__client {
+            left: resp(50, 20, 480, 600);
+        }
+        .client__info {
+            margin-left: 20px;
+        }
+
+        .testimonials__pagination {
+            right: resp(50, 20, 480, 600);
+        }
+        .pagination__current {
+            margin: 0 resp(20, 5, 480, 600) 0 resp(20, 5, 480, 600);
+        }
+    }
+    @include media(480) {
+        .testimonials__text {
+            width: 95%;
+            margin-left: 2.5%;
+            position: static;
+        }
+
+        .quote__img {
+            position: static;
+            display: block;
+            margin: 0 0 0 auto;
+        }
+
+        .testimonials__client {
+            position: static;
+            margin-left: 5%;
+        }
+        
+        .testimonials__pagination {
+            position: static;
+            width: fit-content;
+            margin: 20px 5% 0 auto;
+        }
+    }
+}

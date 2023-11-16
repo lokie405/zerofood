@@ -5,7 +5,7 @@
     background-color: var(--c-khaki);
 
     .container__navigation {
-        height: mixin.sizeVW(208,768);
+        height: toVW(208,768);
         top: 0;
         left: 0;
         display: grid;
@@ -19,18 +19,18 @@
         order: 1;
     }
     .label__text {
-        @include mixin.rectVW(307, 54, 768)
+        @include rectVW(307, 54, 768)
     }
     .label__frame {
         position: absolute;
         left: 50%;
         top: 50%;
-        @include mixin.rectVW(192, 115, 768);
+        @include rectVW(192, 115, 768);
         transform: translate(-50%, -50%);
     }
     .hamburger {
         height: fit-content;
-        width: mixin.resp(94, 55, 768);
+        width: resp(94, 55, 768);
         justify-self: left;
         margin-left: 2.23vw;
         order: 2;
@@ -38,18 +38,18 @@
     .tel {
         justify-self: right;
         font-family: Inter;
-        font-size: mixin.resp(26, 16, 768);
+        font-size: resp(26, 16, 768);
         font-weight: 400;
         color: var(--c-FFFFFF);
-        margin-right: mixin.resp(26, 18, 768);
+        margin-right: resp(26, 18, 768);
         order: 3;
     }
 
     .button__reservation {
-        padding: mixin.resp(20, 8, 768) mixin.resp(46, 12, 768);
+        padding: resp(20, 8, 768) resp(46, 12, 768);
         justify-self: right;
         order: 4;
-        @include mixin.media(480) {
+        @include media(480) {
             display: none;
         }
     }

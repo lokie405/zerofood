@@ -75,9 +75,6 @@
     .read-more__title {
         margin-right: resp(10, 5, 768);
     }
-    .read-more__arrow {
-        @include fontVW(28, 100%, 768);
-    }
 
 // #region M E D I A /===================================================
     @include media(768) {
