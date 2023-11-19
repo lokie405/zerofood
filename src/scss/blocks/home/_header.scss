@@ -3,11 +3,7 @@
 #header {
     background-color: var(--c-khaki);
 
-    .title_large,.text_body,.headline_3 {
-        color: var(--c-white);
-    }
-    
-    .header__container {
+    .header__grid {
         display: grid;
         grid-template-areas: 
         "title meat"
@@ -27,7 +23,6 @@
         width: mixin.resp(1057, 520, 768);
     }
     .headline__text {
-        margin-top: mixin.resp(50, 20, 768);
         width: mixin.resp(565, 250, 768);
     }
     .scroll_home {
@@ -110,7 +105,7 @@
     // #region M E D I A /###########################################
     @include mixin.media(768) {
 
-        .header__container {
+        .header__grid {
             grid-template-areas: 
             "title"
             "meat"
@@ -189,14 +184,13 @@
     }
 
     @include mixin.media(600) {
-        .header__container {
+        .header__grid {
             display: flex;
             flex-direction: column;
         }
         .headline_hero {
             position: static;
             width: 100%;
-            // margin auto;
             @include mixin.margin_lr_auto();
         }
         .headline__text {

@@ -1,0 +1,51 @@
+@use "parts/mixin.scss";
+
+#starters {
+    overflow: hidden;
+
+    .container__starters {
+        position:relative;
+        display: grid;
+        grid-template-areas: 
+        "title title"
+        "image pricelist";
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: resp(60, 30, 768);
+        row-gap: resp(81, 40, 768);
+    }
+    .blueberry__img {
+        position: absolute;
+        @include rectVW(516, 439, 480);
+        top: resp(-39.15, 0, 768);
+        right: resp(-109, 0, 768 );
+    }
+
+    .cell-headline {
+        grid-area: title;
+    }
+    .cell-img {
+        grid-area: image;
+    }
+    .cell-pricelist {
+        grid-area: pricelist;
+    }
+
+    .headline_large {
+        margin: resp(122, 50, 768) auto 0;
+    }
+
+    .img {
+        @include rectVW(792, 989, 768);
+    }
+    
+    .pricelist__items{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .item__price{
+        border-bottom: 4px dashed var(--c-black);
+
+    }
+
+}

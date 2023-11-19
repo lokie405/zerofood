@@ -5,6 +5,24 @@
     margin: 0 auto;
 }
 
+.headline_hero {
+    @include media(600) {
+        @include mixin.margin_lr_auto();
+    }
+    .headline__title, .headline__text {
+        color: var(--c-white);
+    }
+    .headline__text{
+        margin-top: mixin.resp(50, 20, 768);
+    }
+}
+
+.headline_large {
+    .headline__text {
+        margin-top: mixin.resp(18, 8, 768);
+    }
+}
+
 .title_large {
     font-family: Rufina;
     @include fontResp(148, 43.5, 152, 480);
@@ -68,21 +86,24 @@
 .text_label {
     font-family: Lato;
     // font-size: 18px;
-    @include fontResp(18, 9, 100%, 768);
+    @include fontResp(18, 9, 25, 768);
     font-weight: 400;
     letter-spacing: 0.36px;
 }
 
 .button {
-    font-family: Rufina;
-    font-weight: 700;
+    // font-family: Rufina;
+    // font-weight: 700;
     border: 2px solid var(--c-black);
     color: var(--c-white);
+    height: resp(88, 43, 768);
+    line-height: resp(88, 43, 768);
 }
 .button_nav {
     font-size: resp(32, 20, 768);
     background: var(--khaki);
     border-color: var(--c-white);
+    padding: 0 resp(46, 20, 768);
 }
 .button_fashion {
     // 203-97=106/2=53
@@ -98,14 +119,20 @@
     }
 }
 .button_book-now{
-    @include fontVW(32, 150%, 768);
     background: var(--c-233000);
-    padding: resp(20, 10, 768) resp(94.5, 45, 768);
-    // line-height: 150%;
-    @include media(768) {
-        @include fontResp (12.8, 12, 150%, 480, 768);
-        padding: resp(10, 8, 480, 768) resp(45, 30, 480, 768);
-    }
+    padding: 0 resp(94.5, 45, 768);
+}
+.button_submit {
+    background: var(--c-5E6600);
+    padding: 0 resp(46, 22, 768);
+}
+
+.input {
+    border: solid resp(3, 2, 768) var(--c-black);
+    padding: 0 resp(40, 20, 768);
+    height :resp(96, 43, 768);
+    line-height: resp(96, 43, 768);
+
 }
 
 
@@ -128,5 +155,12 @@
 }
 .show {
     display: block;
+}
+
+.white {
+    color: var(--c-white);
+}
+.black {
+    color: var(--c-black);
 }
 

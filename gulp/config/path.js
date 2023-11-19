@@ -4,7 +4,7 @@ const dist = "./dist";
 
 export const path = {
     src: {
-        html: `${src}/*.html`,
+        html: `${src}/html/*.html`,
         sass: `${src}/scss/**/style.{sass,scss}`,
         css: `${src}/css/**/*.css`,
         // cssParts: `${src}/scss/parts/fonts.{sass,scss}`,
@@ -30,7 +30,7 @@ export const path = {
 
     },
     watch: {
-        html: `${src}/*.html`,
+        html: `${src}/html/*.html`,
         sass: `${src}/scss/**/*.{scss,sass}`,
         css: `${src}/css/**/*.css`,
         js: `${src}/js/**/*.js`,

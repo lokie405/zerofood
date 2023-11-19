@@ -3,5 +3,6 @@
         "coef",
         "pricelist",
         "Seryoga"
-    ]
+    ],
+    "AllAutocomplete.showCurrentDocument": false
 }

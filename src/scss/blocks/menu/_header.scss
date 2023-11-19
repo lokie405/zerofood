@@ -1,0 +1,19 @@
+@use "parts/mixin.scss";
+
+#menu-header {
+
+    background: url("/img/pic/menu/menu-header.jpg") center center / cover no-repeat;
+    
+    .container__header {
+        padding-bottom: resp(328, 150, 768);
+    }
+
+    .headline_hero {
+        margin-top: resp(142, 70, 768);
+        width: resp(779, 350, 768);
+        @include media(480) {
+                width: 95%;
+        }
+    }
+// #region M E D I A /======================================================================
+}

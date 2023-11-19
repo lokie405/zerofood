@@ -2,16 +2,12 @@
 
 #navigation {
 
-    background-color: var(--c-khaki);
-
-    .container__navigation {
-        height: toVW(208,768);
-        top: 0;
-        left: 0;
-        display: grid;
-        align-items: center;
-        grid-template-columns: auto auto 1fr auto;
-    }
+    height: toVW(208,768);
+    top: 0;
+    left: 0;
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto 1fr auto;
 
     .label {
         justify-self: left;
@@ -19,7 +15,8 @@
         order: 1;
     }
     .label__text {
-        @include rectVW(307, 54, 768)
+        @include rectVW(307, 54, 768);
+        color: var(--c-white);
     }
     .label__frame {
         position: absolute;
@@ -46,21 +43,15 @@
     }
 
     .button__reservation {
-        padding: resp(20, 8, 768) resp(46, 12, 768);
         justify-self: right;
         order: 4;
-        @include media(480) {
-            display: none;
-        }
     }
 
     // #region M E D I A /#############################################
 
     @include mixin.media(768) {
 
-        .container__navigation {
             grid-template-columns: auto 1fr auto;
-        }
         .hamburger {
             justify-self: right;
         }

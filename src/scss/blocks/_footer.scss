@@ -1,11 +1,228 @@
 @use "parts/mixin.scss";
 
 #footer {
-    .container__footer {
+    background: var(--c-233000);
+    overflow: hidden;
+    position: relative;
+
+    .footer__container {
         display: grid;
+        grid-template-areas:
+        "logo contact receipt"
+        "bottom bottom bottom";
+        grid-template-columns: 1fr 1fr 2fr;
+        padding: resp(132, 80, 768) 0 resp(74, 30, 768) 0;
+        row-gap: resp(137, 65, 768);
+        // z-index: -1;
+    }
+    
+    .cell__logo {
+        grid-area: logo;
+        margin-top: 30px;
+        width: toVW(188, 768);
     }
 
     .cell__contact {
         grid-area: contact;
+        display: flex;
+        flex-direction: column;
+        
     }
+    .contact__communication{
+        margin-top: resp(55, 25, 768);
+    }
+    .communication__tel {
+        display: block;
+    }
+    .communication__email {
+        display: block;
+    }
+    .contact__address {
+        display: block;
+        margin-top: resp(28, 14, 768);
+        width: resp(210, 100, 768);
+    }
+    
+    .cell__receipt {
+        grid-area: receipt;
+        display: flex;
+        flex-direction: column;
+    }
+    .receipt__form {
+        display: flex;
+        margin-top: resp(55, 25, 768);
+        justify-content: space-between;
+        width: resp(792, 350, 768);
+    }
+    .form__input {
+        border-color: var(--c-white);
+        width: resp(523, 209, 768);
+    }
+    .receipt__desc {
+        margin-top: resp(15, 7, 768);
+    }
+
+    .cell__bottom {
+        grid-area: bottom;
+        display: flex;
+        justify-content: space-between;
+    }
+    .bottom__copyright {
+        margin-top: resp(52, 25, 768);
+    }
+    .social__items {
+        display: flex;
+        align-items: start;
+        margin-top: resp(62, 25, 768);
+    }
+    .social__item {
+        @include fontResp(28, 16, 100%, 768);
+        margin-left: resp(28, 12, 768);
+    }
+    li:nth-child(1)>.social__item {
+        margin-left: 0;
+    }
+
+    .dotted-line {
+        position: absolute;
+        width: 100vw;
+        left: 0;
+        border-top: resp(4, 3, 768) var(--c-white) dotted;
+        bottom: resp(171, 65, 768);
+    }
+
+    // #region M E D I A /======================================================
+    @include media(768) {
+
+        .footer__container {
+            grid-template-areas: 
+            "logo contact"
+            "receipt receipt"
+            "bottom bottom";
+            grid-template-columns: 1fr 3fr; 
+            padding-top: 40px;
+            row-gap: 40px;
+            padding-bottom: 20px;
+        }
+
+        .cell__logo {
+            margin: 0 auto;
+        }
+
+        .cell__contact {
+            flex-direction :row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .contact__communication {
+            margin-top: 0;
+        }
+        .contact__address {
+            margin-top: 0;
+        }
+
+        .cell__receipt {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .receipt__title {
+            text-align: center;
+            width: 100%;
+            margin-bottom: resp(20, 10, 480, 768);
+            order: 1;
+            display: inline;
+        }
+        .receipt__form {
+            width: resp(362, 350, 480, 768);
+            margin-top: 0;
+            order: 3;
+            @include media(600) {
+                margin: 0 auto;
+            }
+        }
+        .receipt__desc {
+            order: 2;
+            display: inline;
+            width: auto;
+            width: resp(263, 150, 600, 768);
+            text-align: center;
+            margin: auto auto auto 0;
+            @include media(600) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    @include media(480) {
+        .footer__container {
+            grid-template-areas: 
+            "logo"
+            "contact"
+            "receipt"
+            "bottom";
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+        }
+
+        .cell__logo {
+            // margin-left: resp(40, 90, 320, 480);
+            margin-left: resp(40, 20, 320, 480);
+            // text-align: center;
+        }
+
+        .cell__contact {
+            flex-wrap: wrap;
+        }
+        .contact__title {
+            width: 100%;
+            text-align: center;
+
+        }
+        .contact__communication {
+            margin: 10px auto 0;
+            text-align: center;
+            display: inline-block;
+        }
+        .contact__address {
+            margin: 10px auto 0;
+            display: inline-block;
+        }
+
+
+        .receipt__form {
+            flex-direction: column;
+            width: 100%;
+        }
+        .form__input {
+            width: resp(350, 250, 320, 480);
+            margin: 0 auto;
+        }
+        .form__submit {
+            width: resp(175, 200, 320, 480);
+            margin: 20px auto 0;
+        }
+
+        .cell__bottom {
+            flex-direction: column;
+        }
+
+        .bottom__copyright {
+            text-align: center;
+            order: 2;
+        }
+        .social__items {
+            margin-top: 20px;
+            order: 1;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .dotted-line {
+            bottom: 100px;
+        }
+    }
+
+    // #endregion
 }

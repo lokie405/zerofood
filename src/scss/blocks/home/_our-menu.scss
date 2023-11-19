@@ -10,9 +10,6 @@
     .headline_large {
         width: mixin.resp(532, 260, 768);
     }
-    .headline__text {
-        margin-top: mixin.resp(18, 8, 768);
-    }
 
     .branch__img {
         @include mixin.rectVW(880, 946, 768);
