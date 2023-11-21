@@ -1,9 +1,9 @@
 @use "parts/mixin.scss";
 
 #our-menu {
+    position: relative;
 
     .our-menu__container {
-        position: relative;
         padding: mixin.resp(176, 70, 768) 0 mixin.resp(218, 87, 768) 0;
     }
 
@@ -15,7 +15,7 @@
         @include mixin.rectVW(880, 946, 768);
         position: absolute;
         top: 0;
-        right: 0;
+        right: 0px;
     }
 
     .pricelist__items {
@@ -28,20 +28,19 @@
     .pricelist__item {
         width: mixin.toVW(792);
     }
-    .item__price {
-        text-align: right;
-        border-bottom: 4px dashed var(--c-black);
-    }
-    .item__name {
-        margin-top: mixin.resp(24, 10, 768);
-    }
-    .item__desc {
-        margin-top: mixin.resp(24, 10, 768);
-    }
+    
+    
 
 
     // #region M E D I A /=============================================
     @include mixin.media(700) {
+        .branch__img {
+            // width: (352, 480, 700);
+            width: resp(352, 200, 480, 700);
+            // width: resp(150, 110, 480, 700);
+
+            height: auto;
+        }
         .pricelist__items {
             grid-template-columns: 1fr;
             justify-items: right;
@@ -55,6 +54,11 @@
     }
     
     @include mixin.media(480) {
+
+        .branch__img {
+            width: resp(200, 150, 320, 480);
+
+        }
         .headline_large {
             margin: 0 auto;
         }

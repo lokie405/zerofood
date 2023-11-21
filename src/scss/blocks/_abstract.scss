@@ -132,7 +132,19 @@
     padding: 0 resp(40, 20, 768);
     height :resp(96, 43, 768);
     line-height: resp(96, 43, 768);
+}
 
+.pricelist__items {
+    .item__price {
+        text-align: right;
+        border-bottom: 4px dashed var(--c-black);
+    }
+    .item__name {
+        margin-top: mixin.resp(24, 10, 768);
+    }
+    .item__desc {
+        margin-top: mixin.resp(24, 10, 768);
+    }
 }
 
 

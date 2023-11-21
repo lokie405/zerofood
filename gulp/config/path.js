@@ -26,6 +26,7 @@ export const path = {
         svgSprite: `${dist}/fonts/`,
         srcCss: `${src}/css/`,
         srcFonts: `${src}/fonts/`,
+        
         // distAll: `${dist}/**/*.*`,
 
     },
@@ -35,6 +36,10 @@ export const path = {
         css: `${src}/css/**/*.css`,
         js: `${src}/js/**/*.js`,
         zip: `${src}/zip/*.zip`,
+    },
+    admin: {
+        htmlFolder: `${src}/html/`,
+        adminFile: `${src}/admin/load.js`,
     },
     clearDist: `${dist}/**/*.*`,
     srcFolder: src,

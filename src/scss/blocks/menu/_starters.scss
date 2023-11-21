@@ -5,19 +5,14 @@
 
     .container__starters {
         position:relative;
-        display: grid;
-        grid-template-areas: 
-        "title title"
-        "image pricelist";
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: resp(60, 30, 768);
-        row-gap: resp(81, 40, 768);
+        padding: resp(122, 50, 768) 0 resp(140, 60, 768);
+        
     }
     .blueberry__img {
         position: absolute;
         @include rectVW(516, 439, 480);
-        top: resp(-39.15, 0, 768);
-        right: resp(-109, 0, 768 );
+        top: resp(-39.15, 0, 700);
+        right: resp(-109, -70, 700 );
     }
 
     .cell-headline {
@@ -30,22 +25,93 @@
         grid-area: pricelist;
     }
 
-    .headline_large {
-        margin: resp(122, 50, 768) auto 0;
+    .headline__title {
+        text-align: center;
+    }
+    .headline__text {
+        text-align: center;
+    }
+
+    .starters__menu {
+        margin-top: resp(81, 40, 768);
+        display: flex;
+        position: relative;
     }
 
     .img {
-        @include rectVW(792, 989, 768);
+        @include rectVW(782, 989, 700);
     }
     
     .pricelist__items{
+        margin-left: resp(60, 30, 700);
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
-    .item__price{
-        border-bottom: 4px dashed var(--c-black);
 
+    @include media(700) {
+        // .headline_large {
+        //     width: fit-content;
+        //     margin-left: 10%;
+        // }
+        // .headline__title {
+        //     text-align: left;
+        // }
+        // .headline__text {
+        //     text-align: left;
+        // }
+
+        .blueberry__img {
+            width: resp(150, 110, 480, 700);
+            top: -20px;
+            right: resp(-50, -40, 480, 700);
+
+            // top: resp(0, -25, 480, 700);
+            // right: resp(0, -40, 480, 700);
+        }
+
+        .img {
+            height: 100%;
+            width: auto;
+            margin-left: 10%;
+            position: absolute;
+            z-index: -1;
+            opacity: .4;
+        }
+        .pricelist__items {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 50px;
+            width: 100%;
+        }
+        .pricelist__item {
+            width: mixin.resp(400, 305, 480, 700);
+            &:nth-child(even){
+                justify-self: right;
+            }
+        }
     }
 
+    @include media(480) {
+        .img {
+            // height: 120%;
+            width: resp(370, 220, 480, 320);
+            height: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0 auto;
+            // justify-self: center;
+        }
+
+        .pricelist__items {
+            margin-left: 0;
+        }
+        .pricelist__item {
+            justify-self: center;
+            &:nth-child(even){
+                justify-self: center;
+
+            }
+        }
+    }
 }
