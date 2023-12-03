@@ -9,7 +9,7 @@ $maxRespVP: 1920; // Model resurrection
 
 // #region => R E S P O N S I V E /======================================================
 // 
-/// Set length in px from max to min value
+/// Set length in px from max to min value..
 /// @param {( px )} $_max - * started value (px)
 /// @param {( px )} $_min - * finished value (px)
 /// @param {( px )} $R_min - * viewport width for finished value (px)
@@ -19,7 +19,7 @@ $maxRespVP: 1920; // Model resurrection
 }
 
 
-/// Set font and line-height
+/// Set font and line-height..
 /// @param {( px )} $_max - * started value (px)
 /// @param {( px )} $_min - * finished value (px)
 /// @param {( px, % => "%" )} $_lh [0] - * line-height ()
@@ -256,7 +256,7 @@ $maxRespVP: 1920; // Model resurrection
 
 // #region => P I E C E S /======================================================================
 //
-@mixin margin_lr_auto($_top: none, $_bottom: none){
+@mixin marginHorizontal($_top: none, $_bottom: none){
     margin-left: auto;
     margin-right: auto;
     @if ($_top != none) {

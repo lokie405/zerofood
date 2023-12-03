@@ -3,6 +3,7 @@
 @import "parts/variables.scss";
 @import "parts/mixin.scss";
 @import "parts/general.scss";
+@import "parts/anim.scss";
 
 @import "blocks/home/header.scss";
 @import "blocks/home/our-menu.scss";
@@ -16,6 +17,13 @@
 @import "blocks/footer.scss";
 
 @import "blocks/menu/header.scss";
-@import "blocks/menu/starters";
+@import "blocks/menu/starters.scss";
+@import "blocks/menu/mains.scss";
+@import "blocks/menu/drinks.scss";
 
+@import "blocks/contact/header.scss";
+@import "blocks/contact/location.scss";
+@import "blocks/contact/reservation-form.scss";
+
+@import "blocks/overlay.scss";
 @import "blocks/abstract.scss";

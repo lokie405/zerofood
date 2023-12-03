@@ -1,4 +1,8 @@
 @use "parts/mixin.scss";
+body {
+    position: relative;
+    
+}
 
 .container {
     width: min(var(--container-w), toVW(1644));
@@ -7,7 +11,7 @@
 
 .headline_hero {
     @include media(600) {
-        @include mixin.margin_lr_auto();
+        @include mixin.marginHorizontal();
     }
     .headline__title, .headline__text {
         color: var(--c-white);
@@ -71,10 +75,12 @@
     font-weight: 400;
     letter-spacing: 0.48px;
 }
-.text_widgets {
+.text_widget {
     font-family: Lato;
-    @include fontResp(18, 9, 100%, 480);
+    @include fontResp(18, 9, 25, 480);
     font-weight: 400;
+    font-family: Lato;
+    letter-spacing: 0.36px;
 }
 
 .text_excerpt {
@@ -91,9 +97,21 @@
     letter-spacing: 0.36px;
 }
 
+.nav_item {
+    font-family: Rufina;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include fontResp(66, 30, 66, 768);
+    color: white;
+}
+.nav_subitem {
+    font-family: Rufina;
+    font-weight: 400;
+    @include fontResp(24, 10, 24, 768);
+    color: white;
+}
+
 .button {
-    // font-family: Rufina;
-    // font-weight: 700;
     border: 2px solid var(--c-black);
     color: var(--c-white);
     height: resp(88, 43, 768);
@@ -112,6 +130,7 @@
     border: none;
     @include rectResp(203, 62, 100, 30, 768);
     @include fontResp(26, 14, 48, 768);
+
     @include media(768) {
         @include rectResp(100, 30, 80, 25, 600, 768);
         padding: resp(3, 0, 480, 768) resp(25, 12, 600, 768);
@@ -162,10 +181,10 @@
 }
 
 
-.hide {
+.invisible {
     display: none;
 }
-.show {
+.visible {
     display: block;
 }
 
@@ -174,5 +193,8 @@
 }
 .black {
     color: var(--c-black);
+}
+.olive {
+    color: var(--c-9CAA00);
 }
 

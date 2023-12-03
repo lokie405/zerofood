@@ -1,0 +1,151 @@
+@use "parts/mixin.scss";
+
+#location {
+    overflow: hidden;
+
+    .container__location {
+        position: relative;
+        display: grid;
+        grid-template-areas: 
+        "lemon contact"
+        "address people";
+        grid-template-columns: 1fr 1fr;
+        column-gap: resp(60, 30, 768);
+        row-gap: resp(145, 60, 768);
+        padding: resp(272, 125, 768) 0 resp(185, 70, 768);
+    }
+
+    .svg__lemon {
+        position: absolute;
+        top: resp(152, 75, 768);
+        left: resp(629, 275, 768);
+        @include rectResp(446, 391, 200, 150, 768);
+        z-index: -1;
+    }
+
+    .img__lemon-on-table {
+        grid-area: lemon;
+        width: 100%;
+    }
+    .location__contact {
+        grid-area: contact;
+        margin-top: resp(370, 150, 768);
+        width: resp(507, 220, 768);
+        justify-self: right;
+    }
+    .location__address {
+        grid-area: address;
+        width: resp(748, 350, 768);
+        margin: resp(428, 200, 768) 0 0 auto;
+
+    }
+    .button_address {
+        background: transparent;
+        margin-top: resp(53, 20, 768);
+    }
+    
+    .img__people-near-tree {
+        grid-area: people;
+        width: 100%;
+
+    }
+
+    @include media(768) {
+        .container__location {
+            // display: grid;
+            position: relative;
+            display: block;
+            padding: resp(100, 70, 480, 768) 0 70px 0;
+        }
+
+        .svg__lemon {
+            left: unset;
+            right: resp(0, 0, 480, 768);
+            top: resp(40, 0, 480, 768);
+            // @include rectResp(200, 150, 150, 100, 480, 768);
+            width: resp(200, 125, 480, 768);
+        }
+        .img__lemon-on-table {
+            width: 66%;
+        }
+
+        .location__contact {
+            position: absolute;
+            display: block;
+            margin: 0;
+            width: max(50%, 250px);
+            top: resp(300, 150, 480, 768);
+            right: 0;
+            text-align: left;
+            padding: 2%;
+            background: rgba($color: #ffff, $alpha: .9);
+        }
+
+        .location__address {
+            position: absolute;
+            left: 0;
+            bottom: resp(200, 100, 480, 768);
+            padding: 2%;
+            background: rgba($color: #ffff, $alpha: .9);
+            width: max(50%, 250px);
+            text-align: center;
+        }
+        .address__title {
+            text-align: right;
+            // text-align: justify;
+        }
+        .img__people-near-tree {
+            display: block;
+            width: 66%;
+            margin: resp(60, 30, 480, 768) 0 0 auto;
+        }
+    }
+    @include media(480) {
+        .container__location {
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+        }
+        .svg__lemon {
+            top: -35px;
+            right : -30px;
+            // left: 55%;
+            // transform: translateX(-50%);
+        }
+
+        .img__lemon-on-table {
+            order: 1;
+            width: max(274px, 90%);
+            display: block;
+            @include marginHorizontal();
+        }
+
+        .location__contact {
+            order: 2;
+            position: static;
+            margin-top: 0;
+            @include marginHorizontal();
+        }
+
+        .location__address {
+            order: 4;
+            position: static;
+            margin-top: 0;
+            @include marginHorizontal();
+        }
+
+        .address__title {
+            text-align: center;
+
+        }
+        
+        .img__people-near-tree {
+            order: 3;
+            width: max(274px, 80%);
+            display: block;
+            margin-top: 0;
+            @include marginHorizontal();
+        }
+
+    }
+}

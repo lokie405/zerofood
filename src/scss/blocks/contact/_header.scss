@@ -1,0 +1,46 @@
+@use "parts/mixin.scss";
+
+#contact-header {
+    background: url("/img/pic/contact/contact-header.jpg") center center / cover no-repeat;
+    
+    .container__contact {
+        height: 100vh;
+        position: relative;
+    }
+    .headline_hero {
+        // width: resp(915, 450, 768);
+        width: 95%;
+        margin-top: 19vh;
+    }
+
+    #open-time {
+        position: absolute;
+        width: resp(696, 250, 768);
+        right: 0;
+        bottom: 12vh;
+        .open-time__days {
+            display: flex;
+            justify-content: space-between;
+        }
+        .line {
+            margin-top: resp(38, 1, 768);
+            width: 100%;
+            border-bottom: resp(2, 1, 768) white dotted;
+        }
+        .open-time__shift {
+            margin-top: resp(38, 1, 768);
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    @include media(480) {
+        .headline_hero {
+            // width: 100%;
+            // margin-top: 50px;
+            // width: 95%;
+            margin-top: 50px;
+        }
+    }
+
+}

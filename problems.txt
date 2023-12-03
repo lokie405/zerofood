@@ -1,1 +1,1 @@
-1. At home -> recent-post need realize spread in meta-data. When disable some element need to show list with hide item when click to arrow.
+1. At home -> recent-post need realize spread in meta-data. When disable some element need to visible list with invisible item when click to arrow.

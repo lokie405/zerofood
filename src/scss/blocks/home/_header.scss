@@ -191,7 +191,7 @@
         .headline_hero {
             position: static;
             width: 100%;
-            @include mixin.margin_lr_auto();
+            @include mixin.marginHorizontal();
         }
         .headline__text {
             margin: mixin.resp(30, 20, 480, 600) 0 0 auto;
@@ -284,7 +284,7 @@
         }
         .spices2__img {
             margin-top: 30px;
-            @include mixin.margin_lr_auto();
+            @include mixin.marginHorizontal();
 
         }
         

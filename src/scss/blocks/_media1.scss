@@ -240,7 +240,7 @@
         text-align: center;
     }
     .text-mid__soup {
-        @include mixin.margin_lr_auto;
+        @include mixin.marginHorizontal;
         width: 90%;
         text-align: center;
 

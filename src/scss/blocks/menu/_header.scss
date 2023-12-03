@@ -3,17 +3,19 @@
 #menu-header {
 
     background: url("/img/pic/menu/menu-header.jpg") center center / cover no-repeat;
-    
+    height: 100vh;
     .container__header {
-        padding-bottom: resp(328, 150, 768);
+        // padding-bottom: resp(328, 150, 768);
     }
 
     .headline_hero {
-        margin-top: resp(142, 70, 768);
+        // 142/1080=0.13148148148148148148
+        margin-top: 13vh;
         width: resp(779, 350, 768);
         @include media(480) {
                 width: 95%;
+                margin-top: 50px;
         }
     }
-// #region M E D I A /======================================================================
+
 }

@@ -1,0 +1,98 @@
+@use "parts/mixin.scss";
+
+// #region F U L L S C R E E N /======================================================
+#navigation__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 101vh;
+
+    .overlay__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: -1;
+    }
+    .overlay__hue {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba($color: #233000, $alpha: .8);
+        position: absolute;
+        z-index: -1;
+    }
+    .nav-menu__items {
+        height: 95vh;
+        margin: auto 0 auto resp(300, 150, 768);
+        overflow-y: scroll;
+    }
+    .nav-menu__item {
+        margin-top: resp(28, 10, 768);
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    .nav-menu__item-title {
+        position: relative;
+        margin-left: 2vw;
+        &::before {
+            content: "●";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            @include fontResp(20, 15, 100%, 768);
+            left: resp(-20, -10, 768);
+        }
+        &:hover {
+            color: var(--c-9CAA00);
+            cursor: pointer;
+            font-size: resp(68, 32, 768);
+            &::before {
+                font-size: resp(22, 17, 768);
+            }
+        }
+    }
+    .nav-menu__item-title_active {
+        &::before {
+            content: "○";
+        }
+        &:hover::before {
+            font-size: resp(22, 17, 768);
+        }
+    }
+    .nav-menu__subitems {
+        transition: all 2s;
+        width: fit-content;
+        margin-left:50px;
+        & li{
+            margin-top: resp(6, 3, 768);
+            & a:hover {
+                color: var(--c-9CAA00);
+                font-size: resp(26, 11);
+            }
+        }
+    }
+
+    #widget{
+        position: absolute;
+        right: resp(186, 93, 768);
+        bottom: 20%;
+        width: resp(297, 140, 768);
+
+        .widget__block {
+            margin-top: resp(38, 16, 768);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .widget__social {
+            flex-direction: row;
+        }
+    }
+
+}
+
+// #endregion

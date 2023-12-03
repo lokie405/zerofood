@@ -1,0 +1,91 @@
+@use "parts/mixin.scss";
+
+#resform {
+    background: var(--c-EBF0E4);
+    
+
+    .container__resform {
+        padding: resp(214, 70, 768) 0 resp(174, 70, 768) 0;
+        position: relative;
+    }
+    
+    .svg__branches {
+        position: absolute;
+        top: resp(50, 20, 768);
+        left: resp(21, 5, 768);
+        @include rectResp(511, 346, 200, 100, 768);
+    }
+
+    .headline_large {
+        // display: block;
+        width: fit-content;
+        @include marginHorizontal();
+    }
+
+    .reservation__form {
+        margin-top: resp(116, 50, 768);
+        display: grid;
+        grid-template-areas: 
+        "first last"
+        "email email"
+        "phone phone"
+        "date time"
+        "person person"
+        "submit submit";
+        justify-items: center;
+        grid-template-columns: 1fr 1fr;
+        row-gap: resp(46, 20, 768);
+        column-gap: resp(60, 20, 768);
+    }
+
+    .input__name_first {
+        grid-area: first;
+    }
+    .input__name_last {
+        grid-area: last;
+    }
+    .input__email {
+        grid-area: email;
+    }
+    .input__phone {
+        grid-area: phone;
+    }
+    .input__date {
+        grid-area: date;
+    }
+    .input__time {
+        grid-area: time;
+    }
+    .input__person {
+        grid-area: person;
+    }
+    .submit__btn {
+        grid-area: submit;
+        width: fit-content;
+        
+    }
+    .input {
+        width: 100%;
+        background: var(--c-EBF0E4);
+        &::placeholder {
+            color: var(--c-black);
+        }
+
+    }
+    
+    @include media(480) {
+        .reservation__form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .submit__btn {
+            margin-top: 40px;
+        }
+
+        .input {
+            width: resp(300, 274, 480, 768);
+        }
+    }
+}
