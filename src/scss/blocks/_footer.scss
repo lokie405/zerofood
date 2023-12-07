@@ -5,7 +5,7 @@
     overflow: hidden;
     position: relative;
 
-    .footer__container {
+    .container__footer {
         display: grid;
         grid-template-areas:
         "logo contact receipt"
@@ -94,12 +94,12 @@
     // #region M E D I A /======================================================
     @include media(768) {
 
-        .footer__container {
+        .container__footer {
             grid-template-areas: 
             "logo contact"
             "receipt receipt"
             "bottom bottom";
-            grid-template-columns: 1fr 3fr; 
+            grid-template-columns: 1fr 10fr; 
             padding-top: 40px;
             row-gap: 40px;
             padding-bottom: 20px;
@@ -110,15 +110,21 @@
         }
 
         .cell__contact {
-            flex-direction :row;
+            flex-direction: row;
             justify-content: space-around;
             align-items: center;
         }
         .contact__communication {
             margin-top: 0;
+
+        }
+        .footer__link {
+            font-size: resp(16, 14, 600, 768);
+            line-height: resp(32, 28, 600,768);
         }
         .contact__address {
             margin-top: 0;
+            width: 35%;
         }
 
         .cell__receipt {
@@ -128,48 +134,55 @@
         }
         .receipt__title {
             text-align: center;
-            width: 100%;
-            margin-bottom: resp(20, 10, 480, 768);
             order: 1;
             display: inline;
         }
         .receipt__form {
-            width: resp(362, 350, 480, 768);
+            width: resp(420, 300, 480, 768);
             margin-top: 0;
             order: 3;
-            @include media(600) {
-                margin: 0 auto;
-            }
+              
         }
         .receipt__desc {
-            order: 2;
-            display: inline;
-            width: auto;
-            width: resp(263, 150, 600, 768);
-            text-align: center;
-            margin: auto auto auto 0;
-            @include media(600) {
-                width: 100%;
-                margin-bottom: 20px;
-            }
+            display: none;
         }
     }
 
+    @include media(600) {
+        .container__footer {
+            row-gap: 20px;
+        }
+        .contact__title {
+            display: none;
+        }
+        .receipt__form {
+            margin: 20px auto;
+            width: 100%;
+            justify-content: space-around;
+        }
+        .receipt__title {
+            display: none;
+        }
+        .contact__address {
+            width: 51%;
+        }
+       
+    }
+
     @include media(480) {
-        .footer__container {
+        .container__footer {
             grid-template-areas: 
             "logo"
             "contact"
             "receipt"
             "bottom";
             grid-template-columns: 1fr;
-            row-gap: 30px;
+            row-gap: 10px;
         }
 
         .cell__logo {
-            // margin-left: resp(40, 90, 320, 480);
-            margin-left: resp(40, 20, 320, 480);
-            // text-align: center;
+            width: fit-content;
+            margin: 0 auto;
         }
 
         .cell__contact {
@@ -188,11 +201,13 @@
         .contact__address {
             margin: 10px auto 0;
             display: inline-block;
+            width: 40%;
         }
 
 
         .receipt__form {
             flex-direction: column;
+            // align-items: space-evenly;
             width: 100%;
         }
         .form__input {
@@ -221,6 +236,20 @@
 
         .dotted-line {
             bottom: 100px;
+        }
+    }
+    @include media(440) {
+        .cell__contact {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact__communication {
+            margin: 0 auto 0 resp(0, 60, 320, 440);
+            width: 155px;
+        }
+        .contact__address {
+            margin: 0 resp(0, 50, 320, 440) 0 auto;
+            width: 155px;
         }
     }
 

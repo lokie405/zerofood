@@ -1,0 +1,155 @@
+@use "parts/mixin.scss";
+
+#process {
+    overflow:hidden;
+    .container__process {
+        position: relative;
+        padding: resp(267, 110, 768) 0 resp(320, 120, 768);
+    }
+    .svg__rosemary_right {
+        position: absolute;
+        top: resp(0, -20, 768);
+        right: resp(-300, -100, 768);
+        width: resp(560, 200, 768);
+        height: auto;
+    }
+    .svg__rosemary_left {
+        position: absolute;
+        bottom: resp(33, 0, 768);
+        left: resp(-470, -100, 768);
+        width: resp(560, 200, 768);
+        height: auto;
+    }
+
+    .process__headline {
+        margin: 0 auto;
+        width: fit-content;
+        display: block;
+    }
+
+    .process__wrapper {
+        display: grid;
+        margin-top: resp(174, 60, 768);
+        grid-template-areas: 
+        "slice slice"
+        "bake pickled"
+        "bake pickled";
+        grid-template-columns: 1fr 1fr;
+        column-gap: resp(60, 10, 768);
+        row-gap: resp(118, 40, 768);
+
+    }
+    .process__slice {
+        grid-area: slice;
+        .img__slice {
+            width: resp(792, 300, 768);
+        }
+        display: flex;
+        .headline_considerable {
+            margin: resp(155, 50, 768) resp(102, 30, 768);
+            width: resp(616, 250, 768);
+        }
+    }
+    .process__pickled {
+        grid-area: pickled;
+        justify-self: right;
+        .img__pickled {
+            width: resp(650, 250, 768);
+            height: auto;
+        }
+        .headline_considerable {
+            margin: resp(46, 10, 768) 0 0 resp(82, 30, 768);
+            width: resp(431, 150, 768);
+
+        }
+    }
+    .process__bake {
+        grid-area: bake;
+        margin-top: resp(154, 50, 768);
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+        .img__bake {
+            width: resp(649, 250, 768);
+            order: 2;
+            margin-top: resp(46, 10, 768);
+        }
+        .headline_considerable {
+            order: 1;
+            width: resp(625, 250, 768);
+        }
+    }
+
+    // #region M E D I A /==============================================================
+    @include media(768) {
+        .process__wrapper {
+            display: flex;
+            flex-direction: column;
+            row-gap: unset;
+        }
+        .process__slice, .process__pickled, .process__bake {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+
+            .headline_considerable {
+                margin: 0 0 0 auto;
+                padding: 2%;
+                width: 50%;
+                background: rgba($color: #EBF0E4, $alpha: .8);
+                transform: translateY( resp(-55, -35, 480, 768) );
+            }
+            .process__img {
+                width: 75%;
+            }
+        }
+        .process__pickled {
+            .headline_considerable {
+                margin: 0 auto 0 0;
+            }
+            .process__img {
+                margin: 0 0 0 auto;
+            }
+        }
+        .process__bake >.headline_considerable {
+                order: 2;       
+        }
+        
+    }
+    @include media(480) {
+        .container__process {
+            padding: 70px 0;
+        }
+        .process__headline {
+            text-align: center;;
+        }
+        .process__wrapper {
+            display: block;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .process__slice, .process__pickled, .process__bake {
+            position: static;
+            .headline_considerable {
+                position: static;
+                margin: 30px auto 0;
+                background: unset;
+                width: 95%;
+                transform: none;
+            }
+            .img__slice, .img__pickled, .img__bake {
+                width: 95%;
+                margin: 40px auto 0;
+            }
+        }
+        .process__bake {
+            .img__bake {
+                order: 1;
+            }
+            .headline_considerable {
+                order: 2;
+            } 
+        }
+    }
+    // #endregion 
+}

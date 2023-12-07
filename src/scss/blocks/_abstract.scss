@@ -21,6 +21,12 @@ body {
     }
 }
 
+.headline_considerable {
+    .headline__subtitle {
+        margin-top: resp(28, 5, 768);
+    }
+}
+
 .headline_large {
     .headline__text {
         margin-top: mixin.resp(18, 8, 768);
@@ -43,6 +49,13 @@ body {
     @include media(480) {
         @include fontResp(31.8, 31.8, 111%, 320, 480);
     }
+}
+
+.headline_2 {
+    font-family: Rufina;
+    @include fontResp(88, 24, 120%, 480);
+    font-weight: 700;
+    line-height: 120%; /* 105.6px */
 }
 
 .headline_3 {

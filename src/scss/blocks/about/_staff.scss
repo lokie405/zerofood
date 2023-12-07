@@ -1,0 +1,117 @@
+@use "parts/mixin.scss";
+
+#staff {
+
+    .container__staff {
+        display: grid;
+        padding: resp(162, 70, 768) 0 resp(299, 120, 768);
+        grid-template-areas: 
+        "manager man-desc"
+        "manager chef"
+        "manager chef"
+        "chef-desc chef";
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        justify-items: center;
+        column-gap: resp(111, 50, 768);
+    }
+
+    .manager__cell {
+        grid-area: manager; 
+        width: resp(726, 300, 768);
+        height: auto;
+    }
+    .manager-desc__cell {
+        grid-area: man-desc;
+        justify-self: left;
+        margin-top: resp(160, 50, 768);
+        // text-align: left;
+    }
+    .chef__cell {
+        grid-area: chef;
+        margin-top: resp(329, 120, 768);
+    }
+    .chef-desc__cell {
+        grid-area: chef-desc;
+        margin: auto auto 0 auto;
+    }
+
+    .headline__title {
+        text-align: center;
+    }
+    .headline__subtitle {
+        text-align: center;
+        margin-top: resp(24, 10, 768);
+    }
+    .staff__img {
+        margin-top: resp(24, 10, 768);
+        width: 100%;
+        height: auto;
+    }
+
+    .staff__desc {
+        width: resp(510, 200, 768);
+
+    }
+
+    @include media(768) {
+
+        .container__staff {
+            display: block;
+            position: relative;
+        }
+
+        .staff__desc {
+            position: absolute;
+            padding: 2%;
+            background: rgba($color: #EBF0E4, $alpha: .9);
+            width: 50%;
+        }
+        .manager__cell {
+            width: 66%;
+        }
+        .chef__cell {
+            width: 66%;
+            margin: 40px 0 0 auto;
+
+        }
+        .img__chef {
+            display: block;
+        }
+        .manager-desc__cell {
+            margin-top: 0;
+            padding: 2%;
+            top: 20%;
+            right: 0;
+        }
+        .chef-desc__cell {
+            bottom: 20%;
+        }
+    }
+
+    @include media(480) {
+        .container__staff {
+            margin: 0 auto;
+            padding-bottom: 70px;
+        }
+        .manager__cell {
+            width: 100%;
+        }
+        .chef__cell {
+            width: 100%;
+        }
+        .staff__desc {
+            position: static;
+            margin: 40px auto 0;
+            background: unset;
+            width: resp(300, 247, 320, 480);
+        }
+        .staff__img {
+            width: 85%;
+            margin: 40px auto 0;
+            display: block;
+        }
+
+
+    }
+
+}

@@ -1,0 +1,86 @@
+@use "parts/mixin.scss";
+
+#our-story {
+    overflow: hidden;
+
+    .container__story {
+        position: relative;
+        padding: resp(218, 100, 768) 0 resp(117, 50, 768); 
+    }
+
+    .svg__tomato {
+        position: absolute;
+        top: resp(94, 40, 768);
+        left: resp(513, 200, 768);
+        width: resp(326, 160, 768);
+        height: auto;
+        // @include rectResp(326, 272, 150, 100, 768);
+    }
+
+    .story__block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: resp(60, 20, 768);
+        // justify-content: center;
+    }
+    .img__chef-preparing-foods {
+        width: 100%;
+    }
+    .headline_large {
+        margin: resp(233, 100, 768) 0 0 resp(77, 30, 768);
+        width: resp(668, 300, 768);
+        // justify-self: center;
+    }
+
+    @include media(768) {
+
+        .container__story {
+            padding-top: resp(100, 70, 480, 768);
+        }
+
+        .story__block {
+            display: block;
+            position: relative;
+        }
+        
+        .svg__tomato {
+            top: resp(10, -15, 480, 768);
+            // right: resp(10, -40, 480,768);
+            left: resp(0, -50, 480, 768);
+            width: resp(160, 125, 480, 768);
+        }
+        .img__chef-preparing-foods {
+            width: resp(434, 350, 480, 768);
+            display: block;
+            margin: 0 0 0 auto;
+
+        }
+        .headline_large {
+            position: absolute;
+            width: resp(428, 300, 480, 768);
+            background: rgba($color: #EBF0E4, $alpha: .8);
+            left: 0;
+            padding: 2%;
+        }
+        .headline__title {
+            // text-align: right;
+        }
+    }
+
+    @include media(480) {
+        .story__block {
+            // display: 
+        }
+        .headline_large {
+            position: static;
+            margin: 0;
+            background: none;
+        }
+        .img__chef-preparing-foods {
+            margin-top: 40px;
+            display: block;
+            width: 100%;
+            @include marginHorizontal();
+        }
+    }
+}
