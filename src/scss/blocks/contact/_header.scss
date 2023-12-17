@@ -1,23 +1,22 @@
 @use "parts/mixin.scss";
 
-#contact-header {
-    background: url("/img/pic/contact/contact-header.jpg") center center / cover no-repeat;
+#contact_header {
+    position: relative;
+    // background: url("/img/pic/contact/contact_header.jpg") center center / cover no-repeat;
     
     .container__contact {
-        height: 100vh;
         position: relative;
     }
     .headline_hero {
-        // width: resp(915, 450, 768);
         width: 95%;
-        margin-top: 19vh;
+        margin-top: max(19vh, 20px);
     }
 
     #open-time {
         position: absolute;
         width: resp(696, 250, 768);
         right: 0;
-        bottom: 12vh;
+        bottom: max(12vh, 52px);
         .open-time__days {
             display: flex;
             justify-content: space-between;
@@ -36,9 +35,6 @@
 
     @include media(480) {
         .headline_hero {
-            // width: 100%;
-            // margin-top: 50px;
-            // width: 95%;
             margin-top: 50px;
         }
     }

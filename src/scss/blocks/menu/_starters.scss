@@ -8,11 +8,12 @@
         padding: resp(122, 50, 768) 0 resp(140, 60, 768);
         
     }
-    .blueberry__img {
+    .blueberry__svg {
         position: absolute;
         @include rectVW(516, 439, 480);
         top: resp(-39.15, 0, 700);
         right: resp(-109, -70, 700 );
+        z-index: -2;
     }
 
     .headline__title {
@@ -41,7 +42,7 @@
 
     @include media(700) {
 
-        .blueberry__img {
+        .blueberry__svg {
             width: resp(150, 110, 480, 700);
             top: -20px;
             right: resp(-50, -40, 480, 700);

@@ -62,14 +62,15 @@ function play() {
 
  // #region ====// I N I T   E L E M E N T // ==============================================================================================
     const nav = {
-        // homeLink: document.querySelector(".")
         hamburger: document.querySelector(".hamburger"),
         close: document.querySelector(".close__btn"),
         overlay: document.querySelector("#navigation__overlay"),
         navItemsTitle: document.querySelectorAll(".nav-menu__item-title"),
+        items: document.querySelector(".nav_item"),
         subitems: document.querySelectorAll(".nav_subitem"),
         homeList: document.querySelector(".home__items"),
         menuList: document.querySelector(".menu__items"),
+        buttonUp: document.querySelector("#button_up"),
     }
  // #endregion
 
@@ -81,11 +82,11 @@ function play() {
         })
         nav.close.addEventListener("click", function() {
             nav.overlay.hideElementWithAnim("animate__fadeOut");
+            hideNavSubitems();
         })
     //  Show / Hide subitem on click..
         nav.navItemsTitle.forEach(menuItem => {
             menuItem.addEventListener("click", function() {
-                // const sublist = this.querySelector(`[data="${this.getAttribute("data")}"]`);
                 const sublist = this.nextElementSibling;
                 if (sublist.classList.contains("invisible")) {
                     sublist.showElementWithAnim("animate__fadeIn");
@@ -93,23 +94,62 @@ function play() {
                 } else {
                     sublist.hideElementWithAnim("animate__fadeIn", 50);
                     this.classRemove("nav-menu__item-title_active");
-
                 }
             })
         })
     // Hide overlay when choose subitem..
         nav.subitems.forEach(subitem => {
             subitem.addEventListener("click", function() {
-            nav.overlay.hideElementWithAnim("animate__fadeOut");
+                nav.overlay.hideElementWithAnim("animate__fadeOut");
+                hideNavSubitems();
             })
-        })
+        });
+    }
 
+    function initUp() {
+
+        // console.log(typeof(nav.buttonUp));
+        // console.log(typeof("str") == "string");
+
+        window.addEventListener("scroll", function () {
+            up();
+
+        });
+        
+        function up() {
+        // Scroll to up execute..
+            nav.buttonUp.addEventListener("click", function() {
+                linkTo(nav.overlay);
+            })
+        // Check window position to show / hide up-button..
+            if(window.pageYOffset > window.innerHeight) {
+                if(nav.buttonUp.contains("invisible")){
+                    nav.buttonUp.showElementWithAnim("animate__fadeIn");
+                }
+            } else {
+                if(!nav.buttonUp.contains("invisible")) {
+                    nav.buttonUp.hideElementWithAnim("animate__fadeOut");
+
+                }
+
+            }
+        }
+        // up();
+        
+    }
+    
+    function test() {
+        // window.addEventListener("scroll", function (e) {
+        //     console.info("scroll: ", e.target);
+        // })
     }
     
  // #endregion
 
  // #region ====// P L A Y //=============================================================================================================
-    initNav();
+ initUp();
+ initNav();
+    test();
  // #endregion
 
  // #region ====// P L U G I N //========================================================================================================
@@ -125,7 +165,6 @@ function play() {
             this.classRemove(name2);
             this.classAdd(name1);
             console.info(`Class ${name2} switched to ${name1}` )
-
         }
     }
  // Add one remove second class..
@@ -158,7 +197,6 @@ function play() {
     }
  //  Hide element with animation..
     HTMLElement.prototype.hideElementWithAnim = function(anim, time = 700) {
-        // return new Promise(function(resolve, reject) {
             this.classAdd(anim);
             setTimeout(() => {
                 this.classRemove(anim);
@@ -167,7 +205,33 @@ function play() {
                 // resolve();
             }, time);
 
-        // })
+    }
+ //  Hide all expanded subElement in nav-item list..
+    function hideNavSubitems () {
+        nav.navItemsTitle.forEach(menuItem => {
+                const sublist = menuItem.nextElementSibling;
+                if (!sublist.classList.contains("invisible")) {
+                    console.log("!invisible");
+                    sublist.hideElementWithAnim("animate__fadeIn", 50);
+                    menuItem.classRemove("nav-menu__item-title_active");
+                }
+        })
+    }
+ //  Smooth scroll to target position..
+    function linkTo(target) {
+        let elem;
+        if(typeof(target) == "string") {
+            elem = document.querySelector(query);
+        } else if(typeof(target) == "object") {
+            elem = target;
+        }
+        const paddingTop = window.getComputedStyle(elem, null).getPropertyValue("padding-top");
+        const position = elem.offsetTop + Number(paddingTop.substring(0, paddingTop.length - 2));
+
+        scroll({
+            top: position,
+            behavior: "smooth"
+        });
     }
  // Add first class at 1sec; add second; remove third after timeout..
     // HTMLElement.prototype.classTempAddRemoveAfter = function (name1, name2, name3, time = 701) {

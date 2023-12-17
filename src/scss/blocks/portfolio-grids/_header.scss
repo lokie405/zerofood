@@ -1,0 +1,34 @@
+@use "parts/mixin.scss";
+
+#portfolio-grids_header {
+    position: relative;
+
+    .container__header {
+        min-height: resp(750, 450, 768);
+        overflow: hidden;
+    }
+
+    .headline_hero {
+        width: fit-content;
+        margin: 13vh auto 0;
+        @include media(480) {
+            text-align: center;
+        }
+    }
+    
+    .scroll {
+        // position: relative;
+        width: fit-content;
+        margin: 14vh auto;
+        transform: rotate(90deg) translateX(50%);
+
+    }
+    .scroll::after {
+        content: "";
+        position: absolute;
+        width: mixin.resp(406, 150, 768);
+        border-bottom: mixin.resp(4, 2, 768) var(--c-white) dashed;
+        top: 50%;
+        left: 120%;
+    }
+}

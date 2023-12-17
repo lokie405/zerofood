@@ -1,21 +1,18 @@
 @use "parts/mixin.scss";
 
-#menu-header {
+#menu_header {
+    position: relative;
 
-    background: url("/img/pic/menu/menu-header.jpg") center center / cover no-repeat;
-    height: 100vh;
     .container__header {
-        // padding-bottom: resp(328, 150, 768);
+        min-height: resp(650, 450, 768);
     }
 
     .headline_hero {
-        // 142/1080=0.13148148148148148148
-        margin-top: 13vh;
         width: resp(779, 350, 768);
+        margin-top: max(13vh, 85px);
         @include media(480) {
-                width: 95%;
-                margin-top: 50px;
+            width: 95%;
         }
-    }
 
+    }
 }

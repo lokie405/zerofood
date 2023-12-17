@@ -9,6 +9,25 @@ body {
     margin: 0 auto;
 }
 
+.fullscreen_height { 
+    min-height: resp(580, 250, 768);
+    height: 100vh;
+    @include media(768) {
+        min-height: 450px;
+    };
+}
+
+.header__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+    height: 100%;
+
+}
+
 .headline_hero {
     @include media(600) {
         @include mixin.marginHorizontal();
@@ -30,6 +49,11 @@ body {
 .headline_large {
     .headline__text {
         margin-top: mixin.resp(18, 8, 768);
+    }
+}
+.headline_posts {
+    .posts__labels {
+        margin-top: resp(18, 5, 768);
     }
 }
 
@@ -81,6 +105,13 @@ body {
     @include fontResp(32, 16, 150%, 768);
     font-weight: 700;
 }
+.text_filter {
+    font-family: Lato;
+    // font-size: resp(34, 17, 140%, 768);
+    @include fontResp(34, 17, 140%, 768);
+    font-weight: 400;
+    letter-spacing: 2.04px;
+}
 
 .text_body{
     font-family: Lato;
@@ -120,8 +151,9 @@ body {
 .nav_subitem {
     font-family: Rufina;
     font-weight: 400;
-    @include fontResp(24, 10, 24, 768);
+    @include fontResp(24, 17, 24, 768);
     color: white;
+    
 }
 
 .button {
@@ -158,6 +190,21 @@ body {
     background: var(--c-5E6600);
     padding: 0 resp(46, 22, 768);
 }
+#button_up {
+        position: fixed;
+        color: var(--c-white);
+        right: 2%;
+        bottom: 5%;
+        font-size: resp(20, 20, 768);
+        border: var(--c-black) 2px solid;
+        font-weight: 900;
+        box-shadow: 0px 0px 3px 3px var(--c-9CAA00);
+        background: var(--c-233000);
+        padding: resp(10, 5, 768);
+}
+.button_loading {
+    padding: resp(10, 3, 768) resp(40, 15, 768);
+}
 
 .input {
     border: solid resp(3, 2, 768) var(--c-black);
@@ -193,6 +240,20 @@ body {
     @include fontVW(28, 100%, 768);
 }
 
+.filter_active {
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        border-bottom: resp(4, 2, 768) var(--c-black) dotted;
+        bottom: resp(-5, 2, 768);
+        left: 0;
+
+    }
+}
+
+
 
 .invisible {
     display: none;
@@ -209,5 +270,18 @@ body {
 }
 .olive {
     color: var(--c-9CAA00);
+}
+
+.desktop {
+    display: block;
+    @include media(480) {
+        display: none;
+    }
+}
+.phone {
+    display: none;
+    @include media(480) {
+        display: block;
+    }
 }
 

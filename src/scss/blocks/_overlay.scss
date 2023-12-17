@@ -24,10 +24,20 @@
         position: absolute;
         z-index: -1;
     }
-    .nav-menu__items {
-        height: 95vh;
-        margin: auto 0 auto resp(300, 150, 768);
+    .close__btn {
+        position: absolute;
+        width: resp(84, 60, 768);
+        height: auto;
+    }
+    .menu__wrapper {
         overflow-y: scroll;
+        // height: 100%;
+        margin-top: 10vh;
+        height: 80vh;
+        
+    }
+    .nav-menu__items {
+        margin: auto 0 auto resp(300, 150, 768);
     }
     .nav-menu__item {
         margin-top: resp(28, 10, 768);
@@ -38,6 +48,7 @@
     .nav-menu__item-title {
         position: relative;
         margin-left: 2vw;
+        width: fit-content;
         &::before {
             content: "●";
             position: absolute;
@@ -64,14 +75,24 @@
         }
     }
     .nav-menu__subitems {
-        transition: all 2s;
         width: fit-content;
-        margin-left:50px;
+        margin-left: 50px;
+
         & li{
             margin-top: resp(6, 3, 768);
+            @include media(768) {
+                margin: 10px 0;
+
+            }
+            transition: all .1s;
+            &:hover {
+                transform: scale(1.1);
+            }
             & a:hover {
                 color: var(--c-9CAA00);
-                font-size: resp(26, 11);
+                font-size: resp(26, 19, 768);
+                @include media(768) {
+                }
             }
         }
     }
@@ -81,18 +102,68 @@
         right: resp(186, 93, 768);
         bottom: 20%;
         width: resp(297, 140, 768);
-
         .widget__block {
             margin-top: resp(38, 16, 768);
             display: flex;
             flex-direction: column;
         }
-        
         .widget__social {
             flex-direction: row;
+            width: resp(200, 100, 768);
+            justify-content: space-between;
+        }
+        .social__item {
+            @include fontResp(28, 14, 100%, 768);
+            & span:hover {
+                &::before {
+                    @include fontResp(30, 16, 0%, 768);
+                    color: var(--c-9CAA00);
+                }
+            }
         }
     }
 
+    @include media(768) {
+        .nav-menu__items {
+            margin: auto 0 auto resp(150, 100, 480, 768);
+        }
+        .nav-menu__item {
+            margin-top: resp(20, 10, 480, 768);
+        }
+        #widget {
+            right: resp(93, 50, 480, 768);
+        }
+    }
+    @include media(600) {
+        .widget__title {
+            display: none;
+        }
+        .menu__wrapper {
+            height: 70vh;
+        }
+        #widget {
+            display: flex;
+            align-items: center;;
+            right: unset;
+            bottom: 4vh;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+       
+    }
+    @include media(480) {
+        .menu__wrapper {
+            height: 80%;
+        }
+
+        #widget {
+            display: none;
+        }
+    }
 }
 
+// #endregion
+
+// #region U P   B U T T O N /=====================================================================
+   
 // #endregion

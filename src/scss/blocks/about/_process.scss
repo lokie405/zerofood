@@ -12,6 +12,7 @@
         right: resp(-300, -100, 768);
         width: resp(560, 200, 768);
         height: auto;
+        z-index: -2;
     }
     .svg__rosemary_left {
         position: absolute;
@@ -19,6 +20,7 @@
         left: resp(-470, -100, 768);
         width: resp(560, 200, 768);
         height: auto;
+        z-index: -2;
     }
 
     .process__headline {

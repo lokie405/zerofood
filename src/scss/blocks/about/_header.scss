@@ -1,21 +1,17 @@
 @use "parts/mixin.scss";
 
-#about-header {
+#about_header {
+    position: relative;
 
-    background: url("../img/pic/about/about-header.jpg") center center / cover no-repeat;
     .container__about {
-        height: 100vh;
+        min-height: resp(650, 450, 768);
+
+
     }
 
     .headline_hero {
+
         width: resp(915, 400, 768);
-        margin: 19vh resp(81, 10, 768) auto auto;
-        @include media(768) {
-            width: resp(400, 390, 480, 768);
-        }
-        @include media(480) {
-            margin-top: 50px;
-            width: 95%;
-        }
+        margin: 13vh  0 0 auto;
     }
 }
