@@ -1,0 +1,201 @@
+@use "parts/mixin.scss";
+
+#detail_body {
+    .container__detail {
+        position: relative;
+        padding: resp(176, 60, 768) 0 resp(222, 70, 768);
+    }
+
+    .detail__desc {
+        width: resp(510, 200, 768);
+        margin-top: resp(38, 10, 768);
+    }
+
+    .detail__cell_small {
+        display: block;
+        z-index: 1;
+    }
+    .detail__img_small {
+        margin-left: resp(82, 30, 768);
+        @include rectResp(486, 678, 200, 0, 768);
+        object-fit: cover;
+        grid-area: img;
+    }
+    .headline__detail_small {
+    }
+    .desc__wrapper {
+        display: inline-block;
+        margin-left: resp(419, 150, 768);
+        grid-area: desc;
+    }
+
+    .detail__cell_middle {
+        position: relative;
+        margin-top: resp(-204, -60, 768);
+        z-index: -1;
+    }
+    .detail__img_middle {
+        margin-left: resp(314, 100, 768);
+        @include rectResp(822, 903, 350, 0, 768);
+        object-fit: cover;
+        grid-area: img;
+    }
+    .headline__detail_middle {
+        display: inline-block;
+        margin: resp(621, 250, 768) 0 0 resp(46, 15, 768);
+        grid-area: headline;
+    }
+    .detail__desc_middle {
+        @include marginHorizontal();
+        grid-area: desc;
+    }
+
+    .detail__cell_big {
+        margin-top: resp(198, 70, 768);
+    }
+    .headline__detail_big {
+        margin: 0 auto;
+        width: resp(510, 200, 768);
+    }
+    .detail__img_big {
+        display: block;
+        @include rectResp(1360, 756, 500, 0, 768);
+        margin: resp(122, 40, 768) auto 0;
+        object-fit: cover;
+    }
+
+
+    @include media(768) {
+
+    .detail__cell_small {
+        display: grid;
+        grid-template-areas: 
+        "img desc";
+        grid-template-rows: 1fr, 1fr;
+    }
+    .desc__wrapper {
+        margin-left: resp(150, 20, 480, 768);
+        margin-left: 0;
+        justify-self: right;
+        margin-right: resp(50, 0, 480, 768);
+        width: resp(200, 180, 480, 768);
+    }
+    .detail__img_small {
+        margin-left: resp(15, 0, 480, 768);
+    }
+
+    .detail__cell_middle {
+        margin-top: resp(-60, 20, 480, 768);
+        display: grid;
+        grid-template-areas: 
+        "headline img"
+        "desc img";
+        grid-template-rows: 1fr auto;
+        // grid-template-rows: 1fr, 2fr;
+    }
+    .headline__detail_middle {
+        margin-top: 0;
+        align-self: end;
+    }
+    .detail__desc_middle {
+        margin-left: 15px;
+        align-self: end;
+    }
+    .detail__img_middle {
+        margin-left: 0;
+        justify-self: right;
+        @include rectResp(350, 384, 200, 279, 480, 768);
+    }
+
+    .detail__img_big {
+        @include media(600) {
+            @include rectRespInPercent(500, 278, 100%, 0);
+        }
+    }
+
+    }
+
+    @include media(480) {
+        .detail__cell_small {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .detail__img_small {
+            @include rectWidthResp(200, 279, 300, 250, 320, 480);
+
+            }
+            .desc__wrapper {
+                margin-top: 30px;
+            }
+        }
+
+        .detail__cell_middle {
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .detail__img_middle {
+            @include rectWidthResp(200, 279, 300, 250, 320, 480);
+
+            }
+            .headline__detail_middle {
+                margin-top: 30px;
+                align-self: center;
+            }
+            .detail__desc_middle {
+                margin: 10px auto 0 resp(123, 54, 320, 480);
+            }
+        }
+        .detail__cell_big {
+            .detail__img_big {
+                margin-top: 30px;
+            @include rectWidthResp(200, 279, 300, 250, 320, 480);
+
+            }
+        }
+    }
+}
+
+
+
+#detail-navigation {
+    background: var(--c-EBF0E4);
+    padding: resp(118, 40, 768) 0 resp(140, 60, 768);
+    display: flex;
+    align-items: top;
+
+    .detail__navigation {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navigation__link {
+        display: flex;
+        align-items: center;
+        column-gap: resp(25, 10, 768);
+    }
+    .navigation__title {
+        margin-top: resp(22, 5, 768);
+    }
+    .back-to-grid{
+        cursor: pointer;
+        &:before {
+            @include fontResp(36, 20, 100%, 768);
+        }
+    }
+
+    @include media(768) {
+        .navigation__title {
+            width: 80%;
+            text-align: center;
+        }
+        
+    }
+    
+
+    @include media(480) {
+
+    }
+}
+

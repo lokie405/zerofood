@@ -17,6 +17,15 @@ $maxRespVP: 1920; // Model resurrection
     @function resp($maxVar, $minVar, $R_min: $minRespVP, $R_max: $maxRespVP) {
         @return calc(#{$minVar + px} + ($maxVar - $minVar) * ((min(max(#{$R_min + px}, 100vw), #{$R_max + px}) - #{$R_min + px}) / ($R_max - $R_min)));
     }
+     // 
+    /// Set height in px from max to min value..
+    /// @param {( px )} $_max - * started value (px)
+    /// @param {( px )} $_min - * finished value (px)
+    /// @param {( px )} $R_min - * viewport height for finished value (px)
+    /// @param {( px )} $R_max [] -? viewport height for started value (default: $maxRespVP) (px)
+    @function respHeight($maxVar, $minVar, $R_min: $minRespVP, $R_max: $maxRespVP) {
+        @return calc(#{$minVar + px} + ($maxVar - $minVar) * ((min(max(#{$R_min + px}, 100vh), #{$R_max + px}) - #{$R_min + px}) / ($R_max - $R_min)));
+    }
 
 
     /// Set font and line-height..
@@ -29,19 +38,16 @@ $maxRespVP: 1920; // Model resurrection
     @mixin fontResp($_max, $_min, $_lh: 0, $R_min, $R_max: $maxRespVP) {
         $resp: resp($_max, $_min, $R_min, $R_max);
         font-size: $resp;
-
         @if($_lh !=0) {
             @if(string.index(#{$_lh}, "%")==null) {
                 $coef: calc($_max / $_lh);
                 line-height: calc($resp / $coef);
             }
-
             @else {
                 $coef: calc(stringToNumber(string.slice(#{$_lh}, 0, -2)) / 100);
                 line-height: calc($resp * $coef);
             }
         }
-
         @else {
             line-height: unset;
         }
@@ -77,6 +83,34 @@ $maxRespVP: 1920; // Model resurrection
             width: resp($width, $minWidth, $R_min, $R_max);
             height: resp($height, $minHeight, $R_min, $R_max);
         }
+    }
+
+
+    /// @param { px } $_width * model width for $coef;
+    /// @param { px } $_height * model height for $coef;
+    /// @param { px } $width_start * specified starting value of width;
+    /// @param { px } $width_fin * specified final value of width;
+    /// @param { px } $R_min * specified minimal view width;
+    /// @param { px } $R_max * specified maximal view width;
+    /// @output { px } specified size rectangle basically at width (height - counted)
+    @mixin rectWidthResp($_width, $_height, $width_start, $Width_fin, $R_min: $minRespVP, $R_max: $maxRespVP) {
+        $coef: calc($_width / $_height);
+        width: resp($width_start, $Width_fin, $R_min, $R_max);
+        height: resp(calc($width_start / $coef), calc($Width_fin / $coef), $R_min, $R_max);
+    }
+
+
+    /// @param { px } $_width * model width for $coef;
+    /// @param { px } $_height * model height for $coef;
+    /// @param { px } $height_start * specified starting value of height;
+    /// @param { px } $height_fin * specified final value of height;
+    /// @param { px } $R_min * specified minimal view height;
+    /// @param { px } $R_max * specified maximal view height;
+    /// @output { px } specified size rectangle basically at height (width - counted)
+    @mixin rectHeightResp($_width, $_height, $height_start, $height_fin, $R_min: $minRespVP, $R_max: $maxRespVP) {
+        $coef: calc($_width / $_height);
+        width: resp(calc($height_start * $coef), calc($height_fin * $coef), $R_min, $R_max);
+        height: resp($height_start, $height_fin, $R_min, $R_max);
     }
 // #endregion =================================================================================
 
@@ -176,6 +210,26 @@ $maxRespVP: 1920; // Model resurrection
 // ====/ V W /======================================================================
 // #endregion /=================================================================================
 
+// #region P E R C E N T ( % ) /==================================================================
+    /// @param { px } $width * template width;
+    /// @param { px } $height * template height;
+    /// @param { % / vw } $now_width */? width to calculate;
+    /// @param { % / vw } $now_height */? height to calculate;
+    @mixin rectRespInPercent($width, $height, $now_width: 0, $now_height) {
+        $coef: $width / $height;
+        @if($now_width == 0 and $now_height != 0) {
+            width: $coef * $height;
+            height: $now_height;
+        } @else if( $now_width != 0 and $now_height == 0) {
+            width: $now_width;
+            height: $now_width / $coef;
+        } @else if( $now_width == 0 and $now_height == 0) {
+            @error("All specified value setting by '0'. Need at least one 'in percent' value setting");
+        }
+    }
+// #endregion
+
+
 // #region => U T I L I T E /======================================================================
 // 
 // ====/ Convert string to number /===============================================================
@@ -233,24 +287,43 @@ $maxRespVP: 1920; // Model resurrection
 // #endregion /====/ U T I L I T E /======================================================================
 
 // #region => M E D I A /======================================================================
-/// 
-/// @param {( px )} $top - * set max-width
-/// @param {( px ))} $bottom [0] - ? set min-width
-/// @output - set media request
-@mixin media($top, $bottom: 0) {
-    @if($bottom > 320) {
-        @media (max-width: #{$top + px}) {
-            @media (min-width: #{$bottom + px}) {
+    /// 
+    /// @param {( px )} $top - * set max-width
+    /// @param {( px ))} $bottom [0] - ? set min-width
+    /// @output - set media request
+    @mixin media($top, $bottom: 0) {
+        @if($bottom > 320) {
+            @media (max-width: #{$top + px}) {
+                @media (min-width: #{$bottom + px}) {
+                    @content;
+                }
+            }
+        }
+        @else {
+            @media (max-width: #{$top + px}) {
                 @content;
             }
         }
     }
-    @else {
-        @media (max-width: #{$top + px}) {
-            @content;
+
+    /// 
+    /// @param {( px )} $top - * set max-height
+    /// @param {( px ))} $bottom [0] - ? set min-height
+    /// @output - set media request
+    @mixin heightMedia($top, $bottom: 0) {
+        @if($bottom > 320) {
+            @media (max-height: #{$top + px}) {
+                @media (min-height: #{$bottom + px}) {
+                    @content;
+                }
+            }
+        }
+        @else {
+            @media (max-height: #{$top + px}) {
+                @content;
+            }
         }
     }
-}
 
 //
 // #endregion /====/ M E D I A /======================================================================

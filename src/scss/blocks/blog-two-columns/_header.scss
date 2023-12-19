@@ -1,0 +1,22 @@
+@use "parts/mixin.scss";
+
+#blog-two-columns_header {
+    .container__header {
+        
+    }
+
+    .headline_hero {
+        margin: 18vh 0 0;
+        text-align: center;
+        @include media(480) {
+            margin: 10vh 0 0;
+        }
+        .headline__text {
+            margin-top: resp(32, 10, 768);
+            @include media(480) {
+                margin-top: 30px;
+            }
+        }
+    }
+
+}

@@ -244,11 +244,11 @@
             flex-direction: column;
         }
         .contact__communication {
-            margin: 0 auto 0 resp(0, 60, 320, 440);
+            margin: 0 auto 0 0;
             width: 155px;
         }
         .contact__address {
-            margin: 0 resp(0, 50, 320, 440) 0 auto;
+            margin: 0  0 0 auto;
             width: 155px;
         }
     }

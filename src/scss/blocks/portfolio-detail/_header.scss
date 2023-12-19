@@ -1,0 +1,38 @@
+@use "parts/mixin.scss";
+
+#portfolio-detail_header {
+    position: relative;
+
+    .container__header {
+        min-height: resp(750, 450, 768);
+        overflow: hidden;
+    }
+    .headline_hero {
+        width: fit-content;
+        margin: 13vh auto 0;
+        text-align: center;
+        @include media(480) {
+            margin: 10vh auto 0;
+            text-align: center;
+            .headline__title {
+                line-height: 200%;
+
+            }
+        }
+    }
+
+    .scroll {
+        width: fit-content;
+        margin: 4vh auto;
+        transform: rotate(90deg) translateX(50%);
+    }
+    .scroll::after {
+        content: "";
+        position: absolute;
+        width: mixin.resp(406, 150, 768);
+        border-bottom: mixin.resp(4, 2, 768) var(--c-white) dashed;
+        top: 50%;
+        left: 120%;
+    }
+
+}

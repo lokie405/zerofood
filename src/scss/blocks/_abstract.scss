@@ -16,6 +16,13 @@ body {
         min-height: 450px;
     };
 }
+.fullscreen_height_scroll { 
+    min-height: resp(700, 250, 768);
+    height: 100vh;
+    @include media(768) {
+        min-height: 450px;
+    };
+}
 
 .header__img {
     position: absolute;
@@ -40,6 +47,7 @@ body {
     }
 }
 
+
 .headline_considerable {
     .headline__subtitle {
         margin-top: resp(28, 5, 768);
@@ -55,6 +63,14 @@ body {
     .posts__labels {
         margin-top: resp(18, 5, 768);
     }
+}
+
+.headline_detail {
+    width: resp(452, 180, 768);
+    .headline__text {
+        margin-top: resp(12, 4, 768);
+        
+    }   
 }
 
 .title_large {
@@ -118,6 +134,13 @@ body {
     @include fontResp(24, 10, 140%, 768);
     font-weight: 400;
     letter-spacing: 0.48px;
+}
+.text_body-cap{
+    font-family: Lato;
+    @include fontResp(24, 10, 140%, 768);
+    font-weight: 400;
+    letter-spacing: 0.48px;
+    text-transform: capitalize;
 }
 .text_widget {
     font-family: Lato;
@@ -282,6 +305,11 @@ body {
     display: none;
     @include media(480) {
         display: block;
+    }
+}
+.phone_disable {
+    @include media(480) {
+        display: none;
     }
 }
 
