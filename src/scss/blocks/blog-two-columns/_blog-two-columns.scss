@@ -1,0 +1,183 @@
+@use "parts/mixin.scss";
+// $size: toVW(792, 768);
+@mixin img_size($s) {
+    width: $s;
+    height: $s;
+};
+
+#blog-two-columns {
+
+    .container__btc {
+        padding: resp(128, 40, 768) 0 ;
+
+    }
+
+    .breadcrumbs {
+        width: 100%;
+        text-align: left;
+    }
+
+    .btc__wrapper {
+        margin-top: resp(62, 15, 768);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        column-gap: resp(60, 20,768);
+        row-gap: resp(202, 70, 768);
+    }
+    .btc__cell {
+        position: relative;
+        // display: inline-block;
+        // width: min-content;
+        // width: fit-content;
+    }
+
+    .btc__btn {
+        position: absolute;
+        top: resp(12, 5, 768);
+        right: resp(12, 5, 768);
+    }
+    .btc__img {
+        @include img_size(toVW(792, 768));
+    }
+
+    .btc__text-wrapper {
+        margin-left: 10%;
+        // display: inline-block;
+        // width :auto;
+    }
+
+    .block__metadata {
+        display: flex;
+        align-items: center;
+        margin-top: resp(68, 20, 768);
+        width: fit-content;
+    }
+
+    .metadata__avatar {
+        @include img_size(resp(60, 30, 768));
+    }
+    .metadata__items {
+        display: flex;
+        column-gap: resp(32, 10, 768);
+
+    }
+    .metadata__item {
+        white-space: normal;
+        position: relative;
+        color: var(--c-5E6600);
+        text-align: center;
+        &:before {
+            content: "";
+            @include img_size(resp(4, 2, 768));
+            border-radius: 50%;
+            background: var(--c-5E6600);
+            top: 50%;
+            transform: translateY(-50%);
+            position:absolute;
+            left: resp(-18, -7, 768);
+        }
+        &:first-child {
+            margin-left: resp(14, 5, 768);
+            text-align: right;
+            &:before {
+                display: none;
+            }
+        }
+        
+    }
+
+    .metadata_small {
+        .metadata__items {
+            column-gap: resp(72, 20, 768 );
+            @include media(768) {
+                column-gap: resp(40, 30, 480, 768 );
+            }
+            @include media(480) {
+                column-gap: resp(30, 12, 320, 480 );
+
+            }
+        }
+        .metadata__item {
+            width: min-content;
+            &:before {
+                left: resp(-36, -10, 768);
+                @include media(768) {
+                    left: resp(-20, -15, 480, 768);
+                }
+                @include media(480) {
+                    left: resp(-15, -6, 320, 480);
+
+                }
+            }
+        }
+    }
+
+    .headline_blog {
+        width: 87%;
+        margin-top: resp(48, 15, 768);
+    }
+
+    .btc__more {
+        margin-top: resp(46, 15, 768);
+        display: flex;
+        column-gap: resp(10, 3, 768);
+        align-items: center;
+        width: fit-content;
+    }
+
+    .blog-pagination__items {
+        display: flex;
+        justify-content: center;
+        margin-top: resp(62, 20, 768);
+    }
+    .blog-pagination__item {
+        border: solid var(--c-000000) 2px;
+        margin-left: resp(40, 10, 768);
+        cursor: pointer;
+    }
+
+    @include media(768) {
+        .btc__wrapper{
+            margin-top: 40px;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            column-gap: 0;
+        }
+
+        .btc__btn {
+            top: resp(5, 3, 480, 768);
+            right: resp(5, 3, 480, 768);
+        }
+        .btc__img {
+            @include img_size(resp(400, 350, 480, 768))
+        }
+
+    }
+    @include media(480) {
+        .btc__img {
+            @include img_size(resp(350, 274, 320, 480));
+        }
+        .btc__text-wrapper {
+            // margin: 0 auto;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .block__metadata {
+            align-self: center;
+        }
+        .headline_blog {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btc__more {
+            margin: 20px 0 0 auto;
+            margin-right: resp(0, 10, 320, 480);
+            // margin-right: 10%;
+        }
+    }
+    
+}
