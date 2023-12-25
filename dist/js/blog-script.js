@@ -22,13 +22,8 @@ window.addEventListener("DOMContentLoaded", function() {
             nameElem.innerHTML = name1 + name2;
         // Width metadata maker
             const width = item.offsetWidth;
-            // console.log("1 width: ", width);
-            // console.log("2 maxWidth: ", maxWidth);
-            // const heightItem = item.querySelector(".metadata__item").offsetHeight;
-            // console.log(heightItem);
             if(width > maxWidth) {
                 item.classList.add("metadata_small");
-                // console.log("3 LESS");
             } else {
                 item.classList.remove("metadata_small");
             }
