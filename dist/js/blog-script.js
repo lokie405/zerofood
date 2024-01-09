@@ -3,9 +3,22 @@
 
 window.addEventListener("DOMContentLoaded", function() {
 
+    function blogStyleConected() {
+        const urlObject = new URL (window.location);  // "localhost:3000/"
+        const styleKind = urlObject.searchParams.get("style");
+
+        if(styleKind === "one column") {
+            document.querySelector("#blog").classList.add("one-column")
+        }
+        if(styleKind === "two columns") {
+            document.querySelector("#blog").classList.add("two-columns")
+        }
+    }
+
+    
     function autoAdjustWidth() {
-        const maxWidth = (document.querySelector("img.btc__img").offsetWidth) * 0.88;
-        const blockMetadata = document.querySelectorAll(".btc__text-wrapper .block__metadata");
+        const maxWidth = (document.querySelector("img.blog__img").offsetWidth) * 0.88;
+        const blockMetadata = document.querySelectorAll(".blog__text-wrapper .block__metadata");
         const maxSymbol = 10;
         blockMetadata.forEach(function(item) {  // => 
         // Cut down first and second name..
@@ -30,6 +43,7 @@ window.addEventListener("DOMContentLoaded", function() {
         })
     }
 
+    blogStyleConected();
     autoAdjustWidth();
 
 })

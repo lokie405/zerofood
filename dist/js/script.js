@@ -5,60 +5,6 @@ document.addEventListener("DOMContentLoaded", play);
 
 function play() {
  
-// #region ====// C L A S S //=============================================================================================
-    // class Element {
-    //     constructor(selector){
-    //         // constructor(super);
-    //         this._elem = document.querySelector(selector);
-    //         return this._elem;
-    //     }
-        
-    //     addClass(name){
-    //         if(this._elem.classList.contains(name)) {
-    //             console.log(`class: ${name} - exist, so do not need to add this class`);
-    //         } else {
-    //             this._elem.classList.add(name);
-    //         }
-    //     }
-    //     removeClass(name) {
-    //         if(this._elem.classList.contains(name)) {
-    //             this._elem.classList.remove(name);
-    //         } else {
-    //             console.log(`class: ${name} - so, nothing to remove`);
-    //         }
-    //     }
-    //     toggleClass(name) {
-    //         if(this._elem.classList.contains(name)) {
-    //             this._elem.classList.remove(name);
-    //         } else {
-    //             this._elem.classList.add(name);
-    //         }
-    //     }
-    //     // switchClass(name1, name2) {
-    //     //     if(this.classList.contains(name1)) {
-    //     //         this.classList.remove(name1);
-    //     //         this.classList.add(name2);
-    //     //         console.info(`Class ${name1} switched to ${name2}` )
-    //     //     } else {
-    //     //         this.classList.remove(name2);
-    //     //         this.classList.add(name1);
-    //     //         console.info(`Class ${name2} switched to ${name1}` )
-
-    //     //     }
-        // }
-
-        // addEvent(event, callback) {
-        //     this._elem.addEventListener(event, callback);
-        // }
-        // onOver(callback) {
-        //     this.elem.addEventListener("mouseover", callback);
-        // }
-        // onOut(callback) {
-        //     this.elem.addEventListener("mouseout", callback);
-        // }
-    // }
-    
- // #endregion
 
  // #region ====// I N I T   E L E M E N T // ==============================================================================================
     const nav = {
@@ -71,6 +17,12 @@ function play() {
         homeList: document.querySelector(".home__items"),
         menuList: document.querySelector(".menu__items"),
         buttonUp: document.querySelector("#button_up"),
+    }
+    const menu = {
+        blog: {
+            oneColumn: document.querySelector("#btn__blog-one-column"),
+            twoColumns: document.querySelector("#btn__blog-two-columns")
+        }
     }
  // #endregion
 
@@ -104,18 +56,58 @@ function play() {
                 hideNavSubitems();
             })
         });
+    // Make columns blog link..
+        // const oneColumnBlog = document.querySelector(".blog__blog-one-column"),
+        // const twoColumnsBlog = document.querySelector(".blog__blog-two-columns"),
+        //     blog = document.querySelector("#blog"),
+        //     breadcrumbs = document.querySelector(".breadrambs"),
+        //     blogWrapper = document.querySelector(".blog__wrapper");
+        // oneColumnBlog.addEventListener("click", (event) => {
+            // event.preventDefault();
+            // blog.classRemove("two-columns");
+            // blog.classAdd("one-column");
+            // blog.classAddRemove("one-column", "two-columns");
+            // breadcrumbs.classAddRemove("one-column", "two-columns");
+        // });
+        // twoColumnsBlog.addEventListener("click", () => {
+        //         blog.classAddRemove("two-columns", "one-column");
+        //         breadcrumbs.classAddRemove("two-columns", "one-column");
+        //         // blog.classRemove("one-column");
+        //         // blog.classAdd("two-columns");
+        //     })
+    }
+    function initMenu() {
+        // const baseURL = new URL(window.location.origin);
+        // menu.blog.oneColumn.addEventListener("click", (event) => {
+        //     console.log("origin", baseURL);
+        //     event.preventDefault();
+        //     const blogURL = new URL(`${baseURL}${event.target.getAttribute('href')}`)
+        //     // const urlObject = new URL(event.target.getAttribute('href'));
+        //     console.log("SeRYOGA", blogURL.href);
+        //     blogURL.searchParams.append("style", "one column");
+        //     console.log("NEW SeRYOGA", blogURL.href);
+            // window.location.href = blogURL;
+            // event.preventDefault();
+            // window.location.href = "blog.html?style=one-column";
+        // })
+        // const path = `${window.location.origin}/blog.html#blog_header`;
+        // const url = new URL(path);
+        
+        // console.log("seryoga: ", url);
+        // menu.blog.oneColumn.addEventListener("click", (event) => {
+        //     event.preventDefault();
+        //     window.open(url);
+        // })
+        // const blogURL = new URL(window.location.origin + "blog.html#blog_header");
+        // menu.blog.oneColumn. addEventListener("click", () => {
+        //     blogURL.searchParams.append("style", "one column");
+        // })
     }
 
     function initUp() {
-
-        // console.log(typeof(nav.buttonUp));
-        // console.log(typeof("str") == "string");
-
         window.addEventListener("scroll", function () {
             up();
-
         });
-        
         function up() {
         // Scroll to up execute..
             nav.buttonUp.addEventListener("click", function() {
@@ -129,14 +121,12 @@ function play() {
             } else {
                 if(!nav.buttonUp.contains("invisible")) {
                     nav.buttonUp.hideElementWithAnim("animate__fadeOut");
-
                 }
-
             }
         }
-        // up();
-        
     }
+
+    
     
     function test() {
         // window.addEventListener("scroll", function (e) {
@@ -149,30 +139,30 @@ function play() {
  // #region ====// P L A Y //=============================================================================================================
  initUp();
  initNav();
+ initMenu();
     test();
  // #endregion
 
  // #region ====// P L U G I N //========================================================================================================
 
- 
  // Switch element class..
     HTMLElement.prototype.switchClass = function (name1, name2) {
         if(this.contains(name1)) {
             this.classRemove(name1);
             this.classAdd(name2);
-            console.info(`Class ${name1} switched to ${name2}` )
+            // console.info(`Class ${name1} switched to ${name2}` )
         } else {
             this.classRemove(name2);
             this.classAdd(name1);
-            console.info(`Class ${name2} switched to ${name1}` )
+            // console.info(`Class ${name2} switched to ${name1}` )
         }
     }
  // Add one remove second class..
-    HTMLElement.prototype.classAddRemove = function(name1, name2) {
-        if(!this.contains(name1)) {
-            this.classAdd(name1);
+    HTMLElement.prototype.classAddRemove = function(add, remove) {
+        if(!this.contains(add)) {
+            this.classAdd(add);
         }
-        this.classRemove(name2);
+        this.classRemove(remove);
     }
     
  // Add class and then after 250ms remove they..
@@ -211,7 +201,7 @@ function play() {
         nav.navItemsTitle.forEach(menuItem => {
                 const sublist = menuItem.nextElementSibling;
                 if (!sublist.classList.contains("invisible")) {
-                    console.log("!invisible");
+                    // console.log("!invisible");
                     sublist.hideElementWithAnim("animate__fadeIn", 50);
                     menuItem.classRemove("nav-menu__item-title_active");
                 }
@@ -249,18 +239,20 @@ function play() {
     HTMLElement.prototype.classAdd = function(name1) {
         if(!this.classList.contains(name1)) {
             this.classList.add(name1);
-        } else {
-            console.info(`Class "${name1}" already added no need to add one more time`)
-        }
+        } 
+        // else {
+        //     console.info(`Class "${name1}" already added no need to add one more time`)
+        // }
     }
 
  // Remove class..
     HTMLElement.prototype.classRemove = function(name1) {
         if(this.classList.contains(name1)) {
             this.classList.remove(name1);
-        } else {
-            console.info(`Class "${name1}" do not exist, so can not remove him`);
-        }
+        } 
+        // else {
+        //     console.info(`Class "${name1}" do not exist, so can not remove him`);
+        // }
     }
  //  Check element to contain specify class..
     HTMLElement.prototype.contains = function(name1) {
