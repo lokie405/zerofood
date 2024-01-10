@@ -4,14 +4,18 @@
 window.addEventListener("DOMContentLoaded", function() {
 
     function blogStyleConected() {
+        
         const urlObject = new URL (window.location);  // "localhost:3000/"
         const styleKind = urlObject.searchParams.get("style");
+        const blogPageTitle = document.querySelector("#blog_header .headline__title");
 
         if(styleKind === "one column") {
             document.querySelector("#blog").classList.add("one-column")
+            blogPageTitle.textContent = "Blog List - One Column";
         }
         if(styleKind === "two columns") {
             document.querySelector("#blog").classList.add("two-columns")
+            blogPageTitle.textContent = "Blogs - Two Columns";
         }
     }
 

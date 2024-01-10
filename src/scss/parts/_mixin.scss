@@ -325,6 +325,15 @@ $maxRespVP: 1920; // Model resurrection
         }
     }
 
+    ///
+    /// @param {(px)} $min_width = * set min width for apply inner cintent
+    /// @output - apply content if width bigger then $min_width;
+    @mixin minWidthMedia($min_width) {
+        @media(min-width: #{$min_width + px}) {
+            @content;
+        }
+    }
+
 //
 // #endregion /====/ M E D I A /======================================================================
 

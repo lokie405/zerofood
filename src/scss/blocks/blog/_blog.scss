@@ -7,24 +7,6 @@
 
 #blog {
 
-    // &.one-column-blog {
-    //     &.one-column {
-    //         display: block;
-    //     }
-    //     &.two-columns {
-    //         display: none;
-    //     }
-    // }
-    
-    // &.two-columns-blog {
-    //     &.two-columns {
-    //         display: block;
-    //     }
-    //     &.one-column {
-    //         display: none;
-    //     }
-    // }
-
     .container__blog {
         padding: resp(128, 40, 768) 0 ;
     }
@@ -41,27 +23,13 @@
         grid-template-rows: auto;
         column-gap: resp(60, 20,768);
         row-gap: resp(202, 70, 768);
-    }
-    &.one-column {
-        .blog__wrapper {
-            grid-template-columns: 1fr;
-            row-gap: resp(120, 40, 768);
-        }
-    }
-    &.two-columns {
-        .blog__wrapper {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        // grid-template-columns: 1fr;
     }
 
     .blog__cell {
         position: relative;
     }
-    &.one-column {
-        .blog__cell {
-            display: flex;
-        }
-    }
+    
 
     .blog__btn {
         position: absolute;
@@ -71,19 +39,9 @@
     .blog__img {
         @include img_size(toVW(792, 768));
     }
-    &.one-column {
-        .blog__btn {
-            left: resp(575, 200, 768);
-        }
-    }
 
     .blog__text-wrapper {
         margin-left: 10%;
-    }
-    &.one-column {
-        .blog__text-wrapper {
-            margin-left: resp(116, 50, 768);
-        }
     }
 
     .block__metadata {
@@ -91,11 +49,6 @@
         align-items: center;
         margin-top: resp(68, 20, 768);
         width: fit-content;
-    }
-    &.one-column {
-       .block__metadata {
-        margin-top: resp(190, 80, 768);
-       } 
     }
 
     .metadata__avatar {
@@ -178,6 +131,35 @@
         cursor: pointer;
     }
 
+    @include minWidthMedia(768) {
+        .blog__wrapper {
+            // background-color: green;
+        }
+        &.one-column {
+            .blog__wrapper {
+                grid-template-columns: 1fr;
+                row-gap: resp(120, 40, 768);
+            }
+            .blog__cell {
+                display: flex;
+            }
+            .blog__btn {
+                left: resp(577, 212, 768);
+            }
+            .blog__text-wrapper {
+                margin-left: resp(116, 50, 768);
+            }
+            .block__metadata {
+                margin-top: resp(190, 80, 768);
+            }
+        }
+        &.two-columns {
+            .blog__wrapper {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+
     @include media(768) {
         .blog__wrapper{
             margin-top: 40px;
@@ -189,6 +171,10 @@
         .blog__btn {
             top: resp(5, 3, 480, 768);
             right: resp(5, 3, 480, 768);
+        }
+        .blog__cell {
+            width: resp(400, 350, 480, 768);
+
         }
         .blog__img {
             @include img_size(resp(400, 350, 480, 768))
