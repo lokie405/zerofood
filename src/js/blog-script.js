@@ -3,8 +3,8 @@
 
 window.addEventListener("DOMContentLoaded", function() {
 
+    
     function blogStyleConected() {
-        
         const urlObject = new URL (window.location);  // "localhost:3000/"
         const styleKind = urlObject.searchParams.get("style");
         const blogPageTitle = document.querySelector("#blog_header .headline__title");
