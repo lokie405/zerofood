@@ -13,6 +13,7 @@ function scriptMain() {
 
     const info = [
         "Name of blog post.",
+        "One short sentence, description of post.",
         "Image to view on heead. Must be min 400x800.",
         "Image with associating with post theme. At least 3 image in good quolitty.",
         "Tell how you come to topic.",
@@ -55,6 +56,17 @@ function scriptMain() {
             hideTooltip();
         }, 2000);
     }
+
+    function blinkColor(elem, param){
+        const colors = ["white", "black"];
+        let curColorIndex = 0;
+        setInterval(function() {
+            setInterval(() => {
+                elem.style[param] = colors[curColorIndex];
+                curColorIndex = (curColorIndex + 1) % colors.length;
+            }, 500);
+        }, 2000)
+    }
     /* #endregion */
 
     /* #region  Image upload */
@@ -64,167 +76,147 @@ function scriptMain() {
 
         fieldTitleImg.addEventListener("click", function(e) {
             if(e.target.tagName === "FIELDSET") {
-                console.log("inputTitleImg.click()")
                 inputTitleImg.click();
-
             }
         });
 
         inputTitleImg.addEventListener("change", ({target}) => {
             const reader = new FileReader();
+            reader.readAsDataURL(target.files[0]);
 
             reader.addEventListener("load", function (eve){
                 svgUploadTitle.style.display = "none";
-                const imgWrap = document.createElement("div");
-                imgWrap.classList.add("wrap__img-display");
-                const imgDisplay = document.createElement("img");
-                imgDisplay.src = eve.target.result;
-                imgDisplay.classList.add("display__title-img");
+                const wrap = document.createElement("div");
+                wrap.style.height = "100%";
+                wrap.style.width = "100%";
+                wrap.style.position = "relative";
+                const img = document.createElement("img");
+                img.src = eve.target.result;
+                img.style.width = "100%";
+                img.style.height = "100%";
+                img.style.objectFit = "cover";
                 const closeImg = document.createElement("div");
                 closeImg.classList.add("close__img", "headline_5");
-                closeImg.innerHTML = "✖︎";
+                closeImg.innerHTML = "×";
                 closeImg.addEventListener("click", function (e){
                     e.stopPropagation();
-                    imgWrap.remove();
+                    this.parentElement.remove();
                     svgUploadTitle.style.display = "block";
                     inputTitleImg.value = null;
-                })
-
-                imgWrap.appendChild(imgDisplay);
-                imgWrap.appendChild(closeImg);
-                fieldTitleImg.appendChild(imgWrap);
+                });
+                wrap.appendChild(img);
+                wrap.appendChild(closeImg);
+                fieldTitleImg.appendChild(wrap);
             })
 
-            reader.readAsDataURL(target.files[0]);
         })
 
-        let clickCount = 0;
         const fieldOtherImg = document.querySelector(".fieldset__other-img");
         const inputOtherImg = document.querySelector(".input__other-img");
         const svgUploadOther = fieldOtherImg.querySelector(".upload__svg");
         let fileOtherImg = [];
 
         fieldOtherImg.addEventListener("click", fieldOtherClick, {once: true});
-        inputOtherImg.addEventListener("change", inputOtherChange)
-        let inputClick = 0;
-        let changeClick = 0;
+        inputOtherImg.addEventListener("change", inputOtherChange);
+        
         function fieldOtherClick (event) {
-            // console.log(event.target);
-            changeClick = 0;
-            inputOtherImg.click();
-            inputClick++;
-            console.log("input:", inputClick);
+            if(fileOtherImg.length < 6) {
+                inputOtherImg.click();
+            } else {
+                showToast("Maximum 6 image.");
+            }
             fieldOtherImg.removeEventListener("click", fieldOtherClick);
             fieldOtherImg.addEventListener("click", fieldOtherClick, {once: true});
         }
 
-        function inputOtherChange(event) {
-            // console.log("INFO width: ", );
-            if(fileOtherImg.length < 6) {
-                for(let i = 0; i < inputOtherImg.files.length; i++){
-                    if (fileOtherImg.length < 6) {
+        async function inputOtherChange(event) {
+            for(let i = 0; i < inputOtherImg.files.length; i++){  // If add more then one file at once
+                if (fileOtherImg.length < 6) {
+                    let dublicat = 0;
+                    fileOtherImg.forEach(elem => {
+                        if(elem.name === inputOtherImg.files[i].name) {
+                            dublicat++;
+                        }
+                    });
+                    if(!dublicat) {
                         fileOtherImg.push(inputOtherImg.files[i]);
+                    } else showToast(`"${inputOtherImg.files[i].name}" already added.`);
+                } else showToast("Maximum 6 image.");
+            }
+            
+            if(fileOtherImg.length > 0 && fileOtherImg.length <= 6) {
+                while(fieldOtherImg.querySelector("div")){
+                    fieldOtherImg.removeChild(fieldOtherImg.querySelector("div"));
+                }
+                fieldOtherImg.style.display = "flex";
+                for (let i = 0; i < fileOtherImg.length; i++) {
+                  await createPrevious(fileOtherImg[i], i);
+                }
+            }
+            
+           async function createPrevious(element, index) {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.addEventListener("load", loadFileReader);
+                    reader.readAsDataURL(element);
+
+                    function loadFileReader(event) {
+                        svgUploadOther.style.display = "none";
+                        const wrap = document.createElement("div");
+                        wrap.style.height = "100%";
+                        wrap.style.width = "100%";
+                        wrap.style.position = "relative";
+                        wrap.dataset.name = element.name;
+                        const img = document.createElement("img");
+                        img.src = event.target.result;
+                        img.style.width = "100%";
+                        img.style.height = "100%";
+                        img.style.objectFit = "cover";
+                        img.alt = event.target.name;
+                        const closeImg = document.createElement("div");
+                        closeImg.classList.add("close__img", "headline_5");
+                        closeImg.innerHTML = "×";
+                        closeImg.addEventListener("click", function (e){
+                            e.stopPropagation();
+                            this.parentElement.remove();
+                            fileOtherImg.length === 1 ? svgUploadOther.style.display = "block" : "";
+                            inputTitleImg.value = null;
+                            let index;
+                            fileOtherImg.forEach(elem => {
+                                if(this.parentElement.dataset.name === elem.name) {
+                                    index = fileOtherImg.indexOf(elem);
+                                    return;
+                                }
+                            });
+                            fileOtherImg.splice(index, 1);
+                            // inputOtherImg.form.reset();
+                            inputOtherImg.value = null;
+                        });
+                        wrap.appendChild(img);
+                        wrap.appendChild(closeImg);
+                        fieldOtherImg.appendChild(wrap);
+                        // inputOtherImg..reset();
+                        inputOtherImg.value = null;
+
+                        resolve();
                     }
-                    // console.log("i = ", i);
-                    // console.log("filesStore have: ", fileOtherImg.length);
-                }
-
+                })
             }
-
-            if(fileOtherImg.length > 0) {
-                fileOtherImg.forEach(createPrevious);
-
-            }
-
-            function createPrevious(element, index, array) {
-                // console.log("createPrev");
-                const reader = new FileReader();
-                reader.addEventListener("load", loadFileReader);
-                reader.readAsDataURL(element);
-
-                function loadFileReader(event) {
-                    // console.log("YES");
-                    svgUploadOther.style.display = "none";
-                    const wrap = document.createElement("div");
-                    wrap.style.height = "100%";
-                    wrap.style.width = `${fieldOtherImg.offsetWidth/array.length}`;
-                    wrap.style.display = "relative";
-                    wrap.id = `wrapper__other-img_${index}`;
-                    const img = document.createElement("img");
-                    img.src = event.target.result;
-                    img.classList.add("display__title-img");
-
-                    wrap.appendChild(img);
-                    fieldOtherImg.appendChild(wrap);
-
-                }
-            }
-            // changeClick++;
-            // console.log("change", changeClick);
-            // console.log(event.target);
-
+            // console.log("SER", (fileOtherImg[0]));
         }
 
-        function showMassage() {
-            console.log("MUTCH MORE")
+        function showToast(message) {
+            const toast = document.createElement("div");
+
+            toast.classList.add("toast", "text_body");
+            toast.innerHTML = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 2000);
+
         }
-        // fieldOtherImg.addEventListener("click", (event) => {
-        //     if(event.target.tagName === "FIELDSET") {
-
-        //         clickCount++;
-        //         console.log("inputOtherImg.click(): ", clickCount);
-        //         inputOtherImg.click();
-
-        //         inputOtherImg.addEventListener("change", (event) => {
-        //             if(event.target.tagN === "INPUT") {
-        //                 event.stopPropagation();
-        //                 console.log("inputOtherImg.change")
-        //                 for(let i = 0; i < inputOtherImg.files.length; i++) {
-        //                     fileOtherImg.push(inputOtherImg.files[0]);
-        //                     console.log("I: ", i);
-        //                 }
-        //                 console.log("input.files: ", inputOtherImg.files);
-        //                 console.log("LENGTH inputOtherImg: ", fileOtherImg.length);
-        //                 console.log("FileOther: ", fileOtherImg);
-
-
-        //             }
-        //             // const reader = new FileReader();
-        //             // reader.addEventListener("load", (eve) => {
-        //             //     svgUploadOther.style.display = "none";
-        //             //     const imgCount = inputOtherImg.value;
-        //             //     // console.log("imgCount", imgCount);
-        //             // });
-                    
-        //         });
-
-
-
-
-        //     }
-        //     // if(inputOtherImg.files.length < 6) {
-        //         // addImage();
-        //         // function addImage() {
-        //                     // console.log("length", inputOtherImg.files.length);
-        //                     // const oldInput = fieldOtherImg.querySelector(".input__other-img");
-        //                     // const newInput = document.createElement("input");
-        //                     // newInput.type = "file";
-        //                     // newInput.multiple = true;
-        //                     // newInput.hidden = true;
-        //                     // newInput.classList.add("input__other-img", "input__require");
-        //             // newInput.name = "post_other-imgs[]";
-        //             // newInput.click();
-        //         // }
-                
-
-
-        //         // inputOtherImg.parentNode.replaceChild(newInput, oldInput);
-                
-        //         // newInput.click();
-                
-        //     // }
-
-        // });
     /* #endregion */
 
 
@@ -234,13 +226,18 @@ function scriptMain() {
 
     submit.addEventListener("click", function (event) {
         event.preventDefault();
-        validateForm();
+        submitPostForm();
+        // validateForm() ? submitPostForm() : console.log("errort");
     })
 
     function validateForm() {
+        let isValid = true;
         requireInputs.forEach(element => {
-            findInvalid(element);
+            if(!findInvalid(element)) {
+                isValid = false;  
+            }
         });
+        return isValid;
     }
 
     function findInvalid(elem, note) {
@@ -252,6 +249,29 @@ function scriptMain() {
             elem.parentElement.classList.contains("invalid") ? elem.parentElement.classList.remove("invalid") : "";
         }
         return isValid;
+    }
+
+    function submitPostForm() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "./php/script.php");
+        const form = new FormData(formUpload);
+         // Set up the callback function to handle the response
+        //  console.log("FILE 2COUNT: ", form)
+        form.set("post_other-imgs", "");
+         fileOtherImg.forEach(image => {
+            form.append("post_other-imgs[]", image);
+            let other = form.get("post_other-imgs[]");
+         });
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // document.getElementById("result").innerHTML = xhr.responseText;
+                console.log("Result: ", xhr.responseText);
+                const resp = document.querySelector(".insert_response");
+                resp.style.backgoundColor = "red";
+                resp.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send(form);
     }
     /* #endregion */
 

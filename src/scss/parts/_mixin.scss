@@ -216,13 +216,13 @@ $maxRespVP: 1920; // Model resurrection
     /// @param { % / vw } $now_width */? width to calculate;
     /// @param { % / vw } $now_height */? height to calculate;
     @mixin rectRespInPercent($width, $height, $now_width: 0, $now_height) {
-        $coef: $width / $height;
+        $coef: calc($width / $height);
         @if($now_width == 0 and $now_height != 0) {
             width: $coef * $height;
             height: $now_height;
         } @else if( $now_width != 0 and $now_height == 0) {
             width: $now_width;
-            height: $now_width / $coef;
+            height: calc($now_width / $coef);
         } @else if( $now_width == 0 and $now_height == 0) {
             @error("All specified value setting by '0'. Need at least one 'in percent' value setting");
         }

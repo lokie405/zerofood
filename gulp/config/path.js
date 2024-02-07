@@ -15,6 +15,7 @@ export const path = {
         zipFrom: `${src}/zip/*.zip`,
         // zipTo: `${src}/zip/`,
         zip: `${src}/zip`,
+        php: `${src}/php/*.php`,
     },
     dist: {
         html: `${dist}/`,
@@ -26,7 +27,7 @@ export const path = {
         svgSprite: `${dist}/fonts/`,
         srcCss: `${src}/css/`,
         srcFonts: `${src}/fonts/`,
-        
+        php: `${dist}/php/`,
         // distAll: `${dist}/**/*.*`,
 
     },
@@ -36,11 +37,13 @@ export const path = {
         css: `${src}/css/**/*.css`,
         js: `${src}/js/**/*.js`,
         zip: `${src}/zip/*.zip`,
+        php: `${src}/php/*.php`,
     },
     admin: {
         htmlFolder: `${src}/html/`,
         adminFile: `${src}/admin/load.js`,
     },
     clearDist: `${dist}/**/*.*`,
+    exceptionFile: `!${dist}/files/**/*.*`,
     srcFolder: src,
 }

@@ -30,9 +30,21 @@
         border: 2px solid black;
         width: 100%;
         margin-top: resp(10, 20, 768);
-        // padding: resp(10, 2, 768);
         height: resp(150, 150, 768);
+        overflow: hidden;
+        &:hover {
+            .info {
+                background-color: white;
+                right: 0;
+                display: flex;
+            }
+            .close__img {
+                background-color: white;
+                bottom: 0;
+                // padding: 2px;
 
+            }
+        }
     }
     legend {
         margin-left: 5%;
@@ -44,9 +56,9 @@
         height: 100%;
         padding: resp(5, 3, 768);
     }
-    input {
+    .input__post {
         width: 100%;
-        padding: 1%;
+        padding: resp(10, 5, 768) resp(20, 10, 768);
     }
     path {
         pointer-events: none;
@@ -62,15 +74,41 @@
     .fieldset__title {
         height: fit-content;
     }
+    .fieldset__descr {
+        height: fit-content;
+    }
     .fieldset__quote-author {
         height: fit-content;
         width: 50%;
         margin-left: auto;
     }
-    // .input__other-img {
-    //     display: none;
-    // }
-    
+  
+    .input__tags {
+        appearance: none;
+        &:checked + .label__tags{
+                font-weight: 900;
+                border-bottom: 2px solid black;
+        }
+    }
+    .label__tags {
+        position: relative;
+        margin: 0;
+        margin-left: resp(20, 5, 768);
+        margin-right: resp(-9.5, -4, 768);
+        &:before {
+            content: "·";
+            position: absolute;
+            top: 0%;
+            width: 10px;
+            letter-spacing: 0;
+            left: resp(-15, -3, 768);
+            // & :first {
+            //     content: "";
+            // }
+        }
+        
+    }
+
     .upload__svg {
         width: resp(100, 75, 768);
         height: resp(100, 75, 768);
@@ -80,11 +118,14 @@
     .info {
         position: absolute;
         top: 0;
-        right: 1%;
+        right:- 50%;
+        overflow: hidden;
         cursor: pointer;
         height: 25px;
         display: flex;
         z-index: 1;
+        transition: all 0.5s;
+        
     }
     .tooltip {
         width: fit-content;
@@ -101,31 +142,24 @@
         border: 2px solid black;
         color: white;
     }
-
-    .wrap__img-display {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+    
     .close__img {
         position: absolute;
-        width: fit-content;
-        bottom: 1px;
+        transition: all 0.5s;
+        bottom: -100%;
         left: 50%;
         transition: all 0.5s;
+        // width: fit-content;
+        width :resp(40, 25, 768);
+        height :resp(40, 25, 768);
+        text-align: center;
+        line-height: 100%;
         &:hover {
             color: #AA0003;
-            transform: rotate(180deg);
+            // transform: rotate(180deg);
+
         }
     }
-    .display__title-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-       
-    }
-
-    
 
     fieldset.invalid{
         border: 2px solid #AA0003;
@@ -139,5 +173,9 @@
             color: #AA0003;
         }
     }
+
+    // .blinking {
+    //     transition: all 1s;
+    // }
 
 }

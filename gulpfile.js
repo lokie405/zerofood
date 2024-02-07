@@ -24,6 +24,7 @@ import { server } from "./gulp/tasks/server.js";
 import { fonts } from "./gulp/tasks/fonts.js";
 import { img } from "./gulp/tasks/img.js";
 import { icomoon } from "./gulp/tasks/icomoon.js";
+import { php } from "./gulp/tasks/php.js";
 // import { svgSprite } from "./gulp/tasks/svgSprite.js";
 
 function watch() {
@@ -33,8 +34,9 @@ function watch() {
     gulp.watch(path.watch.css, css);
     gulp.watch(path.watch.js, js);
     gulp.watch(path.src.fonts, fonts);
+    gulp.watch(path.watch.php, php);
     gulp.watch(path.src.img, {delay: 1000}, gulp.series(clearImg, img));
 }
 
-gulp.task("default", gulp.series(clearDist, gulp.parallel(html, fonts, img, sass, css, js), gulp.parallel(server, watch)));
+gulp.task("default", gulp.series(clearDist, gulp.parallel(html, fonts, img, sass, css, js, php), gulp.parallel(server, watch)));
 

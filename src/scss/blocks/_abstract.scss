@@ -133,7 +133,6 @@ body {
     font-weight: 700;
     @include media(480) {
     @include fontResp(14, 14, 18.7, 768);
-
     }
 }
 .headline_5 {
@@ -148,14 +147,13 @@ body {
     font-weight: 400;
     letter-spacing: 2.04px;
 }
-
-.text_body{
+.text_body {
     font-family: Lato;
     @include fontResp(24, 10, 140%, 768);
     font-weight: 400;
     letter-spacing: 0.48px;
 }
-.text_body-cap{
+.text_body-cap {
     font-family: Lato;
     @include fontResp(24, 10, 140%, 768);
     font-weight: 400;
@@ -181,6 +179,12 @@ body {
     font-weight: 400;
     letter-spacing: 0.36px;
 }
+// .text_label-bold {
+//     font-family: Lato;
+//     @include fontResp(18, 9, 25, 768);
+//     font-weight: 900;
+//     letter-spacing: 0.36px;
+// }
 .text_hint {
     font-family: Lato;
     @include fontResp(16, 8, 25, 768);
@@ -350,3 +354,17 @@ body {
 }
 
 
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    // height: resp(50, 20, 768);
+    width: resp(500, 200, 768);
+    border: solid 2px var(--c-9CAA00);
+    background-color: black;
+    color: var(--c-9CAA00);
+    text-align: center;
+    padding: resp(20, 10, 768);
+
+    // transform: translateY(-100%);
+}

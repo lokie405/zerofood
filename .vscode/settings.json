@@ -5,5 +5,8 @@
         "resform",
         "Seryoga"
     ],
-    "AllAutocomplete.visibleCurrentDocument": false
+    "AllAutocomplete.visibleCurrentDocument": false,
+    "php.stubs": [
+        "*"
+    ]
 }
