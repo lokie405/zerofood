@@ -7,7 +7,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $ser = $table_name;
 }
 
-// $path = PATH_TO_FILES;
 /**
  * 2. Check is DB exist:
  */
@@ -57,6 +56,7 @@ if(!$table_exist) {
     quote TEXT,
     quote_author TEXT,
     conclusion TEXT,
+    tags TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ";
 
     try {
@@ -74,7 +74,6 @@ try {
     $upload_title_image = $_FILES["post_title-img"];
     $upload_other_image = $_FILES["post_other-imgs"];
     
-    // $post_title = $_POST["post_title"];
     $other_images = [];
     $post["title"] = $_POST["post_title"];
     $post["descr"] = $_POST["post_descr"];
@@ -83,6 +82,7 @@ try {
     $post["quote"] = $_POST["post_quote"];
     $post["quote_author"] = $_POST["post_quote-author"];
     $post["conclusion_part"] = $_POST["post_conclusion"];
+    $post["post_tags"]= $_POST["post_tags"];
     define("PATH_POST" , PATH_USER . "\\" .$post["title"] ."\\");  // Add user name folder and post name to path
     define("PATH_POST_TITLE", PATH_POST . "title\\");
     $dir_to_upload = $upload_title_image["tmp_name"];
@@ -102,9 +102,13 @@ try {
     }
 
 
-    for($i = 0; $i < count($upload_other_image); $i++) {
-        $tit2 = $upload_other_image["name"][$i];
-        move_uploaded_file($upload_other_image["tmp_name"][$i], PATH_POST . $upload_other_image["name"][$i]);
+    if($upload_other_image["name"]) {
+        for($i = 0; $i < count($upload_other_image["name"]); $i++) {
+            // $tit2 = $upload_other_image["name"][$i];
+            move_uploaded_file($upload_other_image["tmp_name"][$i], PATH_POST . $upload_other_image["name"][$i]);
+        }
+    } else {
+        array_push(ERROR, "No image content need atleast one");
     }
 
     
@@ -126,14 +130,15 @@ $col_main = $post["main_part"];
 $col_quote = $post["quote"];
 $col_quote_author = $post["quote_author"];
 $col_conclusion = $post["conclusion_part"];
+$col_tags = serialize($post["post_tags"]);
 
 try {
     $sql_insert_data = "INSERT INTO $table_name(
             user_name, title, descr, title_img, content_img, introduction,
-            main, quote, quote_author, conclusion)
+            main, quote, quote_author, conclusion, tags)
         VALUES (
             :user_name, :title, :descr, :title_img, :content_img, :introduction,
-            :main, :quote, :quote_author, :conclusion)";
+            :main, :quote, :quote_author, :conclusion, :tags)";
     
     $stmt = $pdo->prepare($sql_insert_data);
     $stmt->bindParam(':user_name', $col_user_name);
@@ -146,6 +151,7 @@ try {
     $stmt->bindParam(':quote', $col_quote);
     $stmt->bindParam(':quote_author', $col_quote_author);
     $stmt->bindParam(':conclusion', $col_conclusion);
+    $stmt->bindParam(':tags', $col_tags);
     $stmt->execute();
 } catch(PDOException $e) {
     array_push(ERROR, "Failed to insert data at Table: $e");

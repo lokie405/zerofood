@@ -21,11 +21,10 @@
         object-fit: cover;
         grid-area: img;
     }
-    .headline__detail_small {
-    }
     .desc__wrapper {
         display: inline-block;
         margin-left: resp(419, 150, 768);
+        background-color: rgba($color: #ffffff, $alpha: 0.8);
         grid-area: desc;
     }
 
@@ -91,7 +90,6 @@
         "headline img"
         "desc img";
         grid-template-rows: 1fr auto;
-        // grid-template-rows: 1fr, 2fr;
     }
     .headline__detail_middle {
         margin-top: 0;
@@ -191,11 +189,6 @@
             text-align: center;
         }
         
-    }
-    
-
-    @include media(480) {
-
     }
 }
 

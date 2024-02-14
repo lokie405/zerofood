@@ -11,13 +11,23 @@
         width: fit-content;
         margin: 13vh auto 0;
         text-align: center;
+        
         @include media(480) {
             margin: 10vh auto 0;
             text-align: center;
             .headline__title {
                 line-height: 200%;
-
             }
+        }
+        animation-duration: 2s;
+        animation-name: show;
+    }
+    @keyframes show {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
         }
     }
 

@@ -15,7 +15,11 @@
 
     .filter__item {
         margin: 0 resp(24, 5, 768);
+        border-bottom: 3px solid transparent;
         cursor: pointer;
+        &.active{
+            border-bottom: dotted 4px black;
+        }
     }
 
     .posts__wrapper {
@@ -25,10 +29,12 @@
     }
     .posts__cell {
         position: relative;
+        max-height: 1079px;
         &:after {
             content: "";
             position:absolute;
-            height :resp(346, 130, 768);
+            // height :resp(346, 130, 768);
+            height: 34%;
             width: 100%;
             bottom: 0;
             left: 0;
@@ -45,7 +51,7 @@
         position: absolute;
         left: resp(42, 15, 768);
         bottom: resp(64, 25, 768);
-        width: resp(708, 230, 768);  
+        width: fit-content; 
         z-index: 1;
     }
     .posts__title{
@@ -56,6 +62,7 @@
         position: relative;
         display: inline;
         color: var(--c-white);
+        cursor: pointer;
         &:before {
             content: "•";
             position: absolute;
@@ -71,9 +78,15 @@
         }
     }
 
+    .center {
+        margin: 0 auto;
+    }
     .width_2p3 {
         width: calc((100% - resp(60, 20, 768) )/ 3 * 2);
         object-fit: cover;
+        > .headline_posts {
+            width: 60%;
+        }
     }
     .width_1p3 {
         width: calc((100% - resp(60, 20, 768)) / 3);
@@ -85,6 +98,7 @@
     .width_1p2 {
         width: calc((100% - resp(60, 20, 768)) / 2);
         object-fit: cover;
+       
     }
 
     .button_loading {
@@ -108,9 +122,6 @@
         .headline_posts {
             width: 80%;
         }
-        // .filter__items {
-
-        // }
     }
     @include media(480) {
         .posts__wrapper {
@@ -129,38 +140,4 @@
         }
     }
 
-    // @include media(768) {
-    //     .posts__wrapper {
-    //         grid-template-columns: 1fr 1fr;
-    //         justify-content: space-around;
-    //         // column-gap: resp(20, 10, 480, 768);
-
-
-    //     }
-    //     .width_2p3 {
-    //         // width: respInPercent(200, 150, 768);
-    //         width: resp(431, 196, 480, 768);
-    //         .headline_posts {
-    //             width: resp(230, 150, 480, 768);
-    //         }
-    //         grid-column: auto;
-    //         // grid-column: span resp(4, 3, 480, 768);
-            
-    //     }
-    //     .width_1p3 {
-    //         width: resp(205, 196, 480, 768);
-    //         // grid-column: span resp(2, 3, 480, 768);
-    //         grid-column: auto;
-    //     }
-    //     .width_1p2 {
-    //         width: resp(318, 196, 480, 768);
-    //         grid-column: auto;
-    //         .headline_posts {
-    //             width: resp(230, 150, 480, 768);
-    //         }
-    //     }
-
-
-        
-    // }
 }

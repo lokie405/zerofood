@@ -10,7 +10,7 @@ export const path = {
         // cssParts: `${src}/scss/parts/fonts.{sass,scss}`,
         js: `${src}/js/**/*.js`,
         fonts: `${src}/fonts/**/*.{ttf,woff,woff2,svg,eot}`,
-        img: `${src}/img/**/*.{jpg,jpeg,svg,ico,png,webp,gif}`,
+        img: `${src}/img/**/*.{jpg,jpeg,svg,ico,png,webp,gif,jfif}`,
         svgSprite: `${src}/fonts/svg/*.svg`,
         zipFrom: `${src}/zip/*.zip`,
         // zipTo: `${src}/zip/`,

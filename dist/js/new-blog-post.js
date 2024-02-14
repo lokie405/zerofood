@@ -21,6 +21,7 @@ function scriptMain() {
         "Some quote that associated you to topic.",
         "Author of quote.",
         "Tell conclusion for post.",
+        "Select tags to describe the post.",
     ]
     const require = "Field is required."
 
@@ -189,20 +190,17 @@ function scriptMain() {
                                 }
                             });
                             fileOtherImg.splice(index, 1);
-                            // inputOtherImg.form.reset();
                             inputOtherImg.value = null;
                         });
                         wrap.appendChild(img);
                         wrap.appendChild(closeImg);
                         fieldOtherImg.appendChild(wrap);
-                        // inputOtherImg..reset();
                         inputOtherImg.value = null;
 
                         resolve();
                     }
                 })
             }
-            // console.log("SER", (fileOtherImg[0]));
         }
 
         function showToast(message) {
@@ -253,14 +251,15 @@ function scriptMain() {
 
     function submitPostForm() {
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "./php/script.php");
+        xhr.open("POST", "./php/upload_post.php");
         const form = new FormData(formUpload);
          // Set up the callback function to handle the response
         //  console.log("FILE 2COUNT: ", form)
+        // console.log("FORM: ", form.getAll("post_tags"));
         form.set("post_other-imgs", "");
          fileOtherImg.forEach(image => {
             form.append("post_other-imgs[]", image);
-            let other = form.get("post_other-imgs[]");
+            // let other = form.get("post_other-imgs[]");
          });
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
