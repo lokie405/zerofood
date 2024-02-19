@@ -19,36 +19,7 @@
         margin: 0 auto;
     }
     
-    // .headline__form-part {
-    //     margin-top: resp(30, 10, 768);
-    // }
-    // h5 {
-    //     width: fit-content;
-    // }
-    // fieldset {
-    //     position: relative;
-    //     border: 2px solid black;
-    //     width: 100%;
-    //     margin-top: resp(10, 20, 768);
-    //     height: resp(150, 150, 768);
-    //     overflow: hidden;
-    //     &:hover {
-    //         .info {
-    //             background-color: red;
-    //             right: 0;
-    //             display: flex;
-    //         }
-    //         .close__img {
-    //             background-color: white;
-    //             bottom: 0;
-
-    //         }
-    //     }
-    // }
-
-   
-
-    label.label__form-upload {
+    .label__form-upload {
         display: block;
         margin-top: resp(64, 30, 768);
         position: relative;
@@ -65,13 +36,6 @@
         border: solid resp(2, 1, 768) black;
         overflow: hidden;
         position: relative;
-        // &:hover {
-            // .info {
-            //     right: 0;
-            //     // display: block;
-            //     background-color: red;
-            // }
-        // }
     }
     path {
         pointer-events: none;
@@ -95,11 +59,8 @@
             .close__img {
                 background-color: white;
                 bottom: 0;
-
             }
-           
         }
-
     }
     .input__tags {
         appearance: none;
@@ -109,9 +70,6 @@
                 borrde
                 &::after {
                     font-weight: 400;
-
-                    // width: 0;
-                    // display: none;
                 }
         }
     }
@@ -122,7 +80,6 @@
         cursor: pointer;
         &:not(:first-child):after {
             content: "▪︎";
-            // position: absolute;
             margin: 0 resp(5, 2, 768);
             top: 0%;
             width: 10px;
@@ -135,13 +92,8 @@
         }
         
     }
-    // fieldset .label__tags:not(:first-child)::after {
-        
-    // }
 
     .upload__svg {
-        // width: resp(100, 75, 768);
-        // height: resp(100, 75, 768);
         height: 100%;
         display: block;
         margin: auto;
@@ -150,8 +102,8 @@
         position: absolute;
         top: 0;
         right: 0;
-        // top: 0;
-        // right: 0;
+        font-weight: bold;
+        line-height: 100%;
     }
     .tooltip {
         width: fit-content;
@@ -161,7 +113,6 @@
         border: solid 2px black;
         background-color: var(--c-9CAA00);
         padding : 0 resp(5, 2, 768);
-        // z-index: 5;
     }
     .submit__btn {
         display: block;
@@ -183,8 +134,6 @@
         line-height: 100%;
         &:hover {
             color: #AA0003;
-            // transform: rotate(180deg);
-
         }
     }
 
@@ -200,9 +149,5 @@
             color: #AA0003;
         }
     }
-
-    // .blinking {
-    //     transition: all 1s;
-    // }
 
 }

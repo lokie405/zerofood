@@ -2805,7 +2805,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 70%;
   margin: 0 auto;
 }
-#upload label.label__form-upload {
+#upload .label__form-upload {
   display: block;
   margin-top: calc(30px + 34 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   position: relative;
@@ -2885,6 +2885,8 @@ borrde #upload .input__tags:checked + .label__tags > span::after {
   position: absolute;
   top: 0;
   right: 0;
+  font-weight: bold;
+  line-height: 100%;
 }
 #upload .tooltip {
   width: -moz-fit-content;

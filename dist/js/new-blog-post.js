@@ -25,95 +25,62 @@ function scriptMain() {
         "Select tags to describe the post.",
     ]
     
-    // const svgInfo = `<svg class="info-tooltip__svg" fill="#000000" viewBox="-160 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"></path></g></svg>`;
     labels.forEach(showInfoSvg);
-    // const rrr = document.querySelectorAll(".upload-img__wrapper");
-    // console.log("SSS:",);
-    // rrr.forEach((e,p)=> {
-    //     console.log(e.querySelector("label").innerText)
-    //     // if(p === 0){e.firstElementChild.style.backgoundColor = "red"}
-    // })
+    // <span class="icon-info-svgrepo-com-3"></span>
     
     function showInfoSvg(elem, pos) {
-        // console.log(elem.innerText, pos)
-        const info = document.createElement("div");
-        info.classList.add("info-tooltip__svg", "headline_5");
-        info.innerText = "i";
+        const info = document.createElement("span");
+        info.classList.add("icon-info-svgrepo-com-3", "info-tooltip__svg", "text_body");
+        // info.style.fontWeight = "bold";
+        // info.style.
         elem.insertAdjacentElement("beforeend", info);
-        elem.style.fontFamily = 'Arial, sans-serif';
-
-
-        // elem.insertAdjacentHTML("beforeend", svgInfo);
-        // const svg = elem.querySelector(".info-tooltip__svg");
-        // svg.style.height = svg.style.width = (window.getComputedStyle(elem).getPropertyValue("font-size"));
-        // const rect = elem.getBoundingClientRect();
-        // const labelX = rect.x + rect.width - svg.getBoundingClientRect().width;
-        // const labelY = window.scrollY + elem.getBoundingClientRect().top;
 
         info.addEventListener("mouseover", function(event){showTooltip(arrInfo[pos])});
         info.addEventListener("mouseout", function(event){hideTooltip()});
-
     }
 
     function showTooltip(hint) {
-        // console.log("POS: ", pos);
-
         const rect = event.target.getBoundingClientRect();
         const x = rect.right + window.pageXOffset;
         const y = rect.top + window.pageYOffset;
         const border = window.getComputedStyle(tooltip).borderWidth.replace("px", "");
         tooltip.style.right = `calc(100% - ${x}px + ${rect.width}px)`;
-        tooltip.style.top = `${y - rect.height - border - border}px`;
+        tooltip.style.top = `${y - rect.height}px`;
         tooltip.style.display = "block";
         tooltip.innerHTML = hint;
     }
-
 
     function hideTooltip() {
         setTimeout(() => {
             tooltip.style.display = "none";
         }, 500);
     }
-
-    // function toogleTooltip(hint) {
-    //     event.stopPropagation();
-    //     showTooltip(hint);
-    //     setTimeout(() => {
-    //         hideTooltip();
-    //     }, 2000);
-    // }
-
-    // function blinkColor(elem, param){
-    //     const colors = ["white", "black"];
-    //     let curColorIndex = 0;
-    //     setInterval(function() {
-    //         setInterval(() => {
-    //             elem.style[param] = colors[curColorIndex];
-    //             curColorIndex = (curColorIndex + 1) % colors.length;
-    //         }, 500);
-    //     }, 2000)
-    // }
     /* #endregion */
 
     /* #region  Image upload */
+
+        // Title
         const uploadTitleImg = formUpload.querySelector(".upload__title-img");
         const inputTitleImg = document.querySelector(".title-img__input");
         const svgUploadTitle = document.querySelector(".upload__svg");
 
         uploadTitleImg.addEventListener("click", function(e) {  // Prevent click at already load image            
             e.stopPropagation();
-            console.log("click:", e.target, "; ", e);
-            inputTitleImg.click();
+            console.log("click: ", e.target);
             if(e.target.tagName === "DIV" || e.target.tagName === "svg") {
+                inputTitleImg.click();
             }
         });
 
+        inputTitleImg.addEventListener("click", e => {
+            e.stopPropagation();
+            console.log("click2: ", e.target);
 
-        inputTitleImg.addEventListener("change", ({target}) => {
-            // e.preventDefault();
-            console.log("change");
+        });
+        inputTitleImg.addEventListener("change", (e) => {
+            console.log("change: ", e.target);
             const reader = new FileReader();
-            reader.readAsDataURL(target.files[0]);
+            reader.readAsDataURL(e.target.files[0]);
 
             reader.addEventListener("load", function (eve){
                 svgUploadTitle.style.display = "none";
@@ -142,6 +109,8 @@ function scriptMain() {
 
         })
 
+
+        // Other
         const uploadOtherImg = document.querySelector(".upload__other-img");
         const inputOtherImg = document.querySelector(".input__other-img");
         const svgUploadOther = uploadOtherImg.querySelector(".upload__svg");
