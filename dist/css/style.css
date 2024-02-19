@@ -2823,6 +2823,14 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   position: relative;
 }
+#upload .input__post_tag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#upload .upload__title-img, #upload .upload__other-img {
+  padding: 0;
+}
 #upload path {
   pointer-events: none;
 }
@@ -2852,11 +2860,11 @@ h1, h2, h3, h4, h5, h6 {
      -moz-appearance: none;
           appearance: none;
 }
-#upload .input__tags:checked + .label__tags > span {
+#upload .input__tags:checked ~ span {
   font-weight: 900;
   border-bottom: 2px solid black;
 }
-borrde #upload .input__tags:checked + .label__tags > span::after {
+#upload .input__tags:checked ~ span::after {
   font-weight: 400;
 }
 #upload .label__tags {
@@ -2865,7 +2873,7 @@ borrde #upload .input__tags:checked + .label__tags > span::after {
   display: flex;
   cursor: pointer;
 }
-#upload .label__tags:not(:first-child):after {
+#upload .label__tags:not(:first-child)::before {
   content: "▪︎";
   margin: 0 calc(2px + 3 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
   top: 0%;
@@ -2877,9 +2885,15 @@ borrde #upload .input__tags:checked + .label__tags > span::after {
   border-bottom: 2px solid transparent;
 }
 #upload .upload__svg {
-  height: 100%;
+  text-align: center;
+  width: 100%;
+  line-height: calc(50px + 70 * (min(max(768px, 100vw), 1920px) - 768px) / 1152);
+}
+#upload .upload__svg:before {
   display: block;
   margin: auto;
+  font-weight: normal;
+  color: grey;
 }
 #upload .info-tooltip__svg {
   position: absolute;

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css" id="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Add blog post</title>
 </head>
 
@@ -87,15 +86,7 @@
                     <div class="upload-img__wrapper">
                         <div class="label__form-upload text_excerpt">Upload image for title
                             <div class="upload__img input__post upload__title-img">
-                                <svg class="upload__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path
-                                            d="M12 19V12M12 12L9.75 14.3333M12 12L14.25 14.3333M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333"
-                                            stroke="#000" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </g>
-                                </svg>
+                                <span class="upload__svg headline_4 icon-image-1"></span>
                                 <input type="file" class="title-img__input" name="post_title-img" accept=".jpg, .png, .jpeg, .wbpeg" hidden>
                             </div>
                         </div>
@@ -103,15 +94,7 @@
                     <div class="upload-img__wrapper">
                         <div class="label__form-upload text_excerpt">Upload image for post
                             <div class="upload__img input__post upload__other-img">
-                                <svg class="upload__svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path
-                                            d="M12 19V12M12 12L9.75 14.3333M12 12L14.25 14.3333M6.6 17.8333C4.61178 17.8333 3 16.1917 3 14.1667C3 12.498 4.09438 11.0897 5.59198 10.6457C5.65562 10.6268 5.7 10.5675 5.7 10.5C5.7 7.46243 8.11766 5 11.1 5C14.0823 5 16.5 7.46243 16.5 10.5C16.5 10.5582 16.5536 10.6014 16.6094 10.5887C16.8638 10.5306 17.1284 10.5 17.4 10.5C19.3882 10.5 21 12.1416 21 14.1667C21 16.1917 19.3882 17.8333 17.4 17.8333"
-                                            stroke="#233000" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </g>
-                                </svg>
+                                <span class="upload__svg headline_4 icon-images"></span>
                                 <input type="file" class="input__other-img input__require" name="post_other-imgs[]" accept="image/*" multiple hidden>
                             </div>
                         </div>
@@ -134,39 +117,62 @@
                     <textarea class="input__post text_widget input__require" id="input__post_conclusion" type="text" name="post_conclusion"></textarea>
                 </label>
 
-                <h5 class="headline__form-part headline_5">Tags</h5>
+                <!-- <h5 class="headline__form-part headline_5">Tags</h5> -->
                 <label class="label__form-upload text_excerpt">Tags choosen
-                    <input type="checkbox" class="input__tags" id="tag_starter" name="post_tags[]" value="starter">
-                    <label for="tag_starter" class="label__tags text_label"><span>Starter</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_launch" name="post_tags[]" value="launch">
-                    <label for="tag_launch" class="label__tags text_label"><span>Launch</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_dinner" name="post_tags[]" value="dinner">
-                    <label for="tag_dinner" class="label__tags text_label"><span>Dinner</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_soups" name="post_tags[]" value="soups">
-                    <label for="tag_soups" class="label__tags text_label"><span>Soups</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_salads" name="post_tags[]" value="salads">
-                    <label for="tag_salads" class="label__tags text_label"><span>Salads</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_entrees" name="post_tags[]" value="entrees">
-                    <label for="tag_entrees" class="label__tags text_label"><span>Entrees</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_side-dishes" name="post_tags[]" value="side-dishes">
-                    <label for="tag_side-dishes" class="label__tags text_label"><span>Side dishes</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_desserts" name="post_tags[]" value="desserts">
-                    <label for="tag_desserts" class="label__tags text_label"><span>Desserts</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_baking" name="post_tags[]" value="baking">
-                    <label for="tag_baking" class="label__tags text_label"><span>Baking</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_beverages" name="post_tags[]" value="beverages">
-                    <label for="tag_beverages" class="label__tags text_label"><span>Beverages</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_souces-and-condiments" name="post_tags[]"
-                        value="souces-and-condiments">
-                    <label for="tag_souces-and-condiments" class="label__tags text_label"><span>Souces and
-                            Condiments</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_preserves-and-pickles" name="post_tags[]"
-                        value="preserves-and-pickles">
-                    <label for="tag_preserves-and-pickles" class="label__tags text_label"><span>Preserves and
-                            Pickles</span></label>
-                    <input type="checkbox" class="input__tags" id="tag_special diets" name="post_tags[]"
-                        value="special-diets">
-                    <label for="tag_special diets" class="label__tags text_label"><span>Special diets</span></label>
+                    <div class="input__post input__post_tag">
+                        <label class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_starter" name="post_tags[]" value="starter">
+                            <span>Starter</span>
+                        </label>
+                        <label class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_launch" name="post_tags[]" value="launch">
+                            <span>Launch</span>
+                        </label>
+                        <label class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_dinner" name="post_tags[]" value="dinner">
+                            <span>Dinner</span>
+                        </label>
+                        <label class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_soups" name="post_tags[]" value="soups">
+                            <span>Soups</span>
+                        </label>
+                        <label for="tag_salads" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_salads" name="post_tags[]" value="salads">
+                            <span>Salads</span>
+                        </label>
+                        <label for="tag_entrees" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_entrees" name="post_tags[]" value="entrees">
+                            <span>Entrees</span>
+                        </label>
+                        <label for="tag_side-dishes" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_side-dishes" name="post_tags[]" value="side-dishes">
+                            <span>Side dishes</span>
+                        </label>
+                        <label for="tag_desserts" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_desserts" name="post_tags[]" value="desserts">
+                            <span>Desserts</span>
+                        </label>
+                        <label for="tag_baking" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_baking" name="post_tags[]" value="baking">
+                            <span>Baking</span>
+                        </label>
+                        <label for="tag_beverages" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_beverages" name="post_tags[]" value="beverages">
+                            <span>Beverages</span>
+                        </label>
+                        <label for="tag_special diets" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_special diets" name="post_tags[]" value="special-diets">
+                            <span>Special diets</span>
+                        </label>
+                        <label for="tag_souces-and-condiments" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_souces-and-condiments" name="post_tags[]" value="souces-and-condiments">
+                            <span>Souces and Condiments</span>
+                        </label>
+                        <label for="tag_preserves-and-pickles" class="label__tags text_label">
+                            <input type="checkbox" class="input__tags" id="tag_preserves-and-pickles" name="post_tags[]" value="preserves-and-pickles">
+                            <span>Preserves and Pickles</span>
+                        </label>
+                    </div>
                 </label>
                 <!-- </fieldset> -->
                 <button type="submit" class="submit__btn button_submit headline_5">To Post</button>

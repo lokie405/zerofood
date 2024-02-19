@@ -8,31 +8,24 @@ function scriptMain() {
     /* #region  Tooltip */
     const formUpload = document.querySelector("#upload__form");
     const tooltip = document.querySelector(".tooltip");
-    // const infoTooltips = document.querySelectorAll(".hint__info");
     const labels = formUpload.querySelectorAll(".label__form-upload");
-    // const requireTooltips = document.querySelectorAll(".hint__require");
     const maxImageCount = 3;
     const arrInfo = [
         "Name of blog post.",
-        // "One short sentence, description of post.",
         "Image for top. Better if atleast min 400x800.",
         "Image with associating with post theme. At least 3 image in good quolitty.",
         "Tell how you come to topic.",
         "Start open the topic.",
         "Some quote that associated you to topic.",
         "Author of quote.",
-        "Tell conclusion for post.",
         "Select tags to describe the post.",
     ]
     
     labels.forEach(showInfoSvg);
-    // <span class="icon-info-svgrepo-com-3"></span>
     
     function showInfoSvg(elem, pos) {
         const info = document.createElement("span");
         info.classList.add("icon-info-svgrepo-com-3", "info-tooltip__svg", "text_body");
-        // info.style.fontWeight = "bold";
-        // info.style.
         elem.insertAdjacentElement("beforeend", info);
 
         info.addEventListener("mouseover", function(event){showTooltip(arrInfo[pos])});
@@ -66,19 +59,15 @@ function scriptMain() {
 
         uploadTitleImg.addEventListener("click", function(e) {  // Prevent click at already load image            
             e.stopPropagation();
-            console.log("click: ", e.target);
-            if(e.target.tagName === "DIV" || e.target.tagName === "svg") {
+            if(e.target.tagName === "DIV" || e.target.tagName === "SPAN") {
                 inputTitleImg.click();
             }
         });
 
         inputTitleImg.addEventListener("click", e => {
             e.stopPropagation();
-            console.log("click2: ", e.target);
-
         });
         inputTitleImg.addEventListener("change", (e) => {
-            console.log("change: ", e.target);
             const reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
 
@@ -99,7 +88,7 @@ function scriptMain() {
                 closeImg.addEventListener("click", function (e){
                     e.stopPropagation();
                     this.parentElement.remove();
-                    svgUploadTitle.style.display = "block";
+                    svgUploadTitle.style.display = "inline";
                     inputTitleImg.value = null;
                 });
                 wrap.appendChild(img);
@@ -179,7 +168,7 @@ function scriptMain() {
                         closeImg.addEventListener("click", function (e){
                             e.stopPropagation();
                             this.parentElement.remove();
-                            fileOtherImg.length === 1 ? svgUploadOther.style.display = "block" : "";
+                            fileOtherImg.length === 1 ? svgUploadOther.style.display = "inline" : "";
                             inputTitleImg.value = null;
                             let index;
                             fileOtherImg.forEach(elem => {
@@ -266,6 +255,16 @@ function scriptMain() {
         xhr.send(form);
     }
     /* #endregion */
+
+    /**
+     * Prevent some bugs (bublling effect)
+     */
+ window.addEventListener("click", (e) => {
+    // console.log("target", e.target);
+    if(e.target === formUpload.querySelector(".input__post_tag")) {
+        e.preventDefault()
+    }
+})
 
 }
 

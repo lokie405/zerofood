@@ -12,7 +12,7 @@ export const icomoon = () => {  // Unzip to "zip/icomoon/" folder;
     .then(() => { // Corrected file path
         return new Promise((resolve, reject) => {  // promise guaranty wait for ending this operation
             app.gulp.src(`${app.path.src.zip}/icomoon/style.css`)
-            .pipe(app.plugins.replace("url('fonts/icomoon.","url('/fonts/icomoon."))
+            .pipe(app.plugins.replace("url('fonts/icomoon.","url('../fonts/icomoon."))
             .pipe(app.gulp.dest(`${app.path.src.zip}/icomoon/`))
             .on("end", resolve);
 
