@@ -107,7 +107,7 @@ function executeScript() {
         const urlToPost = new URL(window.location.origin + "/dist/portfolio-detail.html");
         // console.log(window.location.origin);
         urlToPost.searchParams.append("name", item.name);
-        console.log(item.name);
+        // console.log(item.name);
         postsTitle.href = urlToPost;
         postsTitle.innerText = item.name;
 

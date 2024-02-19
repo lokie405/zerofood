@@ -28,10 +28,20 @@
         position: absolute;
         width: resp(84, 60, 768);
         height: auto;
+        transition: all 0.5s;
+        path {
+            transition: all 0.5s;
+        }
+        &:hover {
+            transform: rotate(90deg);
+            path {
+               fill: white;
+   
+           }
+        }
     }
     .menu__wrapper {
         overflow-y: scroll;
-        // height: 100%;
         margin-top: 10vh;
         height: 80vh;
         
@@ -49,6 +59,8 @@
         position: relative;
         margin-left: 2vw;
         width: fit-content;
+        transition: all 0.1s;
+        cursor: pointer;
         &::before {
             content: "●";
             position: absolute;
@@ -59,19 +71,12 @@
         }
         &:hover {
             color: var(--c-9CAA00);
-            cursor: pointer;
-            font-size: resp(68, 32, 768);
-            &::before {
-                font-size: resp(22, 17, 768);
-            }
+            transform: scale(1.05);
         }
     }
     .nav-menu__item-title_active {
         &::before {
             content: "○";
-        }
-        &:hover::before {
-            font-size: resp(22, 17, 768);
         }
     }
     .nav-menu__subitems {
@@ -80,18 +85,14 @@
 
         & li{
             margin-top: resp(6, 3, 768);
+            transition: all .1s;
             @include media(768) {
                 margin: 10px 0;
-
             }
-            transition: all .1s;
             &:hover {
                 transform: scale(1.1);
-            }
-            & a:hover {
-                color: var(--c-9CAA00);
-                font-size: resp(26, 19, 768);
-                @include media(768) {
+                a {
+                    color: var(--c-9CAA00);
                 }
             }
         }
@@ -107,6 +108,15 @@
             display: flex;
             flex-direction: column;
         }
+        .communication__tel, .communication__email, .widget__adress {
+            transition: all 0.1s;
+            // cursor: pointer;
+            &:hover {
+                // display: inline-block;
+                color: var(--c-9CAA00);
+                transform: scale(1.02);
+            }
+        }
         .widget__social {
             flex-direction: row;
             width: resp(200, 100, 768);
@@ -116,7 +126,8 @@
             @include fontResp(28, 14, 100%, 768);
             & span:hover {
                 &::before {
-                    @include fontResp(30, 16, 0%, 768);
+                    display: inline-block;
+                    transform: scale(1.2);
                     color: var(--c-9CAA00);
                 }
             }

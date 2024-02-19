@@ -16,11 +16,15 @@ async function executeScript() {
     const title = new URL(window.location.href).searchParams.get("name");
     const postPosition = portfolio.findIndex(elem => elem.name === title);
     const post = portfolio[postPosition];
-
-    const portfolioTitle = document.querySelector(".headline__title.headline_1")
+    
+    /**
+     * Title action:
+    */
+    const portfolioTitle = document.querySelector(".headline__title.headline_1");
+    const portfolioScroll = document.querySelector(".scroll_portfolio-grids");
     portfolioTitle.innerText = post.name;
+    portfolioScroll.style.opacity = "1";
 
-    // titleInit();
 
     fetch("./php/load_post_image.php", {
         method: "POST",
@@ -45,12 +49,6 @@ async function executeScript() {
     })
 
     navInit(postPosition);
-
-    /**
-     * Title action:
-    */
-   function titleInit() {
-    }
 
     /**
      * Small-cell action:
@@ -128,14 +126,10 @@ async function executeScript() {
         const nextPos = position < portfolio.length - 1 ? position + 1 : 0;
         nextTitle.innerText = portfolio[nextPos].name;
         
-        // const urlToPostPrev = new URL(window.location.origin + "/dist/portfolio-detail.html");
-        // urlToPostPrev.searchParams.append("name", portfolio[prevPos].name);
-        // previousPage.href = urlToPostPrev;
         previousPage.addEventListener("click", () => {
             const url = new URL(window.location.origin + "/dist/portfolio-detail.html");
             const titleName = portfolio[prevPos].name;
             url.searchParams.append("name", titleName);
-            // console.log("PORPREVNAME", portfolio[prevPos].name);
             window.location.href = url;
         })
 
@@ -153,6 +147,7 @@ async function executeScript() {
             
             // console.log("nextEVNAME", portfolio[prevPos].name);
             window.location.href = url;
+            portfolioScroll.style.opacity = "0";
             portfolioTitle.innerText = "";
 
         })

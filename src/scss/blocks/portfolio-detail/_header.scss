@@ -19,8 +19,8 @@
                 line-height: 200%;
             }
         }
-        animation-duration: 2s;
-        animation-name: show;
+        // animation-duration: 1s;
+        animation: show 1s;
     }
     @keyframes show {
         from {
@@ -35,6 +35,8 @@
         width: fit-content;
         margin: 4vh auto;
         transform: rotate(90deg) translateX(50%);
+        animation: show 1s;
+        // animation-duration: 1s;
     }
     .scroll::after {
         content: "";

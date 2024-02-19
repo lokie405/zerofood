@@ -8,13 +8,14 @@ function scriptMain() {
     /* #region  Tooltip */
     const formUpload = document.querySelector("#upload__form");
     const tooltip = document.querySelector(".tooltip");
-    const infoTooltips = document.querySelectorAll(".hint__info");
-    const requireTooltips = document.querySelectorAll(".hint__require");
-
-    const info = [
+    // const infoTooltips = document.querySelectorAll(".hint__info");
+    const labels = formUpload.querySelectorAll(".label__form-upload");
+    // const requireTooltips = document.querySelectorAll(".hint__require");
+    const maxImageCount = 3;
+    const arrInfo = [
         "Name of blog post.",
-        "One short sentence, description of post.",
-        "Image to view on heead. Must be min 400x800.",
+        // "One short sentence, description of post.",
+        "Image for top. Better if atleast min 400x800.",
         "Image with associating with post theme. At least 3 image in good quolitty.",
         "Tell how you come to topic.",
         "Start open the topic.",
@@ -23,65 +24,94 @@ function scriptMain() {
         "Tell conclusion for post.",
         "Select tags to describe the post.",
     ]
-    const require = "Field is required."
+    
+    // const svgInfo = `<svg class="info-tooltip__svg" fill="#000000" viewBox="-160 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"></path></g></svg>`;
+    labels.forEach(showInfoSvg);
+    // const rrr = document.querySelectorAll(".upload-img__wrapper");
+    // console.log("SSS:",);
+    // rrr.forEach((e,p)=> {
+    //     console.log(e.querySelector("label").innerText)
+    //     // if(p === 0){e.firstElementChild.style.backgoundColor = "red"}
+    // })
+    
+    function showInfoSvg(elem, pos) {
+        // console.log(elem.innerText, pos)
+        const info = document.createElement("div");
+        info.classList.add("info-tooltip__svg", "headline_5");
+        info.innerText = "i";
+        elem.insertAdjacentElement("beforeend", info);
+        elem.style.fontFamily = 'Arial, sans-serif';
 
-    requireTooltips.forEach(function (elem) {
-        elem.addEventListener("mouseover", function (e) { showTooltip(require) });
-        elem.addEventListener("mouseout", function (e) { hideTooltip() });
-        elem.addEventListener("click", function (e) { toogleTooltip(require) });
-    })
-    infoTooltips.forEach(function (elem, pos) {
-        elem.addEventListener("mouseover", function (event) { showTooltip(info[pos]) });
-        elem.addEventListener("mouseout", function (event) { hideTooltip() });
-        elem.addEventListener("click", function (event) { toogleTooltip(info[pos]) });
-    })
+
+        // elem.insertAdjacentHTML("beforeend", svgInfo);
+        // const svg = elem.querySelector(".info-tooltip__svg");
+        // svg.style.height = svg.style.width = (window.getComputedStyle(elem).getPropertyValue("font-size"));
+        // const rect = elem.getBoundingClientRect();
+        // const labelX = rect.x + rect.width - svg.getBoundingClientRect().width;
+        // const labelY = window.scrollY + elem.getBoundingClientRect().top;
+
+        info.addEventListener("mouseover", function(event){showTooltip(arrInfo[pos])});
+        info.addEventListener("mouseout", function(event){hideTooltip()});
+
+    }
 
     function showTooltip(hint) {
+        // console.log("POS: ", pos);
+
         const rect = event.target.getBoundingClientRect();
         const x = rect.right + window.pageXOffset;
         const y = rect.top + window.pageYOffset;
+        const border = window.getComputedStyle(tooltip).borderWidth.replace("px", "");
         tooltip.style.right = `calc(100% - ${x}px + ${rect.width}px)`;
-        tooltip.style.top = `${y - rect.height}px`;
+        tooltip.style.top = `${y - rect.height - border - border}px`;
         tooltip.style.display = "block";
         tooltip.innerHTML = hint;
     }
 
+
     function hideTooltip() {
-        tooltip.style.display = "none";
-    }
-
-    function toogleTooltip(hint) {
-        event.stopPropagation();
-        showTooltip(hint);
         setTimeout(() => {
-            hideTooltip();
-        }, 2000);
+            tooltip.style.display = "none";
+        }, 500);
     }
 
-    function blinkColor(elem, param){
-        const colors = ["white", "black"];
-        let curColorIndex = 0;
-        setInterval(function() {
-            setInterval(() => {
-                elem.style[param] = colors[curColorIndex];
-                curColorIndex = (curColorIndex + 1) % colors.length;
-            }, 500);
-        }, 2000)
-    }
+    // function toogleTooltip(hint) {
+    //     event.stopPropagation();
+    //     showTooltip(hint);
+    //     setTimeout(() => {
+    //         hideTooltip();
+    //     }, 2000);
+    // }
+
+    // function blinkColor(elem, param){
+    //     const colors = ["white", "black"];
+    //     let curColorIndex = 0;
+    //     setInterval(function() {
+    //         setInterval(() => {
+    //             elem.style[param] = colors[curColorIndex];
+    //             curColorIndex = (curColorIndex + 1) % colors.length;
+    //         }, 500);
+    //     }, 2000)
+    // }
     /* #endregion */
 
     /* #region  Image upload */
-        const fieldTitleImg = document.querySelector(".fieldset__title-img");
+        const uploadTitleImg = formUpload.querySelector(".upload__title-img");
         const inputTitleImg = document.querySelector(".title-img__input");
-        const svgUploadTitle = fieldTitleImg.querySelector(".upload__svg");
+        const svgUploadTitle = document.querySelector(".upload__svg");
 
-        fieldTitleImg.addEventListener("click", function(e) {
-            if(e.target.tagName === "FIELDSET") {
-                inputTitleImg.click();
+        uploadTitleImg.addEventListener("click", function(e) {  // Prevent click at already load image            
+            e.stopPropagation();
+            console.log("click:", e.target, "; ", e);
+            inputTitleImg.click();
+            if(e.target.tagName === "DIV" || e.target.tagName === "svg") {
             }
         });
 
+
         inputTitleImg.addEventListener("change", ({target}) => {
+            // e.preventDefault();
+            console.log("change");
             const reader = new FileReader();
             reader.readAsDataURL(target.files[0]);
 
@@ -107,32 +137,32 @@ function scriptMain() {
                 });
                 wrap.appendChild(img);
                 wrap.appendChild(closeImg);
-                fieldTitleImg.appendChild(wrap);
+                uploadTitleImg.appendChild(wrap);
             })
 
         })
 
-        const fieldOtherImg = document.querySelector(".fieldset__other-img");
+        const uploadOtherImg = document.querySelector(".upload__other-img");
         const inputOtherImg = document.querySelector(".input__other-img");
-        const svgUploadOther = fieldOtherImg.querySelector(".upload__svg");
+        const svgUploadOther = uploadOtherImg.querySelector(".upload__svg");
         let fileOtherImg = [];
 
-        fieldOtherImg.addEventListener("click", fieldOtherClick, {once: true});
+        uploadOtherImg.addEventListener("click", uploadOtherClick, {once: true});
         inputOtherImg.addEventListener("change", inputOtherChange);
         
-        function fieldOtherClick (event) {
-            if(fileOtherImg.length < 6) {
+        function uploadOtherClick (event) {
+            if(fileOtherImg.length < maxImageCount) {
                 inputOtherImg.click();
             } else {
-                showToast("Maximum 6 image.");
+                showToast(`Maximum ${maxImageCount} image.`);
             }
-            fieldOtherImg.removeEventListener("click", fieldOtherClick);
-            fieldOtherImg.addEventListener("click", fieldOtherClick, {once: true});
+            uploadOtherImg.removeEventListener("click", uploadOtherClick);
+            uploadOtherImg.addEventListener("click", uploadOtherClick, {once: true});
         }
 
         async function inputOtherChange(event) {
             for(let i = 0; i < inputOtherImg.files.length; i++){  // If add more then one file at once
-                if (fileOtherImg.length < 6) {
+                if (fileOtherImg.length < maxImageCount) {
                     let dublicat = 0;
                     fileOtherImg.forEach(elem => {
                         if(elem.name === inputOtherImg.files[i].name) {
@@ -142,14 +172,14 @@ function scriptMain() {
                     if(!dublicat) {
                         fileOtherImg.push(inputOtherImg.files[i]);
                     } else showToast(`"${inputOtherImg.files[i].name}" already added.`);
-                } else showToast("Maximum 6 image.");
+                } else showToast(`Maximum ${maxImageCount} image.`);
             }
             
-            if(fileOtherImg.length > 0 && fileOtherImg.length <= 6) {
-                while(fieldOtherImg.querySelector("div")){
-                    fieldOtherImg.removeChild(fieldOtherImg.querySelector("div"));
+            if(fileOtherImg.length > 0 && fileOtherImg.length <= maxImageCount) {
+                while(uploadOtherImg.querySelector("div")){
+                    uploadOtherImg.removeChild(uploadOtherImg.querySelector("div"));
                 }
-                fieldOtherImg.style.display = "flex";
+                uploadOtherImg.style.display = "flex";
                 for (let i = 0; i < fileOtherImg.length; i++) {
                   await createPrevious(fileOtherImg[i], i);
                 }
@@ -194,7 +224,7 @@ function scriptMain() {
                         });
                         wrap.appendChild(img);
                         wrap.appendChild(closeImg);
-                        fieldOtherImg.appendChild(wrap);
+                        uploadOtherImg.appendChild(wrap);
                         inputOtherImg.value = null;
 
                         resolve();
@@ -225,7 +255,6 @@ function scriptMain() {
     submit.addEventListener("click", function (event) {
         event.preventDefault();
         submitPostForm();
-        // validateForm() ? submitPostForm() : console.log("errort");
     })
 
     function validateForm() {
@@ -253,17 +282,12 @@ function scriptMain() {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "./php/upload_post.php");
         const form = new FormData(formUpload);
-         // Set up the callback function to handle the response
-        //  console.log("FILE 2COUNT: ", form)
-        // console.log("FORM: ", form.getAll("post_tags"));
         form.set("post_other-imgs", "");
          fileOtherImg.forEach(image => {
             form.append("post_other-imgs[]", image);
-            // let other = form.get("post_other-imgs[]");
          });
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // document.getElementById("result").innerHTML = xhr.responseText;
                 console.log("Result: ", xhr.responseText);
                 const resp = document.querySelector(".insert_response");
                 resp.style.backgoundColor = "red";

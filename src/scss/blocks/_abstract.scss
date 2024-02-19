@@ -1,7 +1,9 @@
 @use "parts/mixin.scss";
 body {
     position: relative;
-    
+    &::-webkit-scrollbar {
+        // width: ;
+    }
 }
 
 .container {
@@ -192,6 +194,11 @@ body {
     letter-spacing: 0.36px;
 }
 
+
+a {
+    cursor: pointer;
+}
+
 .breadcrumbs {
     color: var(--c-B0B0B0);
 }
@@ -259,6 +266,7 @@ body {
         box-shadow: 0px 0px 3px 3px var(--c-9CAA00);
         background: var(--c-233000);
         padding: resp(10, 5, 768);
+        cursor: pointer;
 }
 .button_loading {
     padding: resp(10, 3, 768) resp(40, 15, 768);
